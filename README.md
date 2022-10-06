@@ -1,11 +1,4 @@
-# Sample docker-compose Project With MySQL DBaaS
-#### A sample project using docker-compose with Node and React.JS containers.
-#### Also uses a MySQL DBaaS like AWS RDS or GCloud CloudSQL.
-#### This project is meant to give you an understanding of how to formulate your docker development environment for developing web apps using React.JS, Node.JS, and a cloud SQL DBaaS like AWS RDS.
-
-- Express Server
-
-- React.JS Client
+Team 2 Database/UI Project
 
 # SETUP
 
