@@ -1,4 +1,4 @@
-CREATE TABLE `sys`.`Paintings` (
+CREATE TABLE `db`.`Paintings` (
   `PaintingID` INT NOT NULL AUTO_INCREMENT,
   `OwnerName` VARCHAR(45) NOT NULL,
   `Image` VARCHAR(45) NOT NULL,

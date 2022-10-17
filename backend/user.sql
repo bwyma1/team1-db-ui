@@ -1,4 +1,4 @@
-CREATE TABLE `sys`.`Users` (
+CREATE TABLE `db`.`Users` (
   `Email` VARCHAR(45) NOT NULL,
   `DisplayName` VARCHAR(45) NOT NULL,
   `BidList` INT NULL DEFAULT -1,

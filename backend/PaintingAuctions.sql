@@ -1,4 +1,4 @@
-CREATE TABLE `sys`.`PaintingAuctions` (
+CREATE TABLE `db`.`PaintingAuctions` (
   `AuctionID` INT NOT NULL AUTO_INCREMENT,
   `PaintingID` INT NOT NULL,
   `OwnerName` VARCHAR(45) NULL,
