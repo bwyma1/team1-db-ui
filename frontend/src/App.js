@@ -71,6 +71,7 @@ function App () {
   return (
     <div className="App">
       <header className="App-header">
+        <h1>Artcion</h1>
         <button onClick={fetchBase} style={{marginBottom: '1rem'}}> {`GET: http://${url}:8000/`} </button>
         <button onClick={reset}> Reset DB </button>
         <form onSubmit={handleSubmit}>
