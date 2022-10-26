@@ -1,10 +1,10 @@
 import React from "react";
 import "./MyNavbar.css";
-import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
+import { Nav, Navbar, NavLink } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function MyNavbar() {
+export default function MyNavbar(props) {
   return (
     <Navbar collapseOnSelect={true} expand="false" bg="dark" variant="dark">
       <Navbar.Brand href="/">
@@ -14,18 +14,11 @@ export default function MyNavbar() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <NavLink href="/">Home</NavLink>
-          <NavLink href="/login">Login</NavLink>
-          <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
+          {!props.user ? (
+            <NavLink href="/login">Login</NavLink>
+          ) : (
+            <NavLink href="/profile">Profile</NavLink>
+          )}
         </Nav>
         <Nav>
           <NavLink href="/auctions">Auctions</NavLink>
