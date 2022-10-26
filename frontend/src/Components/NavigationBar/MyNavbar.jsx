@@ -25,6 +25,7 @@ export default function MyNavbar(props) {
           <NavLink eventKey={2} href="/notifications">
             Notifications
           </NavLink>
+          <NavLink href="/profiles">Profiles</NavLink>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
