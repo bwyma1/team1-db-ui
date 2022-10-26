@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from './Views/Home';
 import Login from './Views/Login';
 import Notifications from './Views/Notifications';
+import Profile from './Views/Profile';
 
 // React functional component
 function App () {
@@ -19,6 +20,7 @@ function App () {
               <Route path="/" element={<Home />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/notifications" element={<Notifications />}></Route>
+              <Route path="/profiles" element={<Profile />}></Route>
               <Route path="*" element={<Backend />} ></Route>
             </Routes>
         </main>
