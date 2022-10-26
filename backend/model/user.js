@@ -13,7 +13,25 @@ var User = function(user)
    this.Tags = user.Tags;
    this.Password = user.Password;
 }
-
+exports.get_users = function(req, res)
+{
+  sql.connection.query(
+    "SELECT * FROM `user`;",
+    null,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
+};
 exports.login_user(req, res)
 {
     if(sql.propertyCheck(req, res, ["email", "Password"]) || sql.propertyCheck(req, res, ["DisplayName", "Password"]))
