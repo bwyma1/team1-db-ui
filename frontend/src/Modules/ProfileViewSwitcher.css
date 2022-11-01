@@ -1,0 +1,28 @@
+NavLink{
+    margin: 5%;
+    display:inline;
+}
+#toggler
+{
+    display:flex; 
+    flex-direction: row;
+    width: 99%;
+
+}
+button{
+    height:99%;
+    margin: 0%; 
+   
+    list-style: none;
+    float: left; 
+    color:white;
+    font:bold;
+    padding: 1%;
+
+}
+#toggleContainer{
+    width:100%;
+    background-color: blueviolet;
+    float:right;
+    
+}
