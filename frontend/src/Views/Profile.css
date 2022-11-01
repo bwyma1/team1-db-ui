@@ -67,19 +67,14 @@
     min-width: 9%;
     max-width: 15%;
     width: auto;
-  
-    
   }
   .ui
   {
     display: flex; 
-    
   }
   #viewArea{
-
     display:flex;
     align-content:flex-start;
-   
   }
   .content{
     width:27%;

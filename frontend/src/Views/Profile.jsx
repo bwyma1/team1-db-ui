@@ -1,4 +1,5 @@
 import "./Profile.css";
+import ProfileViewSwitcher from "../Modules/ProfileViewSwitcher";
 import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 
 
@@ -39,13 +40,11 @@ export default function Profile() {
       </span>
       <br />
 
-      <div id="profViewToggler">
-        <button>Selling  </button>
-        <button> Purchased </button>
-        <button> Likes </button>
-        <button> Active Bids </button>
-      </div>
-      <div id="viewArea" class ="container">
+
+        <div id="toggler">
+          <ProfileViewSwitcher/>
+        </div>
+        <div id="viewArea" class ="container">
 
         <img
           class="content"
