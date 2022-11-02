@@ -9,10 +9,13 @@ import Login from './Views/Login';
 import Notifications from './Views/Notifications';
 import { useEffect, useState } from 'react';
 import Profile from './Views/Profile';
+import { getUsers } from './API/Api';
+import { Toaster } from 'solid-toast';
 
 // React functional component
 function App () {
   const [user, setUser] = useState(null);
+  const [users, setUsers] = useState(null);
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -22,7 +25,11 @@ function App () {
       console.log(loggedInUser);
       console.log(user);
     }
-  });
+  }, []);
+
+  // useEffect(() => {
+  //   getUsers().then(x => setUsers(x))
+  // }, [])
 
   return (
     <Router>
@@ -37,6 +44,9 @@ function App () {
               <Route path="*" element={<Backend />} ></Route>
             </Routes>
         </main>
+      </div>
+      <div>
+        {users ? (<div>exists</div>) : (<div>does not exist</div>)}
       </div>
     </Router>
   );
