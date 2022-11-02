@@ -1,0 +1,7 @@
+User Routes: 
+Get All Users: url/user/
+Returns Users in an Arrary
+
+Login: url/loginUser/
+Takes in a JSON object with email and password
+Catch Error if email or password is wrong   
