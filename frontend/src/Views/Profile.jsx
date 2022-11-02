@@ -1,6 +1,6 @@
 import "./Profile.css";
-import ProfileViewSwitcher from "../Modules/ProfileViewSwitcher";
-import pieceCard from "../Modules/pieceCard";
+import ProfileViewSwitcher from "../Components/ProfileComps/ProfileViewSwitcher";
+import pieceCard from "../Components/ProfileComps/pieceCard";
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 
 
@@ -45,9 +45,7 @@ export default function Profile() {
         <div id="toggler">
           <ProfileViewSwitcher/>
         </div>
-        <div class="temp">
-          <pieceCard/>
-        </div>
+  
   
         <div id="viewArea" class ="container">
 
