@@ -2,7 +2,7 @@
 
 module.exports = function(app) 
 {
-  var userController = require("../model/user");
+  var userController = require("./model/user.js");
 
 // USER 
 app.route("/api/loginUser/").post(userController.login_user);
