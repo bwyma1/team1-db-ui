@@ -1,10 +1,10 @@
-// import MyImageSlider from "../Components/MyImageSlider";
-// import MyHomepageFooter from "../Components/MyHomepageFooter.jsx";
-import MyImageSlider from "../Components/HomeComps/MyImageSlider";
-import MyHomepageFooter from"../Components/HomeComps/MyHomepageFooter"; 
-import CardSlider from "../Components/HomeComps/CardSlider";
-import { User } from "../Models";
+import MyImageSlider from "../Components/MyImageSlider";
+import MyHomepageFooter from "../Components/MyHomepageFooter.jsx";
+import { AppContext } from "../context";
+import { useContext } from "react";
+
 export default function Home() {
+  const context = useContext(AppContext);
   return (
     <div>
       
@@ -12,6 +12,7 @@ export default function Home() {
       
       <CardSlider /> 
       <MyHomepageFooter />
+      <div>{context.user}</div>
     </div>
   );
 }

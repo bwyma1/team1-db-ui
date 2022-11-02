@@ -5,7 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@mantine/carousel": "^5.8.4",
-    "@mantine/core": "^5.8.4",
+    "@mantine/core": "^5.8.3",
+    "@mantine/dates": "^5.8.3",
     "@mantine/form": "^5.8.3",
     "@mantine/hooks": "^5.8.4",
     "axios": "^0.26.1",
