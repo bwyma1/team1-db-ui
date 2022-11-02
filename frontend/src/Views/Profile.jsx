@@ -1,11 +1,6 @@
 import "./Profile.css";
-import ProfileViewSwitcher from "../Components/ProfileComps/ProfileViewSwitcher";
-import ProfileViewArea from "../Components/ProfileComps/ProfileViewArea";
-import ProfileHeader from "../Components/ProfileComps/ProfileHeader";
-import { useState } from "react";
-import { auction } from "../Models";
-import { user } from "../Models";
-import data from "../Components/data";
+import ProfileViewSwitcher from "../Modules/ProfileViewSwitcher";
+import pieceCard from "../Modules/pieceCard";
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 
 export default function Profile() {
@@ -28,8 +23,60 @@ export default function Profile() {
       </div>
       <br />
 
-      <div id="toggler">
-        <ProfileViewSwitcher user={exampleUser} />
+
+        <div id="toggler">
+          <ProfileViewSwitcher/>
+        </div>
+        <div class="temp">
+          <pieceCard/>
+        </div>
+  
+        <div id="viewArea" class ="container">
+
+        <img
+          class="content"
+          src="https://via.placeholder.com/150x150"
+          id="content1"
+          alt="temporary profile pic"
+        />
+
+        <img
+          class="content"
+          src="https://via.placeholder.com/150x150"
+          id="content2"
+          alt="temporary profile pic"
+        />
+
+        <img
+          class="content"
+          src="https://via.placeholder.com/150x150"
+          id="content3"
+          alt="temporary profile pic"
+        />
+        <img
+          class="content"
+          src="https://via.placeholder.com/150x150"
+          id="content4"
+          alt="temporary profile pic"
+        />
+
+        <img
+          class="content"
+          src="https://via.placeholder.com/150x150"
+          id="content5"
+          alt="temporary profile pic"
+        />
+
+        <img
+          class="content"
+          src="https://via.placeholder.com/150x150"
+          id="content6"
+          alt="temporary profile pic"
+        />
+
+
+
+
       </div>
 
     </div>
