@@ -1,4 +1,4 @@
-import Reacr from "react"
+import React from "react"
 import "./ProfileViewSwitcher.css";
 import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";

@@ -6,13 +6,15 @@ NavLink{
 {
     display:flex; 
     flex-direction: row;
-    width: 99%;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
 
 }
 button{
-    height:99%;
+    height:100%;
     margin: 0%; 
-   
+    text-overflow: ellipsis;
     list-style: none;
     float: left; 
     color:white;
@@ -23,6 +25,9 @@ button{
 #toggleContainer{
     width:100%;
     background-color: blueviolet;
-    float:right;
-    
+    /* float:right; */
+    display:flex; 
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
 }

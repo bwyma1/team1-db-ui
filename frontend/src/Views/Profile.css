@@ -75,6 +75,7 @@
   #viewArea{
     display:flex;
     align-content:flex-start;
+    flex-wrap: wrap;
   }
   .content{
     width:27%;
