@@ -1,14 +1,11 @@
-import MyImageSlider from "../Modules/MyImageSlider";
-import MyHomepageFooter from "../Modules/MyHomepageFooter.jsx";
-
+import MyImageSlider from "../Components/MyImageSlider";
+import MyHomepageFooter from "../Components/MyHomepageFooter.jsx";
 
 export default function Home() {
   return (
     <div>
-      
-    
-      <MyImageSlider/>
-      <MyHomepageFooter/>
+      <MyImageSlider />
+      <MyHomepageFooter />
     </div>
   );
 }
