@@ -2,6 +2,10 @@
   background-color: rgb(174, 74, 208);
 }
 
+.bg-purple-fade {
+  background-color: purple;
+}
+
 .white {
   color: white;
 }
