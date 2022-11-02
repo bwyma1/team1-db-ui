@@ -1,5 +1,5 @@
 "use strict";
-var sql = require("./connection.js");
+var sql = require("../connection.js");
 
 var User = function(user)
 {
@@ -32,7 +32,7 @@ exports.get_users = function(req, res)
     }
   );
 };
-exports.login_user(req, res)
+exports.login_user = function(req, res)
 {
     if(sql.propertyCheck(req, res, ["email", "Password"]) || sql.propertyCheck(req, res, ["DisplayName", "Password"]))
     {
