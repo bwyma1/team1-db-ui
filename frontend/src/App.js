@@ -45,9 +45,7 @@ function App () {
             </Routes>
         </main>
       </div>
-      <div>
-        {users ? (<div>exists</div>) : (<div>does not exist</div>)}
-      </div>
+      
     </Router>
   );
 }
