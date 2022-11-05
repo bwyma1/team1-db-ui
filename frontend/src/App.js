@@ -27,9 +27,9 @@ function App () {
     }
   }, []);
 
-  // useEffect(() => {
-  //   getUsers().then(x => setUsers(x))
-  // }, [])
+  useEffect(() => {
+    getUsers().then(x => setUsers(x))
+  }, [])
 
   return (
     <Router>

@@ -12,7 +12,7 @@ const apiConfig = {
 };
 
 export const getUserById = (id) => new Promise((resolve, reject) => {
-    axios.get(`${apiEndPoint}/user`, apiConfig)
+    axios.get(`${apiEndPoint}/user/${id}`, apiConfig)
         .then(x => resolve(x))
         .catch(x => {
             alert(x);
@@ -28,6 +28,14 @@ export const getUsers = (id) => new Promise((resolve, reject) => {
             reject(x);
         })
 });
+
+export const loginUser = (userNmame, password) => new Promise((resolve, reject) => {
+    axios.get(`${apiEndPoint}/login`)
+        .then(x => resolve(x))
+        .catch(x => {
+            reject(x);
+        })
+})
 
 // getUserById(1)
 //      .then(x => setAccount(x))
