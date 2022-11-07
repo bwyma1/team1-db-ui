@@ -1,0 +1,38 @@
+.itemCard{
+    margin:3%;
+
+    background-color:pink;
+    display:flex;
+}
+.content{
+
+    height:50%;
+    width:100%;
+    padding:5%;
+    
+}
+
+.pieceTitle{
+    font-size: 1.75rem;
+    color:red;
+}
+.seller{
+    font-size:1rem;
+    float:left;
+    clear:left;
+}
+.priceInfo{
+    font-size:.75rem;
+    float:right;
+    clear:right;
+}
+.newPageNavButton{
+    float:right;
+    color:green;
+}
+
+
+
+
+
+
