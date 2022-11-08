@@ -12,6 +12,17 @@ export default function ProfileViewArea()
              <ItemCard/>
              <ItemCard/>
              <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+
 
         </div>
 

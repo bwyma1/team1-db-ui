@@ -7,21 +7,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function ItemCard()
 {
+
+
     return (
       <div class="itemCard">
         <div class="imgContainer">
           <img
-            class="content" 
+            class="content cardElement itemImage" 
             src="https://via.placeholder.com/150x150"
             alt="image of piece"
             />
-            <div class="itemInfoContainer">
+            <div class="itemInfoContainer cardElement">
 
-              <h1 class="pieceTitle">Title</h1>
-              <h2 class ="seller">Seller</h2>
-              <h3 class="priceInfo">Price</h3>
+              <h1 class="pieceTitle leftFloat cardText">Title</h1>
+              <h1 class ="sellerTitle leftFloat cardText">@Seller</h1>
+              <h1 class="priceInfo rightFloat cardText">$xxx</h1>
               <div class="detailsButton">
-               <button class="newPageNavButton">
+               <button class="newPageNavButton cardElement">
                 <NavLink href="/auctions"> View Auction </NavLink>
                 </button>
               </div>

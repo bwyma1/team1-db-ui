@@ -52,7 +52,7 @@ export default function Profile() {
           <ProfileViewArea/>
         </div>
   
-  
+{/*   
         <div id="viewArea" class ="container">
 
         <img
@@ -99,7 +99,7 @@ export default function Profile() {
 
 
 
-      </div>
+      </div> */}
 
     </div>
   );

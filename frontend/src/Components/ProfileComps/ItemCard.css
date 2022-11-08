@@ -1,34 +1,64 @@
 .itemCard{
-    margin:3%;
-
+    margin:2%;
     background-color:pink;
-    display:flex;
+    /* display:flex;
+    justify-content: flex-start; */
+    padding:1%;
+    background-color:lavender;
+    border-radius:3%;
 }
 .content{
 
-    height:50%;
-    width:100%;
-    padding:5%;
+    height:fit-content;
+    width:fit-content;
+    padding-bottom:2%;
+    /* height:75%;
+    width:100%; */
     
 }
-
 .pieceTitle{
-    font-size: 1.75rem;
-    color:red;
+    font-size: 1.2rem;
+    font:bold;
+    color:blueviolet;
+
 }
-.seller{
-    font-size:1rem;
-    float:left;
-    clear:left;
+.sellerTitle{
+    font-size:.75rem;
+    font:bolder;
+    color:blueviolet;
 }
 .priceInfo{
     font-size:.75rem;
+
+}
+.newPageNavButton{
+
+    width: 100%;
+    color:white;
+    font:bold;
+    border-radius:3%;
+}
+.itemInfoContainer{
+    padding-left: 1.5%;
+    /* display: flex; 
+    flex-direction: column; 
+    align-content: flex-start; */
+    background-color:red;
+    height:fit-content;
+}
+.cardText.leftFloat
+{
+    float:left;
+    clear:left;
+}
+.rightFloat
+{
     float:right;
     clear:right;
 }
-.newPageNavButton{
-    float:right;
-    color:green;
+.itemImage
+{
+    border-radius:3%;
 }
 
 
