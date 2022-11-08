@@ -2,13 +2,7 @@ import "./ProfileHeader.css";
 import React from "react";
 import { MDBIcon } from "mdb-react-ui-kit";
 
-<<<<<<< HEAD
-export default function ProfileHeader(props)
-{
-
-=======
 export default function ProfileHeader(props) {
->>>>>>> origin
   return (
     //make photo inline block!
 
