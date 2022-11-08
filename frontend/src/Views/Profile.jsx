@@ -52,54 +52,6 @@ export default function Profile() {
           <ProfileViewArea/>
         </div>
   
-{/*   
-        <div id="viewArea" class ="container">
-
-        <img
-          class="content"
-          src="https://via.placeholder.com/150x150"
-          id="content1"
-          alt="temporary profile pic"
-        />
-
-        <img
-          class="content"
-          src="https://via.placeholder.com/150x150"
-          id="content2"
-          alt="temporary profile pic"
-        />
-
-        <img
-          class="content"
-          src="https://via.placeholder.com/150x150"
-          id="content3"
-          alt="temporary profile pic"
-        />
-        <img
-          class="content"
-          src="https://via.placeholder.com/150x150"
-          id="content4"
-          alt="temporary profile pic"
-        />
-
-        <img
-          class="content"
-          src="https://via.placeholder.com/150x150"
-          id="content5"
-          alt="temporary profile pic"
-        />
-
-        <img
-          class="content"
-          src="https://via.placeholder.com/150x150"
-          id="content6"
-          alt="temporary profile pic"
-        />
-
-
-
-
-      </div> */}
 
     </div>
   );
