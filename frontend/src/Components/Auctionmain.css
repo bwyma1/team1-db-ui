@@ -1,0 +1,67 @@
+#tag1{
+    display: block;
+position: relative;
+left: -30%;
+list-style-type: none;
+}
+
+#tag1 > li{
+        padding: .5rem;
+    display: inline;
+    margin-left: .5rem;
+    background: grey;
+    color: whitesmoke;
+    border-radius: 5rem;
+    border: none;
+}
+
+#picture1{
+float: left;
+margin-bottom: 1rem;
+    width: 40%;
+    height: 30%;
+}
+
+#description{
+    display: inline;
+    clear: right;
+}
+
+#bottomcontent{
+    left: 0rem;
+    margin-top: 12%;
+}
+
+
+
+#biddingform{
+position: relative;
+float: right;
+margin: .5rem;
+}
+
+#piecename{
+left:0;
+}
+
+#commentbox{
+width: 40%;
+}
+
+label{
+    display: block;
+}
+
+#commentarybox{
+
+    display: block;
+    position: relative;
+    left: 10rem;
+    
+}
+#timer > h3{
+    display: block;
+    position: relative;
+    left: 0;
+    
+}
