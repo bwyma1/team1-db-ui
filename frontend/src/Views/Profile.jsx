@@ -31,15 +31,28 @@ export default function Profile()
 
   return (
     <div id="pageContainer">
-      <div>
-        <ProfileHeader
-          Email={exampleUser1.Email}
-          DisplayName={exampleUser1.DisplayName}
-          Bio={exampleUser1.Bio}
-          ProfilePicture={exampleUser1.ProfilePicture}
-          Password={exampleUser1.Password}
+      <span id="profileContainer" class="ui fixed">
+        <img
+          class="image"
+          src="https://via.placeholder.com/150x150"
+          id="tempProfPic"
+          alt="temporary profile pic"
         />
-      </div>
+
+        <section id="profileInfoContainer">
+          <h1 id="nameHeader" class="ui ">
+            {fname} {lname}
+          </h1>
+          <section id="UserAndBio">
+            <h2 id="username" class="ui">
+              @{username}
+            </h2>
+            <p id="bio" class="ui">
+              {bio}
+            </p>
+          </section>
+        </section>
+      </span>
       <br />
 
       <div id="toggler">

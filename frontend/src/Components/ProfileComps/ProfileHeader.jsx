@@ -1,4 +1,13 @@
 import "./ProfileHeader.css";
+export default function ProfileHeader()
+{
+    const fname = "Kendall";
+  const lname = "Boesch";
+  const username = "kendall.boeschh";
+  const bio = "~bio~";
+
+
+import "./ProfileHeader.css";
 import React from "react";
 import { MDBIcon } from "mdb-react-ui-kit";
 
@@ -15,14 +24,15 @@ export default function ProfileHeader(props) {
         />
 
         <section class="profileInfoContainer">
-          <h1 className="font-size-auto ">{props.DisplayName}</h1>
-
+          <h1 class="nameHeader ui ">
+            {fname} {lname}
+          </h1>
           <section class="UserAndBio">
             <h2 class="username ui">
-              {props.Email}
+              @{username}
             </h2>
             <p class="bio ui">
-              {props.Bio}
+              {bio}
             </p>
           </section>
         </section>
