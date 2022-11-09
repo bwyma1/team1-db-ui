@@ -16,7 +16,7 @@ var User = function(user)
 exports.get_users = function(req, res)
 {
   sql.connection.query(
-    "SELECT * FROM `user`;",
+    "SELECT * FROM `users`;",
     null,
     function(sqlErr, sqlRes)
     {
@@ -40,7 +40,7 @@ exports.login_user = function(req, res)
 
     }
     sql.connection.query(
-        "SELECT * FROM `user` WHERE `email` = ?;",
+        "SELECT * FROM `users` WHERE `email` = ?;",
         loginUser.email,
         function(sqlErr, sqlRes)
         {
