@@ -2,6 +2,7 @@ import "./Profile.css";
 import ProfileViewSwitcher from "../Components/ProfileComps/ProfileViewSwitcher";
 import ItemCard from "../Components/ProfileComps/ItemCard";
 import ProfileViewArea from "../Components/ProfileComps/ProfileViewArea";
+import ProfileHeader from "../Components/ProfileComps/ProfileHeader";
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 
 
@@ -18,7 +19,10 @@ export default function Profile() {
     
 
     <div id="pageContainer">
-      <span id="profileContainer" class="ui fixed">
+      <div> 
+        <ProfileHeader/>
+      </div>
+      {/* <span id="profileContainer" class="ui fixed">
         <img
           class="image"
           src="https://via.placeholder.com/150x150"
@@ -39,7 +43,7 @@ export default function Profile() {
             </p>
           </section>
         </section>
-      </span>
+      </span> */}
       <br />
 
   

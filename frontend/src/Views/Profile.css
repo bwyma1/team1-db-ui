@@ -55,6 +55,9 @@
     flex-wrap: wrap;
     font-size: 1.5rem;
   }
+  ProfileHeader{
+    width:100%;
+  }
 
   button {
     /* border-radius: 0%;

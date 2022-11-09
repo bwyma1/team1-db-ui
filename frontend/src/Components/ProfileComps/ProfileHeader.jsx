@@ -1,4 +1,4 @@
-
+import "./ProfileHeader.css";
 export default function ProfileHeader()
 {
     const fname = "Kendall";
@@ -22,11 +22,11 @@ export default function ProfileHeader()
           <h1 class="nameHeader ui ">
             {fname} {lname}
           </h1>
-          <section id="UserAndBio">
-            <h2 id="username" class="ui">
+          <section class="UserAndBio">
+            <h2 class="username ui">
               @{username}
             </h2>
-            <p id="bio" class="ui">
+            <p class="bio ui">
               {bio}
             </p>
           </section>
