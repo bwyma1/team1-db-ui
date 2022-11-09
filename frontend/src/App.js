@@ -9,8 +9,9 @@ import Login from './Views/Login';
 import Notifications from './Views/Notifications';
 import { useEffect, useState } from 'react';
 import Profile from './Views/Profile';
-import { getUsers } from './API/Api';
-import { Toaster } from 'solid-toast';
+import { getUsers, getAsyncUsers} from './API/Api';
+import { MantineProvider} from '@mantine/core';
+import Auctions from './Views/Auctions';
 
 // React functional component
 function App () {
@@ -27,11 +28,16 @@ function App () {
     }
   }, []);
 
-  // useEffect(() => {
-  //   getUsers().then(x => setUsers(x))
-  // }, [])
+  useEffect(() => {
+    getAsyncUsers().then(x => setUsers(x))
+  }, [])
 
   return (
+    <MantineProvider
+    theme={{
+      colorScheme: 'light',
+    }}
+  >
     <Router>
       <div className="App">
         <Header user={user}/>
@@ -41,12 +47,15 @@ function App () {
               <Route path="/login" element={<Login />}></Route>
               <Route path="/notifications" element={<Notifications />}></Route>
               <Route path="/profiles" element={<Profile />}></Route>
+              <Route path="/auctions" element={<Auctions />}></Route>
               <Route path="*" element={<Backend />} ></Route>
+              
             </Routes>
         </main>
       </div>
       
     </Router>
+    </MantineProvider>
   );
 }
 
