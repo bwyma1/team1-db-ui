@@ -1,5 +1,5 @@
 User Routes: 
-Get All Users: url/user/
+Get All Users: url/getUsers/
 Returns Users in an Arrary
 
 Login: url/loginUser/
