@@ -3,11 +3,8 @@ var sql = require("../connection.js");
 
 var User = function(user)
 {
-   this.email = user.email;
+   this.Email = user.Email;
    this.DisplayName = user.DisplayName;
-   this.BidList = user.BidList;
-   this.SellList = user.SellList;
-   this.PaintingList = user.PaintingList;
    this.Bio = user.Bio;
    this.ProfilePic = user.ProfilePic;
    this.Tags = user.Tags;
