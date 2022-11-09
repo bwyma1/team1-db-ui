@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import Profile from './Views/Profile';
 import { getUsers } from './API/Api';
 import { Toaster } from 'solid-toast';
+import AuctionPage from './Views/AuctionPage'
 
 // React functional component
 function App () {
@@ -30,7 +31,7 @@ function App () {
   // useEffect(() => {
   //   getUsers().then(x => setUsers(x))
   // }, [])
-
+//David B added route for individual auction tests
   return (
     <Router>
       <div className="App">
@@ -42,6 +43,7 @@ function App () {
               <Route path="/notifications" element={<Notifications />}></Route>
               <Route path="/profiles" element={<Profile />}></Route>
               <Route path="*" element={<Backend />} ></Route>
+              <Route path="/AuctionPage" element={<AuctionPage />} ></Route>
             </Routes>
         </main>
       </div>
