@@ -1,5 +1,5 @@
 "use strict";
-var sql = require("./connection.js");
+var sql = require("../connection.js");
 
 var User = function(user)
 {
@@ -16,7 +16,7 @@ var User = function(user)
 exports.get_users = function(req, res)
 {
   sql.connection.query(
-    "SELECT * FROM `user`;",
+    "SELECT * FROM `users`;",
     null,
     function(sqlErr, sqlRes)
     {
@@ -32,7 +32,7 @@ exports.get_users = function(req, res)
     }
   );
 };
-exports.login_user(req, res)
+exports.login_user = function(req, res)
 {
     if(sql.propertyCheck(req, res, ["email", "Password"]) || sql.propertyCheck(req, res, ["DisplayName", "Password"]))
     {
@@ -40,7 +40,7 @@ exports.login_user(req, res)
 
     }
     sql.connection.query(
-        "SELECT * FROM `user` WHERE `email` = ?;",
+        "SELECT * FROM `users` WHERE `email` = ?;",
         loginUser.email,
         function(sqlErr, sqlRes)
         {

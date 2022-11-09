@@ -3,7 +3,6 @@ form{
 }
 
 input[type="text"],
-input[type="email"],
 input[type="password"] {
   height: 2.5rem;
   font-size: 1.3rem;
@@ -22,8 +21,8 @@ input[type="submit"] {
   margin-top: 10px;
   cursor: pointer;
   font-size: 15px;
-  background: #01d28e;
-  border: 1px solid #01d28e;
+  background: linear-gradient(#ed6ea0, #ec8c69);
+  border: 1px solid linear-gradient(#ed6ea0, #ec8c69);
   color: #fff;
   padding: 10px 20px;
 }
@@ -37,7 +36,7 @@ input[type="submit"]:hover {
   justify-content: center;
 }
 
-.register-form {
+.login-form {
   background-color: white;
   padding: 2rem;
   margin: 3rem;

@@ -3,7 +3,7 @@
 # Docker compose handles all the cross platform persistence via volumes so we don't need to worry about
 #   copying over any of the actual code files for the backend.
 
-# We are using node version 14
+# We are using node version 16
 FROM node:16
 
 # Set the working directory within docker image
