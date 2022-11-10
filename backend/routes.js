@@ -1,6 +1,6 @@
 "use strict"
 
-module.exports = function(app) 
+module.exports = function(app, logger) 
 {
   var userController = require("./model/user.js");
 
