@@ -45,7 +45,7 @@
     /* display: flex; 
     flex-direction: column; 
     align-content: flex-start; */
-    background-color:red;
+    /* /background-color:red; */
     height:fit-content;
 }
 .cardText.leftFloat

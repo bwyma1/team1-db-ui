@@ -3,6 +3,7 @@ import {useState} from "react"
 import "./ItemCard.css";
 import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import LikeButton from "./LikeButton";
 
 
 export default function ItemCard()
@@ -19,7 +20,11 @@ export default function ItemCard()
             />
             <div class="itemInfoContainer cardElement">
 
-              <h1 class="pieceTitle leftFloat cardText">Title</h1>
+        
+                <span>
+                     <h1 class="pieceTitle leftFloat cardText">Title</h1> 
+                     <LikeButton/>
+                </span>
               <h1 class ="sellerTitle leftFloat cardText">@Seller</h1>
               <h1 class="priceInfo rightFloat cardText">$xxx</h1>
               <div class="detailsButton">
@@ -27,7 +32,9 @@ export default function ItemCard()
                 <NavLink href="/auctions"> View Auction </NavLink>
                 </button>
               </div>
+              <div> 
 
+              </div>
             </div>
           </div> 
       </div>

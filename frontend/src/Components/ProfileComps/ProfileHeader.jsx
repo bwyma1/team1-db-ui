@@ -8,7 +8,7 @@ export default function ProfileHeader()
 
 
   return (
-    
+    //make photo inline block!
 
     <div class="profileHeader">
       <span class=" profileHeaderContainer ui fixed">
