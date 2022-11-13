@@ -31,7 +31,7 @@ exports.get_users = function(req, res)
 };
 exports.login_user = function(req, res)
 {
-    if(sql.propertyCheck(req, res, ["Email", "Password"]) || sql.propertyCheck(req, res, ["DisplayName", "Password"]))
+  if(sql.propertyCheck(req, res, ["Email", "Password"]) || sql.propertyCheck(req, res, ["DisplayName", "Password"]))
     {
         var loginUser = new User(req.body);
 
