@@ -3,11 +3,8 @@ var sql = require("../connection.js");
 
 var User = function(user)
 {
-   this.email = user.email;
+   this.Email = user.Email;
    this.DisplayName = user.DisplayName;
-   this.BidList = user.BidList;
-   this.SellList = user.SellList;
-   this.PaintingList = user.PaintingList;
    this.Bio = user.Bio;
    this.ProfilePic = user.ProfilePic;
    this.Tags = user.Tags;
@@ -16,7 +13,7 @@ var User = function(user)
 exports.get_users = function(req, res)
 {
   sql.connection.query(
-    "SELECT * FROM `users`;",
+    "SELECT * FROM `Users`;",
     null,
     function(sqlErr, sqlRes)
     {
@@ -34,13 +31,13 @@ exports.get_users = function(req, res)
 };
 exports.login_user = function(req, res)
 {
-    if(sql.propertyCheck(req, res, ["email", "Password"]) || sql.propertyCheck(req, res, ["DisplayName", "Password"]))
+    if(sql.propertyCheck(req, res, ["Email", "Password"]) || sql.propertyCheck(req, res, ["DisplayName", "Password"]))
     {
         var loginUser = new User(req.body);
 
     }
     sql.connection.query(
-        "SELECT * FROM `users` WHERE `email` = ?;",
+        "SELECT * FROM `Users` WHERE `Email` = ?;",
         loginUser.email,
         function(sqlErr, sqlRes)
         {
