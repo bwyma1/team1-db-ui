@@ -75,3 +75,78 @@ exports.login_user = function(req, res)
         }
       );
     };
+    exports.create_user = function(req, res)
+{
+  if (sql.propertyCheck(req, res, ["name", "email", "password"]))
+  {
+    var newUser = new User(req.body);
+
+    sql.connection.query(
+      "INSERT INTO `user` SET ?;",
+      newUser,
+      function(sqlErr, sqlRes)
+      {
+        if (sql.isSuccessfulQuery(sqlErr, res))
+        {
+          sql.connection.query(
+            "SELECT * FROM `user` WHERE `id` = ?;",
+            sqlRes.insertId,
+            function(subErr, subRes)
+            {
+              if (sql.isSuccessfulQuery(subErr, res))
+              {
+                res.status(200).send(
+                {
+                  success: true,
+                  response: "Succesfully created user",
+                  info: subRes,
+                });
+              }
+            }
+          );
+        }
+      }
+    );
+  }
+};
+exports.get_user = function(req, res)
+{
+  if (!("Email" in req.params))
+  {
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Email`",
+    });
+  }
+  else
+  {
+    sql.connection.query(
+      "SELECT * FROM `user` WHERE Email = ?;",
+      req.params.Email,
+      function(sqlErr, sqlRes)
+      {
+        if (sql.isSuccessfulQuery(sqlErr, res))
+        {
+          if (sqlRes.length <= 0)
+          {
+            res.status(200).send(
+            {
+              success: false,
+              response: "Couldn't find user " + req.params.Email,
+            });
+          }
+          else
+          {
+            res.status(200).send(
+            {
+              success: true,
+              response: "Successfully found user " + req.params.Email,
+              info: sqlRes,
+            });
+          }
+        }
+      }
+    );
+  }
+}
