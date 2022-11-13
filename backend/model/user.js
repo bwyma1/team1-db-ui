@@ -32,50 +32,49 @@ exports.get_users = function(req, res)
 exports.login_user = function(req, res)
 {
   if(sql.propertyCheck(req, res, ["Email", "Password"]) || sql.propertyCheck(req, res, ["DisplayName", "Password"]))
+  {
+      var loginUser = new User(req.query);
+  }
+  sql.connection.query(
+    "SELECT * FROM `Users` WHERE `Email` = \""+
+    loginUser.Email+"\"",
+    function(sqlErr, sqlRes)
     {
-        var loginUser = new User(req.body);
-
-    }
-    sql.connection.query(
-        "SELECT * FROM `Users` WHERE `Email` = ?;",
-        loginUser.email,
-        function(sqlErr, sqlRes)
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        if (!Object.keys(sqlRes).length)
         {
-          if (sql.isSuccessfulQuery(sqlErr, res))
+          res.status(401).send(
           {
-            if (!Object.keys(sqlRes).length)
+            success: false,
+            response: "Email not found",
+          });
+        }
+        else
+        {
+          if (sqlRes[0].Password == loginUser.Password)
+          {
+            res.status(200).send(
             {
-              res.status(401).send(
-              {
-                success: false,
-                response: "Email not found",
-              });
-            }
-            else
+              success: true,
+              response: "Successfully logged in",
+              info: sqlRes,
+            });
+          }
+          else
+          {
+            res.status(401).send(
             {
-              if (sqlRes[0].password == loginUser.password)
-              {
-                res.status(200).send(
-                {
-                  success: true,
-                  response: "Successfully logged in",
-                  info: sqlRes,
-                });
-              }
-              else
-              {
-                res.status(401).send(
-                {
-                  success: false,
-                  response: "Password does not match email",
-                });
-              }
-            }
+              success: false,
+              response: "Password does not match email",
+            });
           }
         }
-      );
-    };
-    exports.create_user = function(req, res)
+      }
+    }
+  );
+};
+exports.create_user = function(req, res)
 {
   if (sql.propertyCheck(req, res, ["name", "email", "password"]))
   {
