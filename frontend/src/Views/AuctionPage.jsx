@@ -1,13 +1,15 @@
-
-import Auctionmain from "../Components/Auctionmain"
+import Auctionmain from "../Components/Auctionmain";
+import PleaseLogin from "../Components/PleaseLogin";
 //single auctionpage
 
-
 export default function AuctionPage() {
-return (
+  return (
     <>
-      <Auctionmain />
-
+      {window.sessionStorage.getItem("user") ? (
+        <Auctionmain />
+      ) : (
+        <PleaseLogin />
+      )}
     </>
   );
 }

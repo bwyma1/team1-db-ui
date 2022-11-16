@@ -6,14 +6,12 @@ import {
   Group,
   Grid,
   MultiSelect,
-  Button,
   Input,
 } from "@mantine/core";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAsyncAuctions, getAuctions } from "../API/Api";
-import { auction } from "../Models";
+import { getAsyncAuctions } from "../API/Api";
 
 export default function Auctions() {
   const navigate = useNavigate();
@@ -24,9 +22,9 @@ export default function Auctions() {
 
   //grab auctions from backend
   useEffect(() => {
-    getAsyncAuctions().then((x) => setAuctionss(x.info));
-    console.log(auctionss);
-    setAuctions(exampleData);
+    getAsyncAuctions().then((x) => setAuctions(x.info));
+    //console.log(auctionss);
+    //setAuctions(auctionss);
   }, []);
   if (auctions === null) {
     return <div>loading...</div>;
@@ -34,10 +32,9 @@ export default function Auctions() {
 
   if (auctionss != null) {
     console.log(auctionss);
-    setAuctionss(null);
   }
   function toAuction(auc) {
-    navigate(`/auctions/${auc.id}`);
+    navigate(`/auctions/${auc.AuctionID}`);
   }
 
   const handleChange = (e) => {
@@ -76,7 +73,7 @@ export default function Auctions() {
         <Input
           className="col-6 m-auto rounded fs-5 border border-secondary"
           type="search"
-          placeholder="Search By Artist"
+          placeholder="Search By Title"
           onKeyDown={handleSearch}
           onChange={handleChange}
           value={searchInput}
@@ -105,9 +102,7 @@ export default function Auctions() {
               if (searchInput === "") {
                 return auction;
               } else if (
-                auction.OwnerName.toLowerCase().includes(
-                  searchInput.toLowerCase()
-                )
+                auction.Title.toLowerCase().includes(searchInput.toLowerCase())
               ) {
                 return auction;
               }
@@ -135,16 +130,46 @@ export default function Auctions() {
                   </Card.Section>
 
                   <Group position="apart" mt="md" mb="xs">
-                    <Text weight={500}>{auction.OwnerName}</Text>
-                    {auction.EndDate.map((tag) => (
+                    <Text weight={500}>{auction.Title}</Text>
+                    {auction.Paint ? (
                       <Badge color="pink" variant="light">
-                        {tag}
+                        Paint
                       </Badge>
-                    ))}
+                    ) : (
+                      <></>
+                    )}
+                    {auction.Pencil ? (
+                      <Badge color="pink" variant="light">
+                        Pencil
+                      </Badge>
+                    ) : (
+                      <></>
+                    )}
+                    {auction.Modern ? (
+                      <Badge color="pink" variant="light">
+                        Modern
+                      </Badge>
+                    ) : (
+                      <></>
+                    )}
+                    {auction.Abstract ? (
+                      <Badge color="pink" variant="light">
+                        Abstract
+                      </Badge>
+                    ) : (
+                      <></>
+                    )}
+                    {auction.Realism ? (
+                      <Badge color="pink" variant="light">
+                        Realism
+                      </Badge>
+                    ) : (
+                      <></>
+                    )}
                   </Group>
 
                   <Text size="sm" color="dimmed">
-                    {auction.StartPrice}
+                    ${auction.StartPrice}
                   </Text>
                 </Card>
               </Grid.Col>
@@ -154,66 +179,3 @@ export default function Auctions() {
     </div>
   );
 }
-
-let exampleData = [
-  new auction(
-    2,
-    2,
-    "Truman",
-    "7",
-    "https://via.placeholder.com/150x200",
-    "19.99",
-    "date-listed",
-    [("Friendly", "Light", "Rennaissance")],
-    [
-      ["user1", "very sad!"],
-      ["user2", "Awesome"],
-      ["user3", "I love the design"],
-    ]
-  ),
-  new auction(
-    3,
-    3,
-    "Brock",
-    "8",
-    "https://via.placeholder.com/200x150",
-    "129.99",
-    "date-listed",
-    ["Friendly", "Dark", "Rennaissance"],
-    [
-      ["user1", "cool!"],
-      ["user2", "Awesome"],
-      ["user3", "I love the design"],
-    ]
-  ),
-  new auction(
-    4,
-    4,
-    "Newman",
-    "9",
-    "https://via.placeholder.com/1500x2000",
-    "19.99",
-    "date-listed",
-    ["Friendly", "Dark", "Rennaissance"],
-    [
-      ["user1", "very sad!"],
-      ["user2", "Awesome"],
-      ["user3", "I love the design"],
-    ]
-  ),
-  new auction(
-    5,
-    5,
-    "ThisName",
-    "9",
-    "https://via.placeholder.com/1500x2000",
-    "19.99",
-    "date-listed",
-    ["Friendly", "Dark", "Rennaissance"],
-    [
-      ["user1", "very sad!"],
-      ["user2", "Awesome"],
-      ["user3", "I love the design"],
-    ]
-  ),
-];

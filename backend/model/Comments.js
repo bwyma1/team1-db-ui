@@ -171,7 +171,7 @@ exports.create_comment = function(req, res)
   else
   {
     sql.connection.query(
-      "INSERT INTO `Comments` [OwnerEmail, AuctionID, CommentMessage] VALUES (?, ?, ?);",
+      "INSERT INTO `Comments` (OwnerEmail, AuctionID, CommentMessage) VALUES (?, ?, ?);",
       [
         req.body.OwnerEmail,
         req.body.AuctionID,
@@ -181,20 +181,13 @@ exports.create_comment = function(req, res)
       {
         if (sql.isSuccessfulQuery(sqlErr, res))
         { 
-            res.status(200).send(
-            {
-              success: false,
-              response: "Cannot create comment",
-            })
+          res.status(200).send(
           {
-            res.status(200).send(
-            {
-              success: true,
-              response: "Successfully created comment",
-              count: Object.keys(sqlRes).length,
-              info: sqlRes,
-            });
-          }
+            success: true,
+            response: "Successfully created comment",
+            count: Object.keys(sqlRes).length,
+            info: sqlRes,
+          });
         }
       }
     );

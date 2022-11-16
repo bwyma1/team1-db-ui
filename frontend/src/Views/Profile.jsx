@@ -5,12 +5,7 @@ import ProfileHeader from "../Components/ProfileComps/ProfileHeader";
 import { auction } from "../Models";
 import { user } from "../Models";
 import data from "../Components/data";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { getAsyncAuctions, getAuctions } from "../API/Api";
-
-
-
+import PleaseLogin from "../Components/PleaseLogin";
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 
 export default function Profile() {
@@ -34,24 +29,37 @@ if(auctions == null)
 }  
 
   return (
-    <div id="pageContainer">
-      <div>
-        <ProfileHeader
-          DisplayName={exampleUser.DisplayName}
-          Email={exampleUser.Email}
-          Bio={exampleUser.Bio}
-          ProfilePicture={exampleUser.ProfilePicture}
-        />
-      </div>
-      <br />
+    <>
+      {window.sessionStorage.getItem("user") ? (
+        <div id="pageContainer">
+          <div>
+            <ProfileHeader
+              id={exampleUser.id}
+              DisplayName={exampleUser.DisplayName}
+              Bio={exampleUser.Bio}
+              ProfilePicture={exampleUser.ProfilePicture}
+              Tags={exampleUser.Tags}
+            />
+          </div>
+          <br />
 
-      <div id="toggler">
-        <ProfileViewSwitcher user={exampleUser} />
-      </div>
-      <div>
-        <ProfileViewArea/>
-      </div>
-    </div>
+          <div id="toggler">
+            <ProfileViewSwitcher user={exampleUser} />
+          </div>
+
+          {/* <span clasName="row flex main container">
+
+          <ProfileViewArea  data={exampleUser}
+                            selling={exampleUser.selling}
+                            purchased={exampleUser.purchased}
+                            likes={exampleUser.likes}
+                            activeBids={exampleUser.activeBids} />
+      </span> */}
+        </div>
+      ) : (
+        <PleaseLogin />
+      )}
+    </>
   );
 }
 
