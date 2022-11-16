@@ -41,7 +41,7 @@ exports.propertyCheck = function(req, res, propertyNameList)
 
   propertyNameList.every(function(name)
   {
-    if (!(name in req.body))
+    if (!(name in req.query))
     {
       res.status(400).json(
       {
