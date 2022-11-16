@@ -1,27 +1,41 @@
 import React from "react"
+import { useState } from "react";
 import "./ProfileViewSwitcher.css";
-import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
+import { Navbar, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ProfileViewArea from "./ProfileViewArea";
 
 
-export default function ProfileViewSwitcher()
+export default function ProfileViewSwitcher({user})
 {
+  const [view,setView] = useState(1);
+
     return (
     <Navbar id="toggler" variant="dark">
         <div id="toggleContainer">
-          <button> 
-          <NavLink href="/profile" >Selling</NavLink>
+          <button onClick={() => setView(1)} > Selling
+          {/* <NavLink href="/profile">Selling</NavLink> */}
           </button>
-          <button>
-          <NavLink href="/login">Purchased</NavLink>
+          <button onCLick={() => setView(2)}> Purchased
+          {/* <NavLink href="/login">Purchased</NavLink> */}
           </button>
-          <button>
-          <NavLink href="/auctions">Likes</NavLink>
+          <button onClick={() => setView(3)}> Likes
+          {/* <NavLink href="/auctions">Likes</NavLink> */}
           </button>
-          <button>
-          <NavLink href="/auctions">Active Bids</NavLink>
+          <button onClick={() => setView(4)}> Active Bids
+          {/* <NavLink href="/auctions">Active Bids</NavLink> */}
           </button>
+          {this.view == 1 ? <ProfileViewArea items={user.selling} /> : ''}
+          {this.view == 2 ? <ProfileViewArea items={user.purchased} /> : ''}
+          {this.view == 3 ? <ProfileViewArea items={user.likes} /> : ''}
+          {this.view == 4 ? <ProfileViewArea items={user.activeBids}/> : ''}
+          
         </div>  
+        
+        {/* {this.state.view == 1}  */}
+{/* 
+        {this.state.view === 1 ? <View1></View1> : ''}
+            {this.state.view === 2 ? <View2></View2> : '' */}
     </Navbar>
   );
 

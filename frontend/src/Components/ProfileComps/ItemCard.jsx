@@ -8,7 +8,9 @@ import LikeButton from "./LikeButton";
 
 export default function ItemCard({props})
 {
-
+    const [title, setTitle]=useState('');
+    const [seller, setSeller]=useState(''); 
+    const [price, setPrice]=useState('')
 
     return (
       <div class="itemCard">
@@ -22,7 +24,7 @@ export default function ItemCard({props})
 
         
                 <span>
-                     <h1 class="pieceTitle leftFloat cardText">Title</h1> 
+                     <h1 class="pieceTitle leftFloat cardText">  Title</h1> 
                      <LikeButton/>
                 </span>
               <h1 class ="sellerTitle leftFloat cardText">@Seller</h1>

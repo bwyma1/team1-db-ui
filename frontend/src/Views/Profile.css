@@ -60,16 +60,11 @@
   }
 
   button {
-    /* border-radius: 0%;
-    height: 100%;
-    margin: 0%; */
+
     background-color: blueviolet; 
     color: white; 
     font: bold; 
-    /* float:left;
-    min-width: 9%;
-    max-width: 15%;
-    width: auto; */
+  
   }
   .ui
   {
@@ -84,10 +79,11 @@
     width:27%;
     height:27%;
   }
-.row 
+.row
 {
-  display:flex; 
-  flex-direction: row;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;      
 }
   
   
