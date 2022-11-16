@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import LikeButton from "./LikeButton";
 
 
-export default function ItemCard()
+export default function ItemCard({props})
 {
 
 

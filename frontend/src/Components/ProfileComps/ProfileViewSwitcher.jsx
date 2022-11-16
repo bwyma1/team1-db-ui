@@ -10,7 +10,7 @@ export default function ProfileViewSwitcher()
     <Navbar id="toggler" variant="dark">
         <div id="toggleContainer">
           <button> 
-          <NavLink href="/">Selling</NavLink>
+          <NavLink href="/profile" >Selling</NavLink>
           </button>
           <button>
           <NavLink href="/login">Purchased</NavLink>

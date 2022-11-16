@@ -84,5 +84,10 @@
     width:27%;
     height:27%;
   }
+.row 
+{
+  display:flex; 
+  flex-direction: row;
+}
   
   

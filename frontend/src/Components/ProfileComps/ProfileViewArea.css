@@ -2,10 +2,11 @@
     display: flex; 
     align-content:flex-start; 
     flex-wrap:wrap;
-    width:100%;
     height:100%;
     justify-content: space-evenly;
-    padding-left:15%;
-    padding-right:5%;
-    
+}
+.view2Area{
+    display: flex; 
+    align-content:flex-start; 
+    height:100%;
 }

@@ -1,10 +1,9 @@
 import "./Profile.css";
 import ProfileViewSwitcher from "../Components/ProfileComps/ProfileViewSwitcher";
-import ItemCard from "../Components/ProfileComps/ItemCard";
 import ProfileViewArea from "../Components/ProfileComps/ProfileViewArea";
 import ProfileHeader from "../Components/ProfileComps/ProfileHeader";
+import ViewFilter from "../Components/ProfileComps/ViewFilter";
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
-
 
 
 export default function Profile() {
@@ -29,8 +28,10 @@ export default function Profile() {
           <ProfileViewSwitcher/>
         </div>
 
-        <div> 
-
+        <div clasName ="row flex main container"> 
+      
+            <ViewFilter/>
+         
           <ProfileViewArea/>
         </div>
   
