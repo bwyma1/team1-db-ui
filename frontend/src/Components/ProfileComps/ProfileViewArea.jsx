@@ -1,10 +1,10 @@
 import { useState } from "react" 
 import React from "react" ;
 import ItemCard from "./ItemCard";
+import ProfileViewSwitcher from "./ProfileViewSwitcher";
 import "./ProfileViewArea.css";
-import { auction } from "../../Models";
-import { useEffect } from "react";
-import { Grid } from "@mantine/core";
+import ViewFilter from "./ViewFilter";
+
 
 
 export default function ProfileViewArea({items})
@@ -23,6 +23,32 @@ export default function ProfileViewArea({items})
    
 
     return(
+        <>
+        <ProfileViewSwitcher />
+        <div class="view2Area">
+            
+            {/* <div> 
+               // <ViewFilter/>
+            </div> */}
+            <div class='viewArea'> 
+
+
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+             <ItemCard/>
+            </div>
+
+        </div>
         <>
     
                     {/* <ReviewForm onReviewAdded = { review => addReview({reviews: [...product.reviews, review]})}/> */}
@@ -51,3 +77,4 @@ export default function ProfileViewArea({items})
 
     );
 }
+

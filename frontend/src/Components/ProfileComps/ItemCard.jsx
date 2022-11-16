@@ -8,7 +8,10 @@ import LikeButton from "./LikeButton";
 
 export default function ItemCard(props)
 {
-  const tags = props.tags; 
+    const [title, setTitle]=useState('');
+    const [seller, setSeller]=useState(''); 
+    const [price, setPrice]=useState('')
+
     return (
       <div className="card h-100 p-2">
           <img
@@ -19,11 +22,9 @@ export default function ItemCard(props)
             <div className="col card-body">
 
         
-                <span className="d-flex justify-content-between">
-                     <h1 className=" mt-3 font-weight-bold pieceTitle leftFloat cardText"> 
-                     {props.Title}</h1> 
-
-                     {/* <LikeButton className='align-content-end'/> */}
+                <span>
+                     <h1 class="pieceTitle leftFloat cardText">  Title</h1> 
+                     <LikeButton/>
                 </span>
               <h1 className ="sellerTitle font-3 leftFloat cardText">@{props.OwnerName}</h1>
 
