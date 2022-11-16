@@ -2,7 +2,7 @@
     font-family: sans-serif;
     text-align: center;
   }
-  img{
+  #tempProfilePic{
     margin:2.5%; 
     width:10px;
     align-content:flex-start;
@@ -55,35 +55,35 @@
     flex-wrap: wrap;
     font-size: 1.5rem;
   }
+  ProfileHeader{
+    width:100%;
+  }
 
   button {
-    border-radius: 0%;
-    height: 100%;
-    margin: 0%;
+
     background-color: blueviolet; 
     color: white; 
     font: bold; 
-    float:left;
-    min-width: 9%;
-    max-width: 15%;
-    width: auto;
   
-    
   }
   .ui
   {
     display: flex; 
-    
   }
   #viewArea{
-
     display:flex;
     align-content:flex-start;
-   
+    flex-wrap: wrap;
   }
   .content{
     width:27%;
     height:27%;
   }
+.row
+{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;      
+}
   
   

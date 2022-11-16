@@ -1,0 +1,12 @@
+.viewArea{
+    display: flex; 
+    align-content:flex-start; 
+    flex-wrap:wrap;
+    height:100%;
+    justify-content: space-evenly;
+}
+.view2Area{
+    display: flex; 
+    align-content:flex-start; 
+    height:100%;
+}
