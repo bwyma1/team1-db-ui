@@ -1,14 +1,20 @@
 import React from "react"
-import { useState } from "react";
+import { useState, userEffect } from "react";
 import "./ProfileViewSwitcher.css";
 import { Navbar, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileViewArea from "./ProfileViewArea";
+import { User } from "../../user";
 
 
 export default function ProfileViewSwitcher({user})
 {
-  const [view,setView] = useState(1);
+  const [view,setView] = useState();
+
+  useEffect(()=>
+  {
+      setView(1);          
+  }, []);
 
     return (
     <Navbar id="toggler" variant="dark">
