@@ -4,8 +4,7 @@ import "./ProfileViewSwitcher.css";
 import { Navbar, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileViewArea from "./ProfileViewArea";
-import { User } from "../../user";
-
+import user
 
 export default function ProfileViewSwitcher({user})
 {
