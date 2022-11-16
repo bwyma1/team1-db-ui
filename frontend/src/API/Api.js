@@ -31,7 +31,7 @@ export const getUsers = () => new Promise((resolve, reject) => {
 
 export async function getAsyncUsers() {
     try {
-        const response = await fetch(`${apiEndPoint}/api/getUser/`);
+        const response = await fetch(`${apiEndPoint}/users/`);
         if(!response.ok) {
             console.log("not ok");
         }

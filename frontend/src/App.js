@@ -14,11 +14,13 @@ import { getUsers, getAsyncUsers} from './API/Api';
 import { MantineProvider} from '@mantine/core';
 import Auctions from './Views/Auctions';
 import AuctionPage from './Views/AuctionPage'
+import NotificationContainer from './Components/NotificationContainer';
 
 // React functional component
 function App () {
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState(null);
+  
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -57,6 +59,7 @@ function App () {
               <Route path="/notifications" element={<Notifications />}></Route>
               <Route path="/profiles" element={<Profile />}></Route>
               <Route path="/auctions" element={<Auctions />}></Route>
+              <Route path="/auctions/:id" element={<AuctionPage />}/>
               <Route path="*" element={<Backend />} ></Route>
 
               <Route path="/AuctionPage" element={<AuctionPage />} ></Route>
@@ -66,6 +69,7 @@ function App () {
       </div>
       
     </Router>
+    <NotificationContainer/>
     </MantineProvider>
   );
 }

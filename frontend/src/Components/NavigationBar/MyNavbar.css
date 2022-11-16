@@ -6,6 +6,10 @@
   background-color: purple;
 }
 
+.bg-peach{
+  background-color: linear-gradient(#ed6ea0, #ec8c69);
+}
+
 .white {
   color: white;
 }

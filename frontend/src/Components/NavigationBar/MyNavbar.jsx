@@ -6,7 +6,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function MyNavbar(props) {
   return (
-    <Navbar collapseOnSelect={true} expand="false" bg="dark" variant="dark">
+    <Navbar
+      collapseOnSelect={true}
+      expand="false"
+      className="navbar-dark"
+      style={{
+        background: "linear-gradient(#ed6ea0, #ec8c69)",
+      }}
+    >
       <Navbar.Brand href="/">
         <h2>ArcTion</h2>
       </Navbar.Brand>

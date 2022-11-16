@@ -25,7 +25,7 @@ export default function Auctions(auctionss) {
 
   function toAuction(auc) {
     console.log(auc);
-    window.location.pathname = "/";
+    window.location.pathname = `/auctions/:${auc.id}`;
   }
 
   return (

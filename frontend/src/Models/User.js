@@ -1,9 +1,16 @@
 export class user {
-    constructor(id, name, description, imageUrl, tags) {
+    constructor(id,Email, DisplayName, Bio, ProfilePicture, Password) {
         this.id = id;
-        this.name = name;
-        this.description = description;
-        this.imageUrl = imageUrl;
-        this.tags = tags;
+        this.Email = Email;
+        this.DisplayName = DisplayName;
+        this.Bio = Bio;
+        this.ProfilePicture = ProfilePicture;
+        this.Password = Password;
     }
 }
+
+/*
+
+
+
+*/
