@@ -1,27 +1,50 @@
 import React from "react";
 import "./Auctionmain.css"
 import "./MyHomepageFooter.css";
+import { auction } from "../Models"
+import { Badge } from "@mantine/core";
 //import getUserById from "../api";
 
-
+let selected_auction = new auction(
+  1,
+  "Brock",
+  "The art of War",
+  "This piece depicts the wonderful art of war",
+  "129.99",
+  "https://via.placeholder.com/150x150",
+  [
+    ["user1", "cool!"],
+    ["user2", "Awesome"],
+    ["user3", "I love the design"],
+  ],
+  ["Friendly", "Dark", "Rennaissance"]
+);
 //const Data = database.find((user) => user.username === uname);
 
 //David Berberian
 export default function Auctionmain() {
+
+  
+
+  
   return (
     <>
-    <h2 id="piecename">Auction title</h2>  
+
+
+
+    <h2 id="piecename">{selected_auction.title}</h2>  
 
     <div>
-    <img id="picture1" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt="image"/>
-  <p id="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+    <img id="picture1" src={selected_auction.imageUrl} alt="image"/>
+    <div id="tag1">{selected_auction.tags.map((tag) => (
+                    <Badge color="pink" variant="light">
+                      {tag}
+                    </Badge>
+                  ))} </div>
+  <p id="description">{selected_auction.description}</p>
   </div>
 <div id="bottomcontent">
-<ul id="tag1">
-    <li>tags</li>
-    <li>tags</li>
-    <li>tags</li>
-</ul>  
+
 </div>
 <div id="timer">
 <h3 >Timer</h3>
@@ -45,12 +68,16 @@ export default function Auctionmain() {
 
 <h4>Comments</h4>
 <ul id="tag2">
-    <li>comment 1</li>
-    <li>tags</li>
-    <li>tags</li>
+{selected_auction.comments.map((comment) => (
+                    <li>
+                      
+                      {comment[0]}
+                    </li>
+                  ))}
 </ul>
      <footer>footer</footer>
 
     </>
   );
 }
+
