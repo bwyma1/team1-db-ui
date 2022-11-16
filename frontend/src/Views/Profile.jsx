@@ -35,7 +35,7 @@ if(auctions == null)
 
   return (
     <>
-      {window.sessionStorage.getItem("user") ? (
+      {/* {window.sessionStorage.getItem("user") ? ( */}
         <div id="pageContainer">
           <div>
             <ProfileHeader
@@ -52,18 +52,12 @@ if(auctions == null)
             <ProfileViewSwitcher user={exampleUser} />
           </div>
 
-          {/* <span clasName="row flex main container">
-
-          <ProfileViewArea  data={exampleUser}
-                            selling={exampleUser.selling}
-                            purchased={exampleUser.purchased}
-                            likes={exampleUser.likes}
-                            activeBids={exampleUser.activeBids} />
-      </span> */}
         </div>
-      ) : (
-        <PleaseLogin />
-      )}
+      {/* )  */}
+      {/* : (
+        <PleaseLogin  />
+      )
+      } */}
     </>
   );
 }
