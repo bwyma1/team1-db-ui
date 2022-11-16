@@ -37,7 +37,7 @@ exports.login_user = function(req, res)
   }
   sql.connection.query(
     "SELECT * FROM `Users` WHERE `Email` = \""+
-    loginUser.Email+"\"",
+    loginUser.Email+"\";",
     function(sqlErr, sqlRes)
     {
       if (sql.isSuccessfulQuery(sqlErr, res))
@@ -81,14 +81,14 @@ exports.create_user = function(req, res)
     var newUser = new User(req.body);
 
     sql.connection.query(
-      "INSERT INTO `user` SET ?;",
+      "INSERT INTO `Users` SET ?;",
       newUser,
       function(sqlErr, sqlRes)
       {
         if (sql.isSuccessfulQuery(sqlErr, res))
         {
           sql.connection.query(
-            "SELECT * FROM `user` WHERE `id` = ?;",
+            "SELECT * FROM `Users` WHERE `id` = ?;",
             sqlRes.insertId,
             function(subErr, subRes)
             {
@@ -121,8 +121,8 @@ exports.get_user = function(req, res)
   else
   {
     sql.connection.query(
-      "SELECT * FROM `user` WHERE Email = ?;",
-      req.params.Email,
+      "SELECT * FROM `Users` WHERE Email = \""+
+      req.params.Email+"\";",
       function(sqlErr, sqlRes)
       {
         if (sql.isSuccessfulQuery(sqlErr, res))
