@@ -1,5 +1,5 @@
 import React from "react"
-import { useState, userEffect } from "react";
+import { useState, useEffect } from "react";
 import "./ProfileViewSwitcher.css";
 import { Navbar, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -29,10 +29,10 @@ export default function ProfileViewSwitcher({user})
           <button onClick={() => setView(4)}> Active Bids
           {/* <NavLink href="/auctions">Active Bids</NavLink> */}
           </button>
-          {this.view == 1 ? <ProfileViewArea items={user.selling} /> : ''}
+          {/* {this.view == 1 ? <ProfileViewArea items={user.selling} /> : ''}
           {this.view == 2 ? <ProfileViewArea items={user.purchased} /> : ''}
           {this.view == 3 ? <ProfileViewArea items={user.likes} /> : ''}
-          {this.view == 4 ? <ProfileViewArea items={user.activeBids}/> : ''}
+          {this.view == 4 ? <ProfileViewArea items={user.activeBids}/> : ''} */}
           
         </div>  
         
