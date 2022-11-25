@@ -3,6 +3,8 @@ import "./Auctionmain.css"
 import "./MyHomepageFooter.css";
 import { auction } from "../Models"
 import { Badge } from "@mantine/core";
+import { useParams } from "react-router-dom"
+import { useEffect } from "react";
 //import getUserById from "../api";
 
 let selected_auction = new auction(
@@ -25,7 +27,15 @@ let selected_auction = new auction(
 export default function Auctionmain() {
 
   
+const params = useParams()
 
+
+useEffect(() =>{
+
+
+
+  
+})
   
   return (
     <>
