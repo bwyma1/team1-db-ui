@@ -13,11 +13,11 @@ var PaintingAuction = function(user)
   this.Tags = PaintingAuction.Tags;
   this.EndDate = PaintingAuction.EndDate;
 }
-exports.get_auction_name = function(req, res)
+exports.get_auction_id = function(req, res)
 {
   sql.connection.query(
-    "SELECT * FROM `PaintingAuctio s` WHERE `PaintingID` = ?;",
-    req.params.painting_id,
+    "SELECT * FROM `PaintingAuctions` WHERE `AuctionID` = ?;",
+    req.params.AuctionID,
     function(sqlErr, sqlRes)
     {
       if (sql.isSuccessfulQuery(sqlErr, res))
