@@ -149,3 +149,70 @@ exports.get_user = function(req, res)
     );
   }
 }
+
+// app.route("/users/:Email").put(userController.update_user);
+
+exports.update_user = function(req, res)
+{
+  if (sql.propertyCheck(req, res, ["Email"]))
+  {
+    var updateUser = new User(req.body);
+    sql.connection.query(
+      "UPDATE `Users` SET ? WHERE `Email` = \""+
+      req.params.Email+"\";",
+      updateUser,
+      function(sqlErr, sqlRes)
+      {
+        if (sql.isSuccessfulQuery(sqlErr, res))
+        {
+          sql.connection.query(
+            "SELECT * FROM `Users` WHERE `Email` = \""+
+            req.params.Email+"\";",
+            function(subErr, subRes)
+            {
+              if (sql.isSuccessfulQuery(subErr, res))
+              {
+                res.status(200).send(
+                {
+                  success: true,
+                  response: "Successfully updated user",
+                  info: subRes,
+                });
+              }
+            }
+          );
+        }
+      }
+    );
+  }
+};
+
+exports.delete_user = function(req, res)
+{
+  if (!("Email" in req.params))
+  {
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Email`",
+    });
+  }
+  else
+  {
+    sql.connection.query(
+      "DELETE FROM `Users` WHERE `Email` = \""+
+      req.params.Email+"\";",
+      function(sqlErr, sqlRes)
+      {
+        if (sql.isSuccessfulQuery(sqlErr, res))
+        {
+          res.status(200).send(
+          {
+            success: true,
+            response: "Successfully deleted user",
+          });
+        }
+      }
+    );
+  }
+};
