@@ -16,8 +16,8 @@ var PaintingAuction = function(user)
 exports.get_auction_id = function(req, res)
 {
   sql.connection.query(
-    "SELECT * FROM `PaintingAuctions` WHERE `AuctionID` = ?;",
-    req.params.AuctionID,
+    "SELECT * FROM `PaintingAuctions` WHERE AuctionID = \""+
+    req.params.AuctionID+"\";",
     function(sqlErr, sqlRes)
     {
       if (sql.isSuccessfulQuery(sqlErr, res))

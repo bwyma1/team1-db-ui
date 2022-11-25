@@ -10,19 +10,19 @@ var Comment = function(user)
 }
 exports.get_comments = function(req, res)
 {
-  if (!("CommentID" in req.params))
+  if (!("AuctionID" in req.params))
   {
     res.status(400).send(
     {
       success: false,
-      response: "Missing required field: `CommentID`",
+      response: "Missing required field: `AuctionID`",
     });
   }
   else
   {
     sql.connection.query(
-      "SELECT * FROM `Comments` WHERE CommentID = ?;",
-      req.params.CommentID,
+      "SELECT * FROM `Comments` WHERE AuctionID = ?;",
+      req.params.AuctionID,
       function(sqlErr, sqlRes)
       {
         if (sql.isSuccessfulQuery(sqlErr, res))
@@ -32,7 +32,7 @@ exports.get_comments = function(req, res)
             res.status(200).send(
             {
               success: false,
-              response: "No replies found for review " + req.params.CommentID,
+              response: "No replies found for review " + req.params.AuctionID,
             })
           }
           else
@@ -40,7 +40,7 @@ exports.get_comments = function(req, res)
             res.status(200).send(
             {
               success: true,
-              response: "Successfully found replies for review " + req.params.id,
+              response: "Successfully found replies for review " + req.params.AuctionID,
               count: Object.keys(sqlRes).length,
               info: sqlRes,
             });
@@ -53,10 +53,10 @@ exports.get_comments = function(req, res)
 
 exports.create_reply = function(req, res)
 {
-  if (sql.propertyCheck(req, res, ["user_id", "body"]))
+  if (sql.propertyCheck(req, res, ["OwnerEmail", "CommentMessage"]))
   {
-    var newreply = new Reply(req.body);
-    newreply.OwnerEmail = req.params.id;
+    var newreply = new Reply(req.CommentMessage);
+    newreply.OwnerEmail = req.params.OwnerEmail;
     sql.connection.query(
       "INSERT INTO `Comments` SET ?;",
       newreply,
