@@ -1,9 +1,9 @@
 import MyNavbar from "./NavigationBar/MyNavbar";
 
-export default function Header(props) {
+export default function Header() {
   return (
     <header className="App-header">
-      <MyNavbar props={props} />
+      <MyNavbar />
     </header>
   );
 }

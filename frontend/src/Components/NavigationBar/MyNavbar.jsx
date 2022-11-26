@@ -4,7 +4,7 @@ import { Nav, Navbar, NavLink } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function MyNavbar(props) {
+export default function MyNavbar() {
   return (
     <Navbar
       collapseOnSelect={true}
@@ -21,7 +21,7 @@ export default function MyNavbar(props) {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <NavLink href="/">Home</NavLink>
-          {!props.user ? (
+          {!false ? (
             <NavLink href="/login">Login</NavLink>
           ) : (
             <NavLink href="/profile">Profile</NavLink>

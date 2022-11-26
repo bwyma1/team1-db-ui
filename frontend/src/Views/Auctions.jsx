@@ -3,16 +3,19 @@ import {
   Image,
   Text,
   Badge,
-  Button,
   Group,
   Grid,
-  Box,
+  MultiSelect,
 } from "@mantine/core";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auction } from "../Models";
 
-export default function Auctions(auctionss) {
+export default function Auctions() {
+  const navigate = useNavigate();
+  const [searchInput, setSearchInput] = useState("");
+  const [searchTags, setSearchTags] = useState(["spicy", "modern"]);
   const [auctions, setAuctions] = useState(null);
 
   //grab auctions from backend
@@ -24,13 +27,52 @@ export default function Auctions(auctionss) {
   }
 
   function toAuction(auc) {
-    console.log(auc);
-    window.location.pathname = `/auctions/:${auc.id}`;
+    navigate(`/auctions/${auc.id}`);
   }
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+  };
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      alert("submitted");
+    }
+  };
+
+  //e is array of tags
+  const handleSearchTags = (e) => {
+    setSearchTags(e);
+    console.log(e);
+  };
 
   return (
     <div>
-      <header>{/* some header component */}</header>
+      <header>
+        <input
+          className="w-50 rounded fs-5"
+          type="search"
+          placeholder="Search"
+          onKeyDown={handleSearch}
+          onChange={handleChange}
+          value={searchInput}
+        />
+        <MultiSelect
+          maxSelectedValues={3}
+          transitionDuration={150}
+          transition="pop-top-left"
+          transitionTimingFunction="ease"
+          data={["spicy", "modern", "romance", "dark"]}
+          label="Tags"
+          placeholder="Pick all that you like"
+          searchable
+          value={searchTags}
+          onChange={handleSearchTags}
+          radius="xl"
+          clearable
+        />
+      </header>
       <div className="container">
         <Grid className="m-5">
           {auctions.map((auction, index) => (

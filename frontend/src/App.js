@@ -15,21 +15,13 @@ import { MantineProvider} from '@mantine/core';
 import Auctions from './Views/Auctions';
 import AuctionPage from './Views/AuctionPage'
 import NotificationContainer from './Components/NotificationContainer';
+import { AppProvider } from './context';
 
 // React functional component
 function App () {
-  const [user, setUser] = useState(null);
-  const [users, setUsers] = useState(null);
   
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      //const foundUser = JSON.parse(loggedInUser);
-      setUser(1);
-      console.log(loggedInUser);
-      console.log(user);
-    }
   }, []);
 
 
@@ -38,20 +30,14 @@ function App () {
   // }, [])
 //David B added route for individual auction tests
 
-  useEffect(() => {
-    getAsyncUsers().then(x => setUsers(x))
-  }, [])
-
 
   return (
-    <MantineProvider
-    theme={{
-      colorScheme: 'light',
-    }}
-  >
+    
+    <AppProvider>
+    <MantineProvider>
     <Router>
       <div className="App">
-        <Header user={user}/>
+        <Header/>
         <main>
             <Routes>
               <Route path="/" element={<Home />}></Route>
@@ -67,10 +53,10 @@ function App () {
             </Routes>
         </main>
       </div>
-      
     </Router>
-    <NotificationContainer/>
+
     </MantineProvider>
+    </AppProvider>
   );
 }
 
