@@ -31,7 +31,19 @@ export const getUsers = () => new Promise((resolve, reject) => {
 
 export async function getAsyncUsers() {
     try {
-        const response = await fetch(`${apiEndPoint}/api/getUser/`);
+        const response = await fetch(`${apiEndPoint}/users/`);
+        if(!response.ok) {
+            console.log("not ok");
+        }
+        return await response.json()
+    } catch (error) {
+        throw new Error(error.message || "Could not get users");
+    }
+}
+
+export async function getAsyncAuctions() {
+    try {
+        const response = await fetch(`${apiEndPoint}/auctions/`);
         if(!response.ok) {
             console.log("not ok");
         }

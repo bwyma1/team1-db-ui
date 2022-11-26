@@ -18,16 +18,6 @@ export default function Notifications() {
       <h1>This is the Notifications page</h1>
       <p>Welcome to my notifications page wohoo!</p>
       <button onClick={notify}>Notify!</button>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        theme="light"
-      />
     </div>
   );
 }

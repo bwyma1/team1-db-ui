@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginSection.css";
 
 export default function LoginSection() {
@@ -6,6 +7,7 @@ export default function LoginSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [uname, setUname] = useState("");
   const [pass, setPass] = useState("");
+  const navigate = useNavigate();
 
   const unameChange = (event) => setUname(event.target.value);
   const passChange = (event) => setPass(event.target.value);
@@ -57,6 +59,7 @@ export default function LoginSection() {
   function login() {
     const user = { uname, pass };
     localStorage.setItem("user", user);
+    navigate("/profiles");
   }
 
   // Error messages
