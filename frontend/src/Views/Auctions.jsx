@@ -10,6 +10,7 @@ import {
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAsyncAuctions } from "../API/Api";
 import { auction } from "../Models";
 
 export default function Auctions() {
@@ -20,6 +21,7 @@ export default function Auctions() {
 
   //grab auctions from backend
   useEffect(() => {
+    //setAuctions(getAsyncAuctions());
     setAuctions(exampleData);
   }, []);
   if (auctions === null) {
@@ -49,27 +51,29 @@ export default function Auctions() {
 
   return (
     <div>
-      <header>
+      <header className="">
         <input
-          className="w-50 rounded fs-5"
+          className="col-6 rounded fs-5 border border-secondary"
           type="search"
-          placeholder="Search"
+          placeholder="Search By Artist"
           onKeyDown={handleSearch}
           onChange={handleChange}
           value={searchInput}
         />
         <MultiSelect
+          className="col-6 m-auto"
           maxSelectedValues={3}
           transitionDuration={150}
           transition="pop-top-left"
           transitionTimingFunction="ease"
           data={["spicy", "modern", "romance", "dark"]}
           label="Tags"
-          placeholder="Pick all that you like"
+          placeholder="Search By Tag"
           searchable
           value={searchTags}
           onChange={handleSearchTags}
           radius="xl"
+          size="md"
           clearable
         />
       </header>
@@ -91,15 +95,15 @@ export default function Auctions() {
               >
                 <Card.Section>
                   <Image
-                    src={auction.imageUrl}
+                    src={auction.Image}
                     fit="contain"
                     alt="image-not-found"
                   />
                 </Card.Section>
 
                 <Group position="apart" mt="md" mb="xs">
-                  <Text weight={500}>{auction.title}</Text>
-                  {auction.tags.map((tag) => (
+                  <Text weight={500}>{auction.OwnerName}</Text>
+                  {auction.Tags.map((tag) => (
                     <Badge color="pink" variant="light">
                       {tag}
                     </Badge>
@@ -107,7 +111,7 @@ export default function Auctions() {
                 </Group>
 
                 <Text size="sm" color="dimmed">
-                  {auction.description}
+                  {auction.StartPrice}
                 </Text>
               </Card>
             </Grid.Col>
@@ -120,73 +124,62 @@ export default function Auctions() {
 
 let exampleData = [
   new auction(
-    1,
-    "Brock",
-    "The art of War",
-    "This peice depicts the wonderful art of war",
-    "129.99",
-    "https://via.placeholder.com/150x150",
-    [
-      ["user1", "cool!"],
-      ["user2", "Awesome"],
-      ["user3", "I love the design"],
-    ],
-    ["Friendly", "Dark", "Rennaissance"]
-  ),
-  new auction(
+    2,
     2,
     "Truman",
-    "The Beginning of the End",
-    "It's a peice of artwork about some sad things",
-    "19.99",
+    "7",
     "https://via.placeholder.com/150x200",
+    "19.99",
+    "date-listed"[("Friendly", "Light", "Rennaissance")],
     [
       ["user1", "very sad!"],
       ["user2", "Awesome"],
       ["user3", "I love the design"],
-    ],
-    ["Friendly", "Light", "Rennaissance"]
+    ]
   ),
   new auction(
     3,
+    3,
     "Brock",
-    "The art of War",
-    "This peice depicts the wonderful art of war",
-    "129.99",
+    "8",
     "https://via.placeholder.com/200x150",
+    "129.99",
+    "date-listed",
+    ["Friendly", "Dark", "Rennaissance"],
     [
       ["user1", "cool!"],
       ["user2", "Awesome"],
       ["user3", "I love the design"],
-    ],
-    ["Friendly", "Dark", "Rennaissance"]
+    ]
   ),
   new auction(
     4,
+    4,
     "Newman",
-    "Colors",
-    "It's a peice of artwork about some sad things",
-    "19.99",
+    "9",
     "https://via.placeholder.com/1500x2000",
+    "19.99",
+    "date-listed",
+    ["Friendly", "Dark", "Rennaissance"],
     [
       ["user1", "very sad!"],
       ["user2", "Awesome"],
       ["user3", "I love the design"],
-    ],
-    ["Friendly", "Dark", "Rennaissance"]
+    ]
   ),
   new auction(
     5,
+    5,
     "ThisName",
-    "Duality",
-    "It's a peice of artwork about some sad things",
-    "19.99",
+    "9",
     "https://via.placeholder.com/1500x2000",
+    "19.99",
+    "date-listed",
+    ["Friendly", "Dark", "Rennaissance"],
     [
       ["user1", "very sad!"],
       ["user2", "Awesome"],
       ["user3", "I love the design"],
-    ],
-    ["Friendly", "Dark", "Rennaissance"]
+    ]
   ),
 ];

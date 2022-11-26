@@ -41,6 +41,18 @@ export async function getAsyncUsers() {
     }
 }
 
+export async function getAsyncAuctions() {
+    try {
+        const response = await fetch(`${apiEndPoint}/auctions/`);
+        if(!response.ok) {
+            console.log("not ok");
+        }
+        return await response.json()
+    } catch (error) {
+        throw new Error(error.message || "Could not get users");
+    }
+}
+
 export const loginUser = (userNmame, password) => new Promise((resolve, reject) => {
     axios.get(`${apiEndPoint}/login`)
         .then(x => resolve(x))

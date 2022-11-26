@@ -16,12 +16,14 @@ import Auctions from './Views/Auctions';
 import AuctionPage from './Views/AuctionPage'
 import NotificationContainer from './Components/NotificationContainer';
 import { AppProvider } from './context';
+import Error from './Views/Error';
 
 // React functional component
 function App () {
   
 
   useEffect(() => {
+    //getAsyncUsers();
   }, []);
 
 
@@ -46,7 +48,7 @@ function App () {
               <Route path="/profiles" element={<Profile />}></Route>
               <Route path="/auctions" element={<Auctions />}></Route>
               <Route path="/auctions/:id" element={<AuctionPage />}/>
-              <Route path="*" element={<Backend />} ></Route>
+              <Route path="*" element={<Error />} ></Route>
 
               <Route path="/AuctionPage" element={<AuctionPage />} ></Route>
 
