@@ -1,5 +1,5 @@
 import React from "react";
-import "./Auctionmain.css"
+import "./Auctionmain.css";
 import "./MyHomepageFooter.css";
 import { auction } from "../Models"
 import { Badge, Card } from "@mantine/core";
