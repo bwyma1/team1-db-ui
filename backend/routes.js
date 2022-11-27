@@ -5,6 +5,9 @@ module.exports = function(app, logger)
   var userController = require("./model/user.js");
   var AuctionController = require("./model/PaintingAuctions.js");
   var commentController = require("./model/Comments.js");
+  var bidController = require("./model/Bids.js");
+  var paintingController = require("./model/Paintings.js");
+  var notificationController = require("./model/Notifications.js");
 
 // USER 
 app.route("/login/").post(userController.login_user);
@@ -29,5 +32,26 @@ app.route("/comments/").post(commentController.create_comment);
 app.route("/comments/:CommentID").delete(commentController.delete_comment);
 app.route("/comments/:AuctionID").get(commentController.get_comments);
 
+// BID
+app.route("/bids/").get(bidController.get_bids);
+app.route("/bids/:BidID").get(bidController.get_bid_id);
+app.route("/bids/:BidID").put(bidController.update_bid);
+app.route("/bids/").post(bidController.create_bid);
+app.route("/bids/:BidID").delete(bidController.delete_bid);
+app.route("/bids/:AuctionID").get(bidController.get_bids);
 
+// PAINTING
+app.route("/paintings/").get(paintingController.get_paintings);
+app.route("/paintings/:PaintingID").get(paintingController.get_painting_id);
+app.route("/paintings/:PaintingID").put(paintingController.update_painting);
+app.route("/paintings/").post(paintingController.create_painting);
+app.route("/paintings/:PaintingID").delete(paintingController.delete_painting);
+
+// NOTIFICATION
+app.route("/notifications/").get(notificationController.get_notifications);
+app.route("/notifications/:NotificationID").get(notificationController.get_notification_id);
+app.route("/notifications/:NotificationID").put(notificationController.update_notification);
+app.route("/notifications/").post(notificationController.create_notification);
+app.route("/notifications/:NotificationID").delete(notificationController.delete_notification);
+app.route("/notifications/:Email").get(notificationController.get_notifications);
 };
