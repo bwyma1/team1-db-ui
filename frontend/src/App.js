@@ -17,6 +17,7 @@ import AuctionPage from './Views/AuctionPage'
 import NotificationContainer from './Components/NotificationContainer';
 import { AppProvider } from './context';
 import Error from './Views/Error';
+import PostAuction from './Views/PostAuction';
 
 // React functional component
 function App () {
@@ -48,6 +49,7 @@ function App () {
               <Route path="/profiles" element={<Profile />}></Route>
               <Route path="/auctions" element={<Auctions />}></Route>
               <Route path="/auctions/:id" element={<AuctionPage />}/>
+              <Route path="/postAuction" element={<PostAuction />}></Route>
               <Route path="*" element={<Error />} ></Route>
 
               <Route path="/AuctionPage" element={<AuctionPage />} ></Route>

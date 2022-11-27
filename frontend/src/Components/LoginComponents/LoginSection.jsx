@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../API/Api";
+import { AppContext } from "../../context";
 import "./LoginSection.css";
 
 export default function LoginSection() {
@@ -8,6 +11,7 @@ export default function LoginSection() {
   const [uname, setUname] = useState("");
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
+  const context = useContext(AppContext);
 
   const unameChange = (event) => setUname(event.target.value);
   const passChange = (event) => setPass(event.target.value);
@@ -36,24 +40,24 @@ export default function LoginSection() {
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-
+    loginUser(uname, pass).then((x) => context.setUser(x));
     // Find user login info
-    const userData = database.find((user) => user.username === uname);
+    // const userData = database.find((user) => user.username === uname);
 
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
-        pass.value = "";
-      } else {
-        login();
-        setIsSubmitted(true);
-      }
-    } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
-    }
+    // // Compare user info
+    // if (userData) {
+    //   if (userData.password !== pass) {
+    //     // Invalid password
+    //     setErrorMessages({ name: "pass", message: errors.pass });
+    //     pass.value = "";
+    //   } else {
+    //     login();
+    //     setIsSubmitted(true);
+    //   }
+    // } else {
+    //   // Username not found
+    //   setErrorMessages({ name: "uname", message: errors.uname });
+    // }
   };
 
   function login() {

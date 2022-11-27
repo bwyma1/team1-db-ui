@@ -2,7 +2,6 @@
 .App {
   text-align: center;
   font-family: sans-serif;
-  text-align: center;
 }
 
 
@@ -11,7 +10,6 @@
 }
 
 .App-header {
-  background: rgb(202, 42, 202);
   height: 8vh;
   position: fixed;
   justify-content: space-between;
@@ -21,6 +19,11 @@
   z-index: 4;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+button {
+  color: linear-gradient(#ed6ea0, #ec8c69);
+  background-color: linear-gradient(#ed6ea0, #ec8c69);
 }
 
 main {

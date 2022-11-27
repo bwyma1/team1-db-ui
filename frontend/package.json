@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@mantine/core": "^5.8.3",
+    "@mantine/form": "^5.8.3",
     "@mantine/hooks": "^5.8.3",
     "axios": "^0.26.1",
     "bootstrap": "^5.2.2",

@@ -6,11 +6,13 @@ import {
   Group,
   Grid,
   MultiSelect,
+  Button,
+  Input,
 } from "@mantine/core";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAsyncAuctions } from "../API/Api";
+import { getAsyncAuctions, getAuctions } from "../API/Api";
 import { auction } from "../Models";
 
 export default function Auctions() {
@@ -18,10 +20,12 @@ export default function Auctions() {
   const [searchInput, setSearchInput] = useState("");
   const [searchTags, setSearchTags] = useState(["spicy", "modern"]);
   const [auctions, setAuctions] = useState(null);
+  const [auctionss, setAuctionss] = useState(null);
 
   //grab auctions from backend
   useEffect(() => {
-    //setAuctions(getAsyncAuctions());
+    getAsyncAuctions().then((x) => setAuctionss(x));
+    //console.log(auctionss.info);
     setAuctions(exampleData);
   }, []);
   if (auctions === null) {
@@ -52,8 +56,19 @@ export default function Auctions() {
   return (
     <div>
       <header className="">
-        <input
-          className="col-6 rounded fs-5 border border-secondary"
+        <button
+          className="col-2 fs-6 ms-4 btn border border-dark"
+          type="button"
+          onClick={() => navigate(`/postAuction`)}
+          style={{
+            background: "linear-gradient(#ed6ea0, #ec8c69)",
+            color: "white",
+          }}
+        >
+          Post Auction
+        </button>
+        <Input
+          className="col-6 m-auto rounded fs-5 border border-secondary"
           type="search"
           placeholder="Search By Artist"
           onKeyDown={handleSearch}
