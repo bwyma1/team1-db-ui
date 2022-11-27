@@ -5,6 +5,7 @@ import { auction } from "../Models"
 import { Badge, Card } from "@mantine/core";
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
+import { getAuctionbyId } from "../API/Api";
 
 //import getUserById from "../api";
 
@@ -31,15 +32,13 @@ export default function Auctionmain() {
 
   
 
-  // <ReviewForm onReviewAdded={review => {
-  //   addReview(params.Id, review);
-  //   addReviewToList({ reviews: [...product.reviews, review]})}}/>
-//const params = useParams()
+const params = useParams()
 
 const[Auction, setAuction] = useState('');
 const[comments, setCommments] = useState([]);
 
 useEffect(() =>{//selected auction to auction
+  getAuctionbyId(1).then(x => setAuction(x))
 //call get auction by id
 //call get comment by id
 
@@ -52,7 +51,7 @@ useEffect(() =>{//selected auction to auction
     <div className="">
       
       
- <div><h2 id="piecename">{selected_auction.title}</h2></div>
+ <div><h2 id="piecename">{Auction.OwnerName}</h2></div>
  <span id="sellerbox"><Badge color="cyan" variant="light">Seller: {selected_auction.seller}</Badge></span>
  <span id="tag1">{selected_auction.tags.map((tag) => (
                     <Badge color="pink" variant="light">
