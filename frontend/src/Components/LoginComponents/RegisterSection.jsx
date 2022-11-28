@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { addUser, getUsers } from "../../API/Api";
+import { user } from "../../Models";
 import "./RegisterSection.css";
 
 export default function RegisterSection() {
@@ -40,7 +42,7 @@ export default function RegisterSection() {
   };
 
   function register() {
-    const newUser = { email, uname, pass };
+    addUser(new user(email, uname, "", "", 0, pass));
   }
 
   const renderErrorMessage = (name) =>
