@@ -6,6 +6,7 @@ import {
   MultiSelect,
   NumberInput,
   FileInput,
+  Flex,
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { auction } from "../Models";
@@ -19,6 +20,8 @@ export default function PostAuction() {
   useEffect(() => {
     if (selectedImage) {
       setImageUrl(URL.createObjectURL(selectedImage));
+    } else {
+      setImageUrl(null);
     }
   }, [selectedImage]);
 
@@ -33,7 +36,7 @@ export default function PostAuction() {
 
   function postAuction(values) {
     setSubmittedValues(values);
-    addAuction(
+    console.log(
       new auction(
         values.title,
         values.description,
@@ -49,40 +52,53 @@ export default function PostAuction() {
   }
 
   return (
-    <Box sx={{}} mx="auto">
-      <form onSubmit={form.onSubmit((values) => postAuction(values))}>
+    <form
+      className="mb-5"
+      onSubmit={form.onSubmit((values) => postAuction(values))}
+    >
+      <Flex
+        className="w-100"
+        bg=""
+        gap="md"
+        justify="center"
+        align="center"
+        direction="column"
+        wrap="wrap"
+      >
         <TextInput
+          className="col-8 m-auto"
           label="Title"
           placeholder="Title"
           {...form.getInputProps("title")}
         />
         <TextInput
+          className="col-8 m-auto"
           label="Description"
           placeholder="Description"
-          mt="md"
           {...form.getInputProps("description")}
         />
         <NumberInput
+          className="col-8 m-auto"
           label="Start Price"
           placeholder="Start Price"
-          mt="md"
           {...form.getInputProps("startPrice")}
         />
         <DatePicker
+          className="col-8 m-auto"
           label="Ending Date"
           placeholder="Ending Date"
           value={endDate}
           onChange={setEndDate}
         />
         <MultiSelect
-          className="col-6 m-auto"
+          className="col-8 m-auto"
           maxSelectedValues={3}
           transitionDuration={150}
           transition="pop-top-left"
           transitionTimingFunction="ease"
           data={["spicy", "modern", "romance", "dark"]}
           label="Tags"
-          placeholder="Search By Tag"
+          placeholder="Select Tags"
           searchable
           {...form.getInputProps("tags")}
           radius="xl"
@@ -90,13 +106,14 @@ export default function PostAuction() {
           clearable
         />
         <FileInput
+          className="col-8"
           accept="image/"
           label="Image of Your Art"
           placeholder="Input File Here"
           value={selectedImage}
           onChange={setSelectedImage}
         />
-        <img alt="file" src={imageUrl}></img>
+        {imageUrl && <img className="col-6" alt="file" src={imageUrl}></img>}
         <button
           className="col-2 fs-6 ms-4 btn border border-dark"
           type="submit"
@@ -107,50 +124,7 @@ export default function PostAuction() {
         >
           Submit
         </button>
-      </form>
-      {/* {submittedValues && (
-        <img alt="file2" src={URL.createObjectURL(inpFile)}></img>
-      )} */}
-    </Box>
+      </Flex>
+    </form>
   );
 }
-
-/* import { useState, useEffect } from "react";
-import { Box, Button } from "@mantine/core";
-
-const FileInput = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
-
-  useEffect(() => {
-    if (selectedImage) {
-      setImageUrl(URL.createObjectURL(selectedImage));
-    }
-  }, [selectedImage]);
-
-  return (
-    <>
-      <input
-        accept="image/*"
-        type="file"
-        id="select-image"
-        style={{ display: "none" }}
-        onChange={(e) => setSelectedImage(e.target.files[0])}
-      />
-      <label htmlFor="select-image">
-        <Button variant="contained" color="primary" component="span">
-          Upload Image
-        </Button>
-      </label>
-      {imageUrl && selectedImage && (
-        <Box mt={2} textAlign="center">
-          <div>Image Preview:</div>
-          <img src={imageUrl} alt={selectedImage.name} />
-        </Box>
-      )}
-    </>
-  );
-};
-
-export default FileInput;
-*/
