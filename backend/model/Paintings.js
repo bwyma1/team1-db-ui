@@ -12,7 +12,7 @@ var Painting = function(user)
 }
 
 // app.route("/paintings/").get(paintingController.get_paintings);
-Painting.get_paintings = function(result)
+exports.get_paintings = function(result)
 {
    sql.query("SELECT * FROM Paintings", function(err, res)
    {
@@ -30,7 +30,7 @@ Painting.get_paintings = function(result)
 };
 
 // app.route("/paintings/:PaintingID").get(paintingController.get_painting_id);
-Painting.get_painting_id = function(PaintingID, result)
+exports.get_painting_id = function(PaintingID, result)
 {
    sql.query("SELECT * FROM Paintings WHERE PaintingID = ?", PaintingID, function(err, res)
    {
@@ -47,7 +47,7 @@ Painting.get_painting_id = function(PaintingID, result)
 };
 
 // app.route("/paintings/:PaintingID").put(paintingController.update_painting);
-Painting.update_painting = function(PaintingID, Painting, result)
+exports.update_painting = function(PaintingID, Painting, result)
 {
    sql.query("UPDATE Paintings SET OwnerName = ?, Image = ?, PurchasePrice = ?, DatePurchased = ?, OriginalOwner = ? WHERE PaintingID = ?", [Painting.OwnerName, Painting.Image, Painting.PurchasePrice, Painting.DatePurchased, Painting.OriginalOwner, PaintingID], function(err, res)
    {
@@ -64,7 +64,7 @@ Painting.update_painting = function(PaintingID, Painting, result)
 };
 
 // app.route("/paintings/").post(paintingController.create_painting);
-Painting.create_painting = function(newPainting, result)
+exports.create_painting = function(newPainting, result)
 {
    sql.query("INSERT INTO Paintings set ?", newPainting, function(err, res)
    {
@@ -81,7 +81,7 @@ Painting.create_painting = function(newPainting, result)
 };
 
 // app.route("/paintings/:PaintingID").delete(paintingController.delete_painting);
-Painting.delete_painting = function(PaintingID, result)
+exports.delete_painting = function(PaintingID, result)
 {
    sql.query("DELETE FROM Paintings WHERE PaintingID = ?", PaintingID, function(err, res)
    {
