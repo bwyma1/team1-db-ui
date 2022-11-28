@@ -10,7 +10,7 @@ var Bid = function(user)
 }
 
 // app.route("/bids/").get(bidController.get_bids);
-Bid.get_bids = function(result)
+exports.get_bids = function(result)
 {
     sql.query("SELECT * FROM Bids", function(err, res)
     {
@@ -28,7 +28,7 @@ Bid.get_bids = function(result)
 };
 
 // app.route("/bids/:BidID").get(bidController.get_bid_id);
-Bid.get_bid_id = function(BidID, result)
+exports.get_bid_id = function(BidID, result)
 {
     sql.query("SELECT * FROM Bids WHERE BidID = ?", BidID, function(err, res)
     {
@@ -45,7 +45,7 @@ Bid.get_bid_id = function(BidID, result)
 };
 
 // app.route("/bids/:BidID").put(bidController.update_bid);
-Bid.update_bid = function(BidID, Bid, result)
+exports.update_bid = function(BidID, Bid, result)
 {
     sql.query("UPDATE Bids SET BidderEmail = ?, AuctionID = ?, BidPrice = ? WHERE BidID = ?", [Bid.BidderEmail, Bid.AuctionID, Bid.BidPrice, BidID], function(err, res)
     {
@@ -62,7 +62,7 @@ Bid.update_bid = function(BidID, Bid, result)
 };
 
 // app.route("/bids/").post(bidController.create_bid);
-Bid.create_bid = function(newBid, result)
+exports.create_bid = function(newBid, result)
 {
     sql.query("INSERT INTO Bids SET ?", newBid, function(err, res)
     {
@@ -80,7 +80,7 @@ Bid.create_bid = function(newBid, result)
 };
 
 // app.route("/bids/:BidID").delete(bidController.delete_bid);
-Bid.delete_bid = function(BidID, result)
+exports.delete_bid = function(BidID, result)
 {
     sql.query("DELETE FROM Bids WHERE BidID = ?", BidID, function(err, res)
     {
@@ -97,7 +97,7 @@ Bid.delete_bid = function(BidID, result)
 };
 
 // app.route("/bids/:AuctionID").get(bidController.get_bids);
-Bid.get_bids = function(AuctionID, result)
+exports.get_bids = function(AuctionID, result)
 {
     sql.query("SELECT * FROM Bids WHERE AuctionID = ?", AuctionID, function(err, res)
     {

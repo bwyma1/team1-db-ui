@@ -5,6 +5,8 @@ var PaintingAuction = function(user)
 {
   this.AuctionID = PaintingAuction.AuctionID;
   this.PaintingID = PaintingAuction.PaintingID;
+  this.Title = PaintingAuction.Title;
+  this.Description = PaintingAuction.Description;
   this.OwnerName = PaintingAuction.OwnerName;
   this.LeadBid  = PaintingAuction.LeadBid;
   this.Image = PaintingAuction.Image;
