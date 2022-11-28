@@ -75,41 +75,41 @@ export const loginUser = (userName, password) => new Promise((resolve, reject) =
 //      .then(x => setAccount(x))
 
 
+//David------------
+export const updateAuctionbyId = (id, auction) => new Promise((resolve, reject) => {
+    axios.put(`${apiEndPoint}/auctions/${id}`, auction, apiConfig)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
 
-//David----------
-// export const getImage = (imageid) => new Promise((resolve, reject) => {
-//     axios.get(`${apiEndPoint}/image/`)
-//         .then(x => resolve(x))
-//         .catch(x => {
-//             alert(x);
-//             reject(x);
-//         })
-// });
+export const getAuctionbyId = (id) => new Promise((resolve, reject) => {
+    axios.get(`${apiEndPoint}/auctions/${id}`)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
 
+export const getCommentbyId = (id) => new Promise((resolve, reject) => {
+    axios.get(`${apiEndPoint}/comments/${id}`)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
 
-// export const getDescription = (imageid) => new Promise((resolve, reject) => {
-//     axios.get(`${apiEndPoint}/image/`)
-//         .then(x => resolve(x))
-//         .catch(x => {
-//             alert(x);
-//             reject(x);
-//         })
-// });
+export const postCommentbyId = (comment) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/comments/`, comment, apiConfig)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
 
-// export const getTime = (imageid) => new Promise((resolve, reject) => {
-//     axios.get(`${apiEndPoint}/image/`)
-//         .then(x => resolve(x))
-//         .catch(x => {
-//             alert(x);
-//             reject(x);
-//         })
-// });
-// export const getbid = (imageid) => new Promise((resolve, reject) => {
-//     axios.get(`${apiEndPoint}/image/`)
-//         .then(x => resolve(x))
-//         .catch(x => {
-//             alert(x);
-//             reject(x);
-//         })
-// });
-// //-------
+//David-------------
