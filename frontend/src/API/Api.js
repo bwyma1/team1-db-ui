@@ -62,6 +62,15 @@ export async function getAsyncAuctions() {
     }
 }
 
+export const addAuction = (auction) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/auctions/`, auction)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
+
 export const loginUser = (userName, password) => new Promise((resolve, reject) => {
     axios.post(`${apiEndPoint}/login/`, userName, password)
         .then(x => resolve(x))

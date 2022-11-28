@@ -1,53 +1,156 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "@mantine/form";
-import { TextInput, Button, Box, Code } from "@mantine/core";
+import {
+  TextInput,
+  Box,
+  MultiSelect,
+  NumberInput,
+  FileInput,
+} from "@mantine/core";
+import { DatePicker } from "@mantine/dates";
+import { auction } from "../Models";
+import { addAuction } from "../API/Api";
 export default function PostAuction() {
   const [submittedValues, setSubmittedValues] = useState("");
+  const [endDate, setEndDate] = useState(new Date());
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+
+  useEffect(() => {
+    if (selectedImage) {
+      setImageUrl(URL.createObjectURL(selectedImage));
+    }
+  }, [selectedImage]);
 
   const form = useForm({
     initialValues: {
-      firstName: "Jane",
-      lastName: "Doe",
-      age: "33",
+      title: "",
+      description: "",
+      startPrice: "",
+      tags: [""],
     },
-
-    transformValues: (values) => ({
-      fullName: `${values.firstName} ${values.lastName}`,
-      age: Number(values.age) || 0,
-    }),
   });
 
-  return (
-    <Box sx={{ maxWidth: 400 }} mx="auto">
-      <form
-        onSubmit={form.onSubmit((values) =>
-          setSubmittedValues(JSON.stringify(values, null, 2))
-        )}
-      >
-        <TextInput
-          label="First name"
-          placeholder="First name"
-          {...form.getInputProps("firstName")}
-        />
-        <TextInput
-          label="Last name"
-          placeholder="Last name"
-          mt="md"
-          {...form.getInputProps("lastName")}
-        />
-        <TextInput
-          type="number"
-          label="Age"
-          placeholder="Age"
-          mt="md"
-          {...form.getInputProps("age")}
-        />
-        <Button type="submit" mt="md">
-          Submit
-        </Button>
-      </form>
+  function postAuction(values) {
+    setSubmittedValues(values);
+    addAuction(
+      new auction(
+        values.title,
+        values.description,
+        "userName",
+        null,
+        selectedImage,
+        values.startPrice,
+        new Date().toDateString(),
+        values.tags,
+        endDate
+      )
+    );
+  }
 
-      {submittedValues && <Code block>{submittedValues}</Code>}
+  return (
+    <Box sx={{}} mx="auto">
+      <form onSubmit={form.onSubmit((values) => postAuction(values))}>
+        <TextInput
+          label="Title"
+          placeholder="Title"
+          {...form.getInputProps("title")}
+        />
+        <TextInput
+          label="Description"
+          placeholder="Description"
+          mt="md"
+          {...form.getInputProps("description")}
+        />
+        <NumberInput
+          label="Start Price"
+          placeholder="Start Price"
+          mt="md"
+          {...form.getInputProps("startPrice")}
+        />
+        <DatePicker
+          label="Ending Date"
+          placeholder="Ending Date"
+          value={endDate}
+          onChange={setEndDate}
+        />
+        <MultiSelect
+          className="col-6 m-auto"
+          maxSelectedValues={3}
+          transitionDuration={150}
+          transition="pop-top-left"
+          transitionTimingFunction="ease"
+          data={["spicy", "modern", "romance", "dark"]}
+          label="Tags"
+          placeholder="Search By Tag"
+          searchable
+          {...form.getInputProps("tags")}
+          radius="xl"
+          size="md"
+          clearable
+        />
+        <FileInput
+          accept="image/"
+          label="Image of Your Art"
+          placeholder="Input File Here"
+          value={selectedImage}
+          onChange={setSelectedImage}
+        />
+        <img alt="file" src={imageUrl}></img>
+        <button
+          className="col-2 fs-6 ms-4 btn border border-dark"
+          type="submit"
+          style={{
+            background: "linear-gradient(#ed6ea0, #ec8c69)",
+            color: "white",
+          }}
+        >
+          Submit
+        </button>
+      </form>
+      {/* {submittedValues && (
+        <img alt="file2" src={URL.createObjectURL(inpFile)}></img>
+      )} */}
     </Box>
   );
 }
+
+/* import { useState, useEffect } from "react";
+import { Box, Button } from "@mantine/core";
+
+const FileInput = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+
+  useEffect(() => {
+    if (selectedImage) {
+      setImageUrl(URL.createObjectURL(selectedImage));
+    }
+  }, [selectedImage]);
+
+  return (
+    <>
+      <input
+        accept="image/*"
+        type="file"
+        id="select-image"
+        style={{ display: "none" }}
+        onChange={(e) => setSelectedImage(e.target.files[0])}
+      />
+      <label htmlFor="select-image">
+        <Button variant="contained" color="primary" component="span">
+          Upload Image
+        </Button>
+      </label>
+      {imageUrl && selectedImage && (
+        <Box mt={2} textAlign="center">
+          <div>Image Preview:</div>
+          <img src={imageUrl} alt={selectedImage.name} />
+        </Box>
+      )}
+    </>
+  );
+};
+
+export default FileInput;
+*/
