@@ -76,10 +76,35 @@ export const loginUser = (userName, password) => new Promise((resolve, reject) =
 
 
 //David------------
-
+export const updateAuctionbyId = (id, auction) => new Promise((resolve, reject) => {
+    axios.put(`${apiEndPoint}/auctions/${id}`, auction, apiConfig)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
 
 export const getAuctionbyId = (id) => new Promise((resolve, reject) => {
     axios.get(`${apiEndPoint}/auctions/${id}`)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
+
+export const getCommentbyId = (id) => new Promise((resolve, reject) => {
+    axios.get(`${apiEndPoint}/comments/${id}`)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
+
+export const postCommentbyId = (comment) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/comments/`, comment, apiConfig)
         .then(x => resolve(x))
         .catch(x => {
             alert(x);
