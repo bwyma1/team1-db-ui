@@ -33,7 +33,7 @@ exports.login_user = function(req, res)
 {
   if(sql.propertyCheck(req, res, ["Email", "Password"]) || sql.propertyCheck(req, res, ["DisplayName", "Password"]))
   {
-      var loginUser = new User(req.query);
+      var loginUser = new User(req.body);
   }
   sql.connection.query(
     "SELECT * FROM `Users` WHERE `Email` = \""+
@@ -76,7 +76,7 @@ exports.login_user = function(req, res)
 };
 exports.create_user = function(req, res)
 {
-  if (sql.propertyCheck(req, res, ["name", "email", "password"]))
+  if (sql.propertyCheck(req, res, ["DisplayName", "Email", "Password"]))
   {
     var newUser = new User(req.body);
 
