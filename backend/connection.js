@@ -38,10 +38,10 @@ connection.on('connection', function(connection)
 exports.propertyCheck = function(req, res, propertyNameList)
 {
   var success = true;
-
-  propertyNameList.every(function(name)
+  console.log('body',req.body);
+  for (let name of propertyNameList)
   {
-    if (!(name in req.query))
+    if (!(name in req.body))
     {
       res.status(400).json(
       {
@@ -51,9 +51,7 @@ exports.propertyCheck = function(req, res, propertyNameList)
       success = false;
       return false;
     }
-    return true;
-  });
-
+  }
   return success;
 };
 

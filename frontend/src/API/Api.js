@@ -63,7 +63,7 @@ export async function getAsyncAuctions() {
 }
 
 export const loginUser = (userName, password) => new Promise((resolve, reject) => {
-    axios.post(`${apiEndPoint}/login/`, userName, password)
+    axios.post(`${apiEndPoint}/login/`, { Email: userName, Password: password } )
         .then(x => resolve(x))
         .catch(x => {
             reject(x);

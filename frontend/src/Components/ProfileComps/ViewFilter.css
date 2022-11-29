@@ -1,0 +1,16 @@
+.btn{
+    width:100%;
+    color: white;
+    
+    background-color: blueviolet;
+    padding-left: 1000;
+    padding-right:1000;
+}
+.stack{
+    margin-top:50%;
+    display:flex;
+    flex-direction:column;
+    width:33%;
+    
+}
+

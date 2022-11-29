@@ -4,7 +4,6 @@ var sql = require("../connection.js");
 var PaintingAuction = function(user)
 {
   this.AuctionID = PaintingAuction.AuctionID;
-  this.PaintingID = PaintingAuction.PaintingID;
   this.Title = PaintingAuction.Title;
   this.Description = PaintingAuction.Description;
   this.OwnerName = PaintingAuction.OwnerName;
@@ -12,7 +11,11 @@ var PaintingAuction = function(user)
   this.Image = PaintingAuction.Image;
   this.StartPrice = PaintingAuction.StartPrice;
   this.DateListed = PaintingAuction.DateListed;
-  this.Tags = PaintingAuction.Tags;
+  this.Pencil = PaintingAuction.Pencil;
+  this.Paint = PaintingAuction.Paint;
+  this.Modern = PaintingAuction.Modern;
+  this.Abstract = PaintingAuction.Abstract;
+  this.Realism = PaintingAuction.Realism;
   this.EndDate = PaintingAuction.EndDate;
 }
 exports.get_auction_id = function(req, res)
@@ -72,11 +75,6 @@ exports.update_auction = function(req, res)
   {
     var query = "UPDATE `PaintingAuctions` SET ";
     var queryData = [];
-    if ("PaintingID" in req.body)
-    {
-      query += "PaintingID = ?, ";
-      queryData.push(req.body.PaintingID);
-    }
     if ("OwnerName" in req.body)
     {
       query += "OwnerName = ?, ";
@@ -138,15 +136,7 @@ exports.update_auction = function(req, res)
 
 exports.create_auction = function(req, res)
 {
-  if (!("PaintingID" in req.body))
-  {
-    res.status(400).send(
-    {
-      success: false,
-      response: "Missing required field: `PaintingID`",
-    });
-  }
-  else if (!("OwnerName" in req.body))
+  if (!("OwnerName" in req.body))
   {
     res.status(400).send(
     {
@@ -206,15 +196,19 @@ exports.create_auction = function(req, res)
   {
     sql.connection.query
     (
-      "INSERT INTO `PaintingAuctions` (`PaintingID`, `OwnerName`, `LeadBid`, `Image`, `StartPrice`, `DateListed`, `Tags`, `EndDate`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+      "INSERT INTO `PaintingAuctions` (`OwnerName`, `Title`, `LeadBid`, `Image`, `StartPrice`, `DateListed`, `Paint`, `Pencil`, `Modern`, `Abstract`, `Realism`, `EndDate`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
       [
-        req.body.PaintingID,
         req.body.OwnerName,
+        req.body.Title,
         req.body.LeadBid,
         req.body.Image,
         req.body.StartPrice,
         req.body.DateListed,
-        req.body.Tags,
+        req.body.Paint,
+        req.body.Pencil,
+        req.body.Modern,
+        req.body.Abstract,
+        req.body.Realism,
         req.body.EndDate,
       ],
       function(sqlErr, sqlRes)
