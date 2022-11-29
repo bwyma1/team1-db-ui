@@ -42,7 +42,7 @@ export default function RegisterSection() {
   };
 
   function register() {
-    addUser(new user(email, uname, "", "", 0, pass));
+    addUser(new user(email, uname, "Bio", " ", 0, pass));
   }
 
   const renderErrorMessage = (name) =>

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../../API/Api";
+import { getAsyncUsers, loginUser } from "../../API/Api";
 import { AppContext } from "../../context";
 import { user } from "../../Models";
 import "./LoginSection.css";
@@ -37,7 +37,8 @@ export default function LoginSection() {
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-    loginUser(uname, pass);
+    console.log(getAsyncUsers());
+    console.log(loginUser(uname, pass));
     // Find user login info
     // const userData = database.find((user) => user.username === uname);
 
