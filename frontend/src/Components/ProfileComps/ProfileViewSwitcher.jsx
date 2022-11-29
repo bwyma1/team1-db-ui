@@ -5,6 +5,7 @@ import { Navbar, NavLink } from "react-bootstrap";
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileViewArea from "./ProfileViewArea";
+
 import {User} from "../../Models";
 export default function ProfileViewSwitcher({user})
 {
@@ -31,6 +32,7 @@ export default function ProfileViewSwitcher({user})
         
 
     </Navbar>
+
     <ProfileViewArea
                       items={items}
                     />

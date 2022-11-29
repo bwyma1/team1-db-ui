@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { Grid } from "@mantine/core";
 
 
-
 export default function ProfileViewArea({items})
 {
     const [auctions, setAuctions] = useState();
@@ -62,7 +61,9 @@ export default function ProfileViewArea({items})
                                  title ={auction.title}
                                  seller = {auction.seller}
                                  price = {auction.price}
-                                 link ='/'/>    
+                                 link ='/'
+                                 tags={auction.tags}/>    
+                                 
                     </div>
                  
                     </li> 

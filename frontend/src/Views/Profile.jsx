@@ -61,10 +61,10 @@ let exampleUser =
         'tag2'
       ], 
       [
-        new auction(3, 'kendall.boeschh', "title sel1 ", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(4, "kendall.boeschh", "title sel2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(5, "kendall.boeschh", "title sel3", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(16, "kendall.boeschh", "title sel4", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
+        new auction(3, 'kendall.boeschh', "title sel1 ", "desc", 8.00, "https://via.placeholder.com/150x150", [], ['tag1', 'tag2']),
+        new auction(4, "kendall.boeschh", "title sel2", "desc", 8.00, "https://via.placeholder.com/150x150", [], ['tag']),
+        new auction(5, "kendall.boeschh", "title sel3", "desc", 8.00, "https://via.placeholder.com/150x150", [], ['tag','tag']),
+        new auction(16, "kendall.boeschh", "title sel4", "desc", 8.00, "https://via.placeholder.com/150x150", [], ['tag']),
         new auction(17, "kendall.boeschh", "title sel5", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
         new auction(18, "kendall.boeschh", "title sel6", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
         new auction(14, "kendall.boeschh", "title sel7", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),

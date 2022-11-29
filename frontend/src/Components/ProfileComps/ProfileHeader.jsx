@@ -1,4 +1,7 @@
 import "./ProfileHeader.css";
+import React from "react";
+import { MDBIcon } from 'mdb-react-ui-kit';
+
 export default function ProfileHeader(props)
 {
   return (
@@ -13,9 +16,10 @@ export default function ProfileHeader(props)
         />
 
         <section class="profileInfoContainer">
-          <h1 class="nameHeader ui ">
+          <h1 className="font-size-auto ">
             {props.name}
           </h1>
+    
           <section class="UserAndBio">
             <h2 class="username ui">
               @{props.id}
