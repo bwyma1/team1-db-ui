@@ -78,37 +78,30 @@ exports.create_user = function(req, res)
 {
   if (sql.propertyCheck(req, res, ["DisplayName", "Email", "Password"]))
   {
-    
-    var newUser = new User(req.body.Email, req.body.DisplayName, req.body.Bio, req.body.ProfilePic, req.body.Tags, req.body.Password);
-
     sql.connection.query(
-      "INSERT INTO `Users` SET ?;",
-      newUser,
+      "INSERT INTO `Users` (`Email`, `DisplayName`, `Bio`, `ProfilePic`, `Tags`, `Password`) VALUES (?, ?, ?, ?, ?, ?);",
+      [
+        req.body.Email, 
+        req.body.DisplayName, 
+        req.body.Bio, 
+        req.body.ProfilePic, 
+        req.body.Tags, 
+        req.body.Password
+      ],
       function(sqlErr, sqlRes)
       {
-        if (sql.isSuccessfulQuery(sqlErr, res))
-        {
-          sql.connection.query(
-            "SELECT * FROM `Users` WHERE `id` = ?;",
-            sqlRes.insertId,
-            function(subErr, subRes)
-            {
-              if (sql.isSuccessfulQuery(subErr, res))
+        if (sql.isSuccessfulQuery(subErr, res))
               {
                 res.status(200).send(
                 {
                   success: true,
                   response: "Succesfully created user",
-                  info: subRes,
                 });
               }
             }
           );
         }
-      }
-    );
-  }
-};
+      };
 exports.get_user = function(req, res)
 {
   if (!("Email" in req.params))
