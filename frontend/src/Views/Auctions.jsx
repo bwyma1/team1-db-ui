@@ -25,8 +25,8 @@ export default function Auctions() {
   //grab auctions from backend
   useEffect(() => {
     getAsyncAuctions().then((x) => setAuctionss(x));
-    console.log(auctionss.info);
-    //setAuctions(auctionss.info);
+    console.log(auctionss);
+    setAuctions(exampleData);
   }, []);
   if (auctions === null) {
     return <div>loading...</div>;
@@ -62,6 +62,9 @@ export default function Auctions() {
           style={{
             background: "linear-gradient(#ed6ea0, #ec8c69)",
             color: "white",
+            minWidth: "4.3rem",
+            maxWidth: "8rem",
+            width: "10%",
           }}
         >
           Post Auction
