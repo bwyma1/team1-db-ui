@@ -112,3 +112,20 @@ exports.get_bids = function(AuctionID, result)
         }
     });
 };
+
+// app.route("/bids/:AuctionID").get(bidController.get_bids);
+exports.get_bids_by_email = function(BidderEmail, result)
+{
+    sql.query("SELECT * FROM Bids WHERE BidderEmail = ?", BidderEmail, function(err, res)
+    {
+        if(err)
+        {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else
+        {
+            result(null, res);
+        }
+    });
+};
