@@ -1,47 +1,68 @@
 import React from "react"
-import { useState, userEffect } from "react";
+import { useState, useEffect } from "react";
 import "./ProfileViewSwitcher.css";
 import { Navbar, NavLink } from "react-bootstrap";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileViewArea from "./ProfileViewArea";
-import user
 
+import {User} from "../../Models";
 export default function ProfileViewSwitcher({user})
 {
-  const [view,setView] = useState();
+  const [items,setItems]=useState(undefined); 
 
-  useEffect(()=>
-  {
-      setView(1);          
-  }, []);
+  useEffect(() => {
+    setItems(user.selling)
+  },[])
+
+
 
     return (
-    <Navbar id="toggler" variant="dark">
+      <>    
+      
+      <Navbar id="toggler" variant="dark">
         <div id="toggleContainer">
-          <button onClick={() => setView(1)} > Selling
-          {/* <NavLink href="/profile">Selling</NavLink> */}
-          </button>
-          <button onCLick={() => setView(2)}> Purchased
-          {/* <NavLink href="/login">Purchased</NavLink> */}
-          </button>
-          <button onClick={() => setView(3)}> Likes
-          {/* <NavLink href="/auctions">Likes</NavLink> */}
-          </button>
-          <button onClick={() => setView(4)}> Active Bids
-          {/* <NavLink href="/auctions">Active Bids</NavLink> */}
-          </button>
-          {this.view == 1 ? <ProfileViewArea items={user.selling} /> : ''}
-          {this.view == 2 ? <ProfileViewArea items={user.purchased} /> : ''}
-          {this.view == 3 ? <ProfileViewArea items={user.likes} /> : ''}
-          {this.view == 4 ? <ProfileViewArea items={user.activeBids}/> : ''}
-          
+        <button onClick={() => setItems(user.selling)}> Selling</button>
+        <button onClick={() => setItems(user.purchased)}> Purchased</button>
+        <button onClick={() => setItems(user.likes)}> Likes</button>
+        <button onClick={() => setItems(user.activeBids)}> Active Bids
+        </button>
+        
         </div>  
         
-        {/* {this.state.view == 1}  */}
-{/* 
-        {this.state.view === 1 ? <View1></View1> : ''}
-            {this.state.view === 2 ? <View2></View2> : '' */}
+
     </Navbar>
+
+    <ProfileViewArea
+                      items={items}
+                    />
+    </>
+
   );
+
+  // return (
+  //   <div className="wrapper">
+  //     <BrowserRouter>
+  //       <nav>
+  //         <ul>
+  //           <li><Link to="/selling">Selling</Link></li>
+  //           <li><Link to="/purchased">Purchased</Link></li>
+  //           <li><Link to="/likes">Likes</Link></li>
+  //           <li><Link to="/activeBids">Active Bids</Link></li>
+  //         </ul>
+  //       </nav>
+  //       <Routes>
+  //         <Route path="/selling"
+  //           element={<ProfileViewArea useState="selling" />}/>
+  //         <Route path="/purchased"
+  //           element={<ProfileViewArea useState="purchased"/>}/>
+  //         <Route path="/likes"
+  //           element={<ProfileViewArea useState="likes" />}/>
+  //         <Route path="/activeBids"
+  //           element={<ProfileViewArea useState="activeBids" />}/>
+  //       </Routes>
+  //     </BrowserRouter>
+  //   </div>
+  // );
 
 }
