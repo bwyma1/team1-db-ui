@@ -1,12 +1,6 @@
 import "./ProfileHeader.css";
-export default function ProfileHeader()
+export default function ProfileHeader(props)
 {
-    const fname = "Kendall";
-  const lname = "Boesch";
-  const username = "kendall.boeschh";
-  const bio = "~bio~";
-
-
   return (
     //make photo inline block!
 
@@ -14,20 +8,20 @@ export default function ProfileHeader()
       <span class=" profileHeaderContainer ui fixed">
         <img
           class="image profilePic"
-          src="https://via.placeholder.com/150x150"
+          src={props.imageUrl}
           alt="temporary profile pic"
         />
 
         <section class="profileInfoContainer">
           <h1 class="nameHeader ui ">
-            {fname} {lname}
+            {props.name}
           </h1>
           <section class="UserAndBio">
             <h2 class="username ui">
-              @{username}
+              @{props.id}
             </h2>
             <p class="bio ui">
-              {bio}
+              {props.bio}
             </p>
           </section>
         </section>

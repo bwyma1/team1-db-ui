@@ -1,70 +1,76 @@
 import { useState } from "react" 
 import React from "react" ;
 import ItemCard from "./ItemCard";
-import ProfileViewSwitcher from "./ProfileViewSwitcher";
 import "./ProfileViewArea.css";
-import ViewFilter from "./ViewFilter";
+import { auction } from "../../Models";
+import { useEffect } from "react";
+import { Grid } from "@mantine/core";
 
 
-export default function ProfileViewArea(props)
+
+export default function ProfileViewArea({items})
 {
-    // const [view, setView] = useState(); 
+    const [auctions, setAuctions] = useState();
+    useEffect(() => {
+        setAuctions(items); 
+        //getUserSelling(props.id).then(x => setAuctions(x)); 
+    }, [{items}]); 
+    // useEffect(() => {
+    //     if(view ==0)
+    //     {
+    //         setAuctions(user.selling);
+    //     }
+    //     else if({view} == 1)
+    //     {
+    //         setAuctions(user.purchased);
+    //     }
+    //     else if(view == 2)
+    //     {
+    //         setAuctions(user.likes);
+    //     }
+    //     else if(view == 3)
+    //     {
+    //         setAuctions(user.activeBids);
+    //     }
+        
+    // }, [{view}]); 
 
-    const [items, setItems] = useState([]);
+    function toAuction(auc) {
+        console.log(auc);
+        window.location.pathname = "/";
+      }
+
+    if(auctions == null) 
+    {
+        return <div>loading...</div>; 
+    }
+ 
+   
+
     return(
         <>
-        <ProfileViewSwitcher />
-        <div class="view2Area">
-            
-            {/* <div> 
-               // <ViewFilter/>
-            </div> */}
-            <div class='viewArea'> 
+    
+                    {/* <ReviewForm onReviewAdded = { review => addReview({reviews: [...product.reviews, review]})}/> */}
 
+        <div class="view2Area" className=' container list-unstyled d-flex justify-content-between flex-wrap w-100'>
+                {auctions.map((auction, index) => (
+                    <li key ={index}> 
+                    <div className='card h-100 m-3 mb-3'> 
+                        <ItemCard
+                                id = {auction.id}
+                                 imageUrl = {auction.imageUrl}
+                                 title ={auction.title}
+                                 seller = {auction.seller}
+                                 price = {auction.price}
+                                 link ='/'/>    
+                    </div>
+                 
+                    </li> 
+                ))}
 
-             <ItemCard/>
-             <ItemCard/>
-             <ItemCard/>
-             <ItemCard/>
-             <ItemCard/>
-             <ItemCard/>
-             <ItemCard/>
-             <ItemCard/>
-             <ItemCard/>
-             <ItemCard/>
-             <ItemCard/>
-             <ItemCard/>
-             <ItemCard/>
-            </div>
-
-        </div>
+               </div>
 
         </>
 
     );
 }
-
-
-// {props.reviews.length===0 && 
-//     <li  
-//         style={{listStyle:"none"}}
-//         className="list-group-item bg-gray"> Be the first to add a review!</li>
-// } 
-// {props.reviews.map((rev, i)=> 
-//     <li className ="reviewLi" key = {i}>
-//         <span className="navbar navbar-light bg-grey">
-//             <Rating value={rev.rating}/>
-//         </span>
-//         <div className = "upperBridge">
-//             <span className =" upper username">
-//                 {rev.userName}
-//             </span>
-//             <span className =" upper date">
-//                 {rev.date}
-//             </span>
-//         </div>
-//         <div className ="lower">
-//             <p className="comment">"{rev.comment}"</p>
-//         </div>
-//     </li>)
-// }

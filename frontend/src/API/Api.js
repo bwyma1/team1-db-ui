@@ -91,3 +91,15 @@ export const loginUser = (userNmame, password) => new Promise((resolve, reject) 
 //         })
 // });
 // //-------
+
+
+// Kendall 
+
+export const getUserSelling = (id) => new Promise((resolve, reject) => {
+    axios.get(`${apiEndPoint}/user/${id}/selling`, apiConfig)
+    .then(x => resolve(x))
+    .catch(x => {
+        alert(x);
+        reject(x);
+    })
+});
