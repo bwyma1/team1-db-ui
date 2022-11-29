@@ -83,10 +83,10 @@ export const addUser = (user) => new Promise((resolve, reject) => {
 
 export const loginUser = (userName, password) => new Promise((resolve, reject) => {
     axios.post(`${apiEndPoint}/login/`, { Email: userName, Password: password } )
-        .then(x => resolve(x))
+        .then(x => resolve(x.info))
         .catch(x => {
             reject(x);
-            alert("failed to login");
+            return false;
         })
 })
 

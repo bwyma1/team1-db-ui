@@ -12,7 +12,9 @@ import {
 import { DatePicker } from "@mantine/dates";
 import { auction } from "../Models";
 import { addAuction } from "../API/Api";
+import { useNavigate } from "react-router-dom";
 export default function PostAuction() {
+  const navigate = useNavigate();
   const [submittedValues, setSubmittedValues] = useState("");
   const [endDate, setEndDate] = useState(new Date());
   const [selectedImage, setSelectedImage] = useState(null);
@@ -43,9 +45,13 @@ export default function PostAuction() {
         values.description,
         "userName",
         10,
-        " URL.createObjectURL(selectedImage)",
+        URL.createObjectURL(selectedImage),
         values.startPrice,
         new Date().toDateString(),
+        0,
+        1,
+        0,
+        1,
         0,
         endDate
       )

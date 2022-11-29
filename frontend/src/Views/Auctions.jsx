@@ -25,8 +25,8 @@ export default function Auctions() {
   //grab auctions from backend
   useEffect(() => {
     getAsyncAuctions().then((x) => setAuctionss(x));
-    //console.log(auctionss.info);
-    setAuctions(exampleData);
+    console.log(auctionss.info);
+    //setAuctions(auctionss.info);
   }, []);
   if (auctions === null) {
     return <div>loading...</div>;

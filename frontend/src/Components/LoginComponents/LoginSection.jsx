@@ -11,6 +11,7 @@ export default function LoginSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [uname, setUname] = useState("");
   const [pass, setPass] = useState("");
+  const [temp, setTemp] = useState(null);
   const navigate = useNavigate();
   const context = useContext(AppContext);
 
@@ -30,39 +31,22 @@ export default function LoginSection() {
   ];
 
   const errors = {
-    uname: "invalid username",
+    uname: "invalid credentials",
     pass: "invalid password",
   };
 
   const handleSubmit = (event) => {
-    //Prevent page reload
     event.preventDefault();
     console.log(getAsyncUsers());
-    console.log(loginUser(uname, pass));
-    // Find user login info
-    // const userData = database.find((user) => user.username === uname);
-
-    // // Compare user info
-    // if (userData) {
-    //   if (userData.password !== pass) {
-    //     // Invalid password
-    //     setErrorMessages({ name: "pass", message: errors.pass });
-    //     pass.value = "";
-    //   } else {
-    //     login();
-    //     setIsSubmitted(true);
-    //   }
-    // } else {
-    //   // Username not found
-    //   setErrorMessages({ name: "uname", message: errors.uname });
-    // }
+    loginUser(uname, pass).then((x) => setTemp(x));
+    if (temp) {
+      loginUser(uname, pass).then((x) => context.setUser(x));
+      console.log(context.user);
+      navigate("/profiles");
+    } else {
+      setErrorMessages({ name: "pass", message: errors.uname });
+    }
   };
-
-  function login() {
-    const user = { uname, pass };
-    localStorage.setItem("user", user);
-    navigate("/profiles");
-  }
 
   // Error messages
   const renderErrorMessage = (name) =>
