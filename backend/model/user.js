@@ -78,7 +78,8 @@ exports.create_user = function(req, res)
 {
   if (sql.propertyCheck(req, res, ["DisplayName", "Email", "Password"]))
   {
-    var newUser = new User(req.body);
+    
+    var newUser = new User(req.body.Email, req.body.DisplayName, req.body.Bio, req.body.ProfilePic, req.body.Tags, req.body.Password);
 
     sql.connection.query(
       "INSERT INTO `Users` SET ?;",
