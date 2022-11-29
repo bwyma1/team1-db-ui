@@ -21,7 +21,7 @@ export const getUserById = (id) => new Promise((resolve, reject) => {
 });
 
 export const getUsers = () => new Promise((resolve, reject) => {
-    axios.get(`${apiEndPoint}/api/getUser/`)
+    axios.get(`${apiEndPoint}/users/`)
         .then(x => resolve(x))
         .catch(x => {
             alert(x);
@@ -62,12 +62,31 @@ export async function getAsyncAuctions() {
     }
 }
 
-export const loginUser = (userName, password) => new Promise((resolve, reject) => {
-    axios.post(`${apiEndPoint}/login/`, { Email: userName, Password: password } )
+export const addAuction = (auction) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/auctions/`, auction)
         .then(x => resolve(x))
         .catch(x => {
+            alert(x);
             reject(x);
-            alert("failed to login");
+        })
+});
+
+export const addUser = (user) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/users/`, user)
+        .then(x => resolve(x))
+        .catch(x => {
+            console.log("failed promise")
+            alert(x);
+            reject(x);
+        })
+});
+
+export const loginUser = (userName, password) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/login/`, { Email: userName, Password: password } )
+        .then(x => resolve(x.info))
+        .catch(x => {
+            reject(x);
+            return false;
         })
 })
 
