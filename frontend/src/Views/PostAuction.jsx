@@ -37,16 +37,16 @@ export default function PostAuction() {
 
   function postAuction(values) {
     setSubmittedValues(values);
-    console.log(
+    addAuction(
       new auction(
         values.title,
         values.description,
         "userName",
-        null,
-        selectedImage,
+        10,
+        " URL.createObjectURL(selectedImage)",
         values.startPrice,
         new Date().toDateString(),
-        values.tags,
+        0,
         endDate
       )
     );
@@ -119,7 +119,7 @@ export default function PostAuction() {
           transitionDuration={150}
           transition="pop-top-left"
           transitionTimingFunction="ease"
-          data={["spicy", "modern", "romance", "dark"]}
+          data={["paint", "pencil", "modern", "abstract", "realism"]}
           label="Tags"
           placeholder="Select Tags"
           searchable

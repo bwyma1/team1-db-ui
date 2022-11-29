@@ -192,7 +192,7 @@ exports.create_auction = function(req, res)
   {
     sql.connection.query
     (
-      "INSERT INTO `PaintingAuctions` (`OwnerName`, `LeadBid`, `Image`, `StartPrice`, `DateListed`, `Tags`, `EndDate`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+      "INSERT INTO `PaintingAuctions` ( `OwnerName`, `LeadBid`, `Image`, `StartPrice`, `DateListed`, `Tags`,`Description`, `EndDate`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
       [
         req.body.OwnerName,
         req.body.LeadBid,
@@ -200,6 +200,7 @@ exports.create_auction = function(req, res)
         req.body.StartPrice,
         req.body.DateListed,
         req.body.Tags,
+        req.body.Description,
         req.body.EndDate,
       ],
       function(sqlErr, sqlRes)
