@@ -29,10 +29,6 @@ export default function LoginSection() {
     },
   ];
 
-  async function fetchUserData() {
-    const response = await fetch();
-  }
-
   const errors = {
     uname: "invalid username",
     pass: "invalid password",
@@ -41,7 +37,7 @@ export default function LoginSection() {
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-    loginUser(new user(uname, uname, "", "", 0, pass));
+    loginUser(uname, pass);
     // Find user login info
     // const userData = database.find((user) => user.username === uname);
 

@@ -139,11 +139,12 @@ export default function PostAuction() {
         />
         {imageUrl && <img className="col-6" alt="file" src={imageUrl}></img>}
         <button
-          className="col-2 fs-6 ms-4 btn border border-dark"
+          className=" btn border border-dark"
           type="submit"
           style={{
             background: "linear-gradient(#ed6ea0, #ec8c69)",
             color: "white",
+            minWidth: "8rem",
           }}
         >
           Post Auction

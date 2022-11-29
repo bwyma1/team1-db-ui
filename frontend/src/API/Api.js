@@ -81,8 +81,8 @@ export const addUser = (user) => new Promise((resolve, reject) => {
         })
 });
 
-export const loginUser = (user) => new Promise((resolve, reject) => {
-    axios.post(`${apiEndPoint}/login/`, user)
+export const loginUser = (userName, password) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/login/`, {Email: userName, Password: password})
         .then(x => resolve(x))
         .catch(x => {
             reject(x);
