@@ -4,7 +4,6 @@ var sql = require("../connection.js");
 var PaintingAuction = function(user)
 {
   this.AuctionID = PaintingAuction.AuctionID;
-  this.PaintingID = PaintingAuction.PaintingID;
   this.Title = PaintingAuction.Title;
   this.Description = PaintingAuction.Description;
   this.OwnerName = PaintingAuction.OwnerName;
@@ -72,11 +71,6 @@ exports.update_auction = function(req, res)
   {
     var query = "UPDATE `PaintingAuctions` SET ";
     var queryData = [];
-    if ("PaintingID" in req.body)
-    {
-      query += "PaintingID = ?, ";
-      queryData.push(req.body.PaintingID);
-    }
     if ("OwnerName" in req.body)
     {
       query += "OwnerName = ?, ";
@@ -138,15 +132,7 @@ exports.update_auction = function(req, res)
 
 exports.create_auction = function(req, res)
 {
-  if (!("PaintingID" in req.body))
-  {
-    res.status(400).send(
-    {
-      success: false,
-      response: "Missing required field: `PaintingID`",
-    });
-  }
-  else if (!("OwnerName" in req.body))
+  if (!("OwnerName" in req.body))
   {
     res.status(400).send(
     {
@@ -206,9 +192,8 @@ exports.create_auction = function(req, res)
   {
     sql.connection.query
     (
-      "INSERT INTO `PaintingAuctions` (`PaintingID`, `OwnerName`, `LeadBid`, `Image`, `StartPrice`, `DateListed`, `Tags`, `EndDate`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+      "INSERT INTO `PaintingAuctions` (`OwnerName`, `LeadBid`, `Image`, `StartPrice`, `DateListed`, `Tags`, `EndDate`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
       [
-        req.body.PaintingID,
         req.body.OwnerName,
         req.body.LeadBid,
         req.body.Image,
