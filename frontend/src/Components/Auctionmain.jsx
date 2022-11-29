@@ -2,12 +2,21 @@ import React from "react";
 import "./Auctionmain.css";
 import "./MyHomepageFooter.css";
 import { auction, Comments } from "../Models"
-import { Badge, Card } from "@mantine/core";
+import { Badge, Card, Tooltip, Tabs, Button} from "@mantine/core";
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { getAuctionbyId, getCommentbyId, updateAuctionbyId } from "../API/Api";
 
+
 //import getUserById from "../api";
+
+
+// { <Textarea
+// placeholder="Your comment"
+// label="Your comment"
+// radius="lg"
+// size="xl"
+// /> }
 
 let selected_auction = new auction(
   1,
@@ -110,19 +119,23 @@ const ChangeBid = newBid =>{
 <h3>Highest Bid: {Auction.LeadBid}</h3>
 <label id="label1" for="bid">Bid</label>
 <input type="text" id="bid"/>
+<Tooltip label="Submit bid">
 <button type="button" id="bidbtn" onClick={() =>{
 let Bidding = document.getElementById('bid');
 ChangeBid(Bidding.value)
 Bidding.value = "";
 
 }}>Bid</button>
+</Tooltip>
 </form>
  <span id="description"><h5>Description:</h5>< >{selected_auction.Description}</></span>
  <h2>Start Date: {Auction.DateListed}</h2>
  <h2>End Date: {Auction.EndDate}</h2>
 </span>
 <div>
+<Tooltip label={"Painting id " +Auction.PaintingID}>
     <img id="picture1" src={selected_auction.Image} alt="image"/> 
+    </Tooltip>
 </div>
   
   
@@ -133,24 +146,51 @@ Bidding.value = "";
 
 </div>
 <br/>
-<div id="timer">
-
-</div>
-
 
 
 <br/>
-<h4>Comments</h4>
+
+
+
+<Tabs defaultValue="gallery">
+      <Tabs.List>
+        <Tabs.Tab value="gallery" icon="">See what others are saying</Tabs.Tab>
+        <Tabs.Tab value="messages" icon="">Current Bidding</Tabs.Tab>
+        <Tabs.Tab value="settings" icon="">Comment</Tabs.Tab>
+      </Tabs.List>
+
+      <Tabs.Panel value="gallery" pt="xs">
+
+      <h4>Comments</h4>
 <div id="tag2">
 {comments.map((comment) => (
                     <Card>
+<Button variant="subtle" color="red" radius="lg" size="xs" compact>
+      Report User
+    </Button>
                       <div className="user" style={{ fontWeight: 'bold' }}>User:  {comment.UserEmail}</div>
     <div className="comment" style={{ marginBottom: '20px' }}>{comment.CommentMessage}</div>
                    </Card>
                   ))}
 </div>
 
-<Card>
+      </Tabs.Panel>
+
+      <Tabs.Panel value="messages" pt="xs">
+        Messages tab content
+
+
+
+
+      </Tabs.Panel>
+
+
+
+      <Tabs.Panel value="settings" pt="xs">
+       
+
+
+      <Card>
 <form id="commentarybox">
   
 <label id="label2" for="commentusername">Comment</label>
@@ -170,6 +210,11 @@ Bidding.value = "";
 
 </form>
 </Card>
+
+
+
+      </Tabs.Panel>
+    </Tabs>
 
      <footer>PieceID:{Auction.PaintingID}</footer>
 

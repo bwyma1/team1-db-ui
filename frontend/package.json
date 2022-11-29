@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mantine/carousel": "^5.8.4",
     "@mantine/core": "^5.8.3",
     "@mantine/form": "^5.8.3",
     "@mantine/hooks": "^5.8.3",
     "axios": "^0.26.1",
     "bootstrap": "^5.2.2",
+    "embla-carousel-react": "^7.0.5",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "mdb-react-ui-kit": "^4.2.0",

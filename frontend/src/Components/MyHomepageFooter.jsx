@@ -6,7 +6,7 @@ export default function MyHomepageFooter() {
 
   return (
     <>
-     <footer>footer</footer>
+     <footer></footer>
 
     </>
   );
