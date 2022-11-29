@@ -29,9 +29,18 @@ export const getUsers = () => new Promise((resolve, reject) => {
         })
 });
 
+export const getAuctions = () => new Promise((resolve, reject) => {
+    axios.get(`${apiEndPoint}/auctions/`)
+    .then (x => resolve(x.data))
+    .catch(x =>{
+        alert(x);
+        reject(x);
+    })
+});
+
 export async function getAsyncUsers() {
     try {
-        const response = await fetch(`${apiEndPoint}/api/getUser/`);
+        const response = await fetch(`${apiEndPoint}/users/`);
         if(!response.ok) {
             console.log("not ok");
         }
@@ -41,11 +50,24 @@ export async function getAsyncUsers() {
     }
 }
 
-export const loginUser = (userNmame, password) => new Promise((resolve, reject) => {
-    axios.get(`${apiEndPoint}/login`)
+export async function getAsyncAuctions() {
+    try {
+        const response = await fetch(`${apiEndPoint}/auctions/`);
+        if(!response.ok) {
+            console.log("not ok");
+        }
+        return await response.json()
+    } catch (error) {
+        throw new Error(error.message || "Could not get users");
+    }
+}
+
+export const loginUser = (userName, password) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/login/`, { Email: userName, Password: password } )
         .then(x => resolve(x))
         .catch(x => {
             reject(x);
+            alert("failed to login");
         })
 })
 
@@ -53,41 +75,41 @@ export const loginUser = (userNmame, password) => new Promise((resolve, reject) 
 //      .then(x => setAccount(x))
 
 
+//David------------
+export const updateAuctionbyId = (id, auction) => new Promise((resolve, reject) => {
+    axios.put(`${apiEndPoint}/auctions/${id}`, auction, apiConfig)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
 
-//David----------
-// export const getImage = (imageid) => new Promise((resolve, reject) => {
-//     axios.get(`${apiEndPoint}/image/`)
-//         .then(x => resolve(x))
-//         .catch(x => {
-//             alert(x);
-//             reject(x);
-//         })
-// });
+export const getAuctionbyId = (id) => new Promise((resolve, reject) => {
+    axios.get(`${apiEndPoint}/auctions/${id}`)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
 
+export const getCommentbyId = (id) => new Promise((resolve, reject) => {
+    axios.get(`${apiEndPoint}/comments/${id}`)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
 
-// export const getDescription = (imageid) => new Promise((resolve, reject) => {
-//     axios.get(`${apiEndPoint}/image/`)
-//         .then(x => resolve(x))
-//         .catch(x => {
-//             alert(x);
-//             reject(x);
-//         })
-// });
+export const postCommentbyId = (comment) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/comments/`, comment, apiConfig)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
 
-// export const getTime = (imageid) => new Promise((resolve, reject) => {
-//     axios.get(`${apiEndPoint}/image/`)
-//         .then(x => resolve(x))
-//         .catch(x => {
-//             alert(x);
-//             reject(x);
-//         })
-// });
-// export const getbid = (imageid) => new Promise((resolve, reject) => {
-//     axios.get(`${apiEndPoint}/image/`)
-//         .then(x => resolve(x))
-//         .catch(x => {
-//             alert(x);
-//             reject(x);
-//         })
-// });
-// //-------
+//David-------------

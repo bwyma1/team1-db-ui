@@ -33,7 +33,7 @@ exports.login_user = function(req, res)
 {
   if(sql.propertyCheck(req, res, ["Email", "Password"]) || sql.propertyCheck(req, res, ["DisplayName", "Password"]))
   {
-      var loginUser = new User(req.query);
+      var loginUser = new User(req.body);
   }
   sql.connection.query(
     "SELECT * FROM `Users` WHERE `Email` = \""+
@@ -76,38 +76,32 @@ exports.login_user = function(req, res)
 };
 exports.create_user = function(req, res)
 {
-  if (sql.propertyCheck(req, res, ["name", "email", "password"]))
+  if (sql.propertyCheck(req, res, ["DisplayName", "Email", "Password"]))
   {
-    var newUser = new User(req.body);
-
     sql.connection.query(
-      "INSERT INTO `Users` SET ?;",
-      newUser,
+      "INSERT INTO `Users` (`Email`, `DisplayName`, `Bio`, `ProfilePic`, `Tags`, `Password`) VALUES (?, ?, ?, ?, ?, ?);",
+      [
+        req.body.Email, 
+        req.body.DisplayName, 
+        req.body.Bio, 
+        req.body.ProfilePic, 
+        req.body.Tags, 
+        req.body.Password
+      ],
       function(sqlErr, sqlRes)
       {
-        if (sql.isSuccessfulQuery(sqlErr, res))
-        {
-          sql.connection.query(
-            "SELECT * FROM `Users` WHERE `id` = ?;",
-            sqlRes.insertId,
-            function(subErr, subRes)
-            {
-              if (sql.isSuccessfulQuery(subErr, res))
+        if (sql.isSuccessfulQuery(subErr, res))
               {
                 res.status(200).send(
                 {
                   success: true,
                   response: "Succesfully created user",
-                  info: subRes,
                 });
               }
             }
           );
         }
-      }
-    );
-  }
-};
+      };
 exports.get_user = function(req, res)
 {
   if (!("Email" in req.params))
@@ -149,3 +143,70 @@ exports.get_user = function(req, res)
     );
   }
 }
+
+// app.route("/users/:Email").put(userController.update_user);
+
+exports.update_user = function(req, res)
+{
+  if (sql.propertyCheck(req, res, ["Email"]))
+  {
+    var updateUser = new User(req.body);
+    sql.connection.query(
+      "UPDATE `Users` SET ? WHERE `Email` = \""+
+      req.params.Email+"\";",
+      updateUser,
+      function(sqlErr, sqlRes)
+      {
+        if (sql.isSuccessfulQuery(sqlErr, res))
+        {
+          sql.connection.query(
+            "SELECT * FROM `Users` WHERE `Email` = \""+
+            req.params.Email+"\";",
+            function(subErr, subRes)
+            {
+              if (sql.isSuccessfulQuery(subErr, res))
+              {
+                res.status(200).send(
+                {
+                  success: true,
+                  response: "Successfully updated user",
+                  info: subRes,
+                });
+              }
+            }
+          );
+        }
+      }
+    );
+  }
+};
+
+exports.delete_user = function(req, res)
+{
+  if (!("Email" in req.params))
+  {
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Email`",
+    });
+  }
+  else
+  {
+    sql.connection.query(
+      "DELETE FROM `Users` WHERE `Email` = \""+
+      req.params.Email+"\";",
+      function(sqlErr, sqlRes)
+      {
+        if (sql.isSuccessfulQuery(sqlErr, res))
+        {
+          res.status(200).send(
+          {
+            success: true,
+            response: "Successfully deleted user",
+          });
+        }
+      }
+    );
+  }
+};

@@ -14,20 +14,17 @@ import { getUsers, getAsyncUsers} from './API/Api';
 import { MantineProvider} from '@mantine/core';
 import Auctions from './Views/Auctions';
 import AuctionPage from './Views/AuctionPage'
+import NotificationContainer from './Components/NotificationContainer';
+import { AppProvider } from './context';
+import Error from './Views/Error';
+import PostAuction from './Views/PostAuction';
 
 // React functional component
 function App () {
-  const [user, setUser] = useState(null);
-  const [users, setUsers] = useState(null);
+  
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      //const foundUser = JSON.parse(loggedInUser);
-      setUser(1);
-      console.log(loggedInUser);
-      console.log(user);
-    }
+    //getAsyncUsers();
   }, []);
 
 
@@ -36,20 +33,14 @@ function App () {
   // }, [])
 //David B added route for individual auction tests
 
-  useEffect(() => {
-    getAsyncUsers().then(x => setUsers(x))
-  }, [])
-
 
   return (
-    <MantineProvider
-    theme={{
-      colorScheme: 'light',
-    }}
-  >
+    
+    <AppProvider>
+    <MantineProvider>
     <Router>
       <div className="App">
-        <Header user={user}/>
+        <Header/>
         <main>
             <Routes>
               <Route path="/" element={<Home />}></Route>
@@ -57,16 +48,19 @@ function App () {
               <Route path="/notifications" element={<Notifications />}></Route>
               <Route path="/profiles" element={<Profile />}></Route>
               <Route path="/auctions" element={<Auctions />}></Route>
-              <Route path="*" element={<Backend />} ></Route>
+              <Route path="/auctions/:id" element={<AuctionPage />}/>
+              <Route path="/postAuction" element={<PostAuction />}></Route>
+              <Route path="*" element={<Error />} ></Route>
 
               <Route path="/AuctionPage" element={<AuctionPage />} ></Route>
 
             </Routes>
         </main>
       </div>
-      
     </Router>
+
     </MantineProvider>
+    </AppProvider>
   );
 }
 

@@ -1,42 +1,70 @@
-#tag1{
+ 
+ 
+ #tag1{
     display: block;
 position: relative;
-left: -30%;
+left:0;
 list-style-type: none;
 }
 
-#tag1 > li{
-        padding: .5rem;
-    display: inline;
-    margin-left: .5rem;
-    background: grey;
-    color: whitesmoke;
-    border-radius: 5rem;
-    border: none;
-}
+
 
 #picture1{
-float: left;
+    display: flex;
+
 margin-bottom: 1rem;
     width: 40%;
     height: 30%;
 }
+#piecename{
+position: relative;
+
+   
+}
+
+#label2{
+
+display: block;
+background-color: #aca4a2;
+padding: 1rem;
+color: whitesmoke
+
+}
+
 
 #description{
+    float: right;
     display: inline;
-    clear: right;
+    
 }
 
 #bottomcontent{
     left: 0rem;
-    margin-top: 12%;
+    
 }
 
+#forms{
 
+    display: center;
+    max-width: 30%;
+    left: -20%;
+    float: right;
+    position: relative;
+
+    
+    }
+    #description{
+        margin-top: 1rem;
+padding: 1rem;
+        text-align: center;
+        background-color: #aca4a2;
+        border: 2px solid red
+    }
+    
 
 #biddingform{
 position: relative;
-float: right;
+
 margin: .5rem;
 }
 
@@ -45,23 +73,98 @@ left:0;
 }
 
 #commentbox{
-width: 40%;
+width: 90%;
+height: 30%;
 }
 
 label{
-    display: block;
+   
+   display: inline;
 }
 
 #commentarybox{
 
     display: block;
-    position: relative;
-    left: 10rem;
+    position: center;
+    size:70%
     
 }
 #timer > h3{
     display: block;
     position: relative;
-    left: 0;
     
+    
+    
+} 
+
+#label1{
+text-align: center;
+position: relative;
+left: 1.2rem;
+display:block;
+}
+
+.user{
+
+padding:20px;
+    background-color: #aca4a2;
+    color: whitesmoke; 
+}
+.comment{
+    padding: 10px;
+    background-color:rgb(218, 221, 222); 
+
+
+}
+
+
+
+
+#bidbtn{
+    background: linear-gradient(#ed6ea0, #ec8c69);
+   padding: .5rem;
+   border-radius: .5rem;
+
+}
+
+#commentbtn{
+   
+    padding: .5rem;
+    border-radius: .5rem;
+    background: linear-gradient(#ed6ea0, #ec8c69);
+    
+
+}
+
+#btnline{
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+}
+
+#commentarybox{
+
+background-color:rgb(182, 178, 178);
+
+}
+
+#bid{
+text-align: center;
+
+
+}
+#seller{
+width: 20%;
+padding: 1rem;
+text-align: left;
+margin-left: .5rem;
+background: grey;
+color: whitesmoke;
+}
+#sellerbox{
+
+
+
 }
