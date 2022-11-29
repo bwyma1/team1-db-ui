@@ -52,9 +52,9 @@ export default function ProfileViewArea({items})
     
                     {/* <ReviewForm onReviewAdded = { review => addReview({reviews: [...product.reviews, review]})}/> */}
 
-        <div class="view2Area" className=' container list-unstyled d-flex justify-content-between flex-wrap w-100'>
+        <div class="view2Area" className=' container list-unstyled d-flex justify-content-center flex-wrap w-100'>
                 {auctions.map((auction, index) => (
-                    <li key ={index}> 
+                    <li className ='m-2' key ={index}> 
                     <div className='card h-100 m-3 mb-3'> 
                         <ItemCard
                                 id = {auction.id}
