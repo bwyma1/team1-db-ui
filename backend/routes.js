@@ -23,6 +23,7 @@ app.route("/auctions/:AuctionID").get(AuctionController.get_auction_id);
 app.route("/auctions/:AuctionID").put(AuctionController.update_auction);
 app.route("/auctions/").post(AuctionController.create_auction);
 app.route("/auctions/:AuctionID").delete(AuctionController.delete_auction);
+app.route("/auctions/tags/").get(AuctionController.get_auction_by_tags);
 
 // COMMENT
 app.route("/comments/").get(commentController.get_comments);

@@ -1,4 +1,5 @@
 "use strict";
+const { query } = require("express");
 var sql = require("../connection.js");
 
 var PaintingAuction = function(user)
@@ -304,4 +305,54 @@ exports.delete_auction = function(req, res)
       }
     );
   }
+};
+
+// app.route("/auctions/tags/").get(AuctionController.get_auction_by_tags);
+exports.get_auction_by_tags = function(req, res)
+{
+  var query = "SELECT * FROM `PaintingAuctions` WHERE ";
+  var queryData = [];
+  if (("Paint" in req.body))
+  {
+    query += "Paint = ?, ";
+    queryData.push(req.body.Paint);
+  }
+  if (("Pencil" in req.body))
+  {
+    query += "Pencil = ?, ";
+    queryData.push(req.body.Pencil);
+  }
+  if (("Modern" in req.body))
+  {
+    query += "Modern = ?, ";
+    queryData.push(req.body.Modern);
+  }
+  if (("Abstract" in req.body))
+  {
+    query += "Abstract = ?, ";
+    queryData.push(req.body.Abstract);
+  }
+  if (("Realism" in req.body))
+  {
+    query += "Realism = ?, ";
+    queryData.push(req.body.Realism);
+  }
+  query = query.slice(0, -2);
+  query += ";";
+  sql.connection.query
+  (
+    query,
+    queryData,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          response: sqlRes,
+        });
+      }
+    }
+  );
 };
