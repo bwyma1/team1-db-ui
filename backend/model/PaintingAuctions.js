@@ -89,7 +89,7 @@ exports.update_auction = function(req, res)
     if ("Image" in req.body)
     {
       query += "Image = ?, ";
-      queryData.push(req.body.Image);
+      queryData.push(sql.ImageToBase64(req.body.Image));
     }
     if ("StartPrice" in req.body)
     {
