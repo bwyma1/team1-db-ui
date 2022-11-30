@@ -1,4 +1,5 @@
 import axios from "axios";
+import { user } from "../Models";
 
 let development = true;
 
@@ -21,7 +22,7 @@ export const getUserById = (id) => new Promise((resolve, reject) => {
 });
 
 export const getUsers = () => new Promise((resolve, reject) => {
-    axios.get(`${apiEndPoint}/api/getUser/`)
+    axios.get(`${apiEndPoint}/users/`)
         .then(x => resolve(x))
         .catch(x => {
             alert(x);
@@ -62,15 +63,46 @@ export async function getAsyncAuctions() {
     }
 }
 
-export const loginUser = (userName, password) => new Promise((resolve, reject) => {
-    axios.post(`${apiEndPoint}/login/`, { Email: userName, Password: password } )
+export const addAuction = (auction) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/auctions/`, auction)
         .then(x => resolve(x))
         .catch(x => {
+            alert(x);
             reject(x);
-            alert("failed to login");
         })
-})
+});
 
+export const addUser = (user) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/users/`, user)
+        .then(x => resolve(x))
+        .catch(x => {
+            console.log("failed promise")
+            alert(x);
+            reject(x);
+        })
+});
+
+export const loginUser =  async (userName, password) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/login/`, { Email: userName, Password: password })
+        .then(x => 
+            resolve(x.data.info[0]))
+        .catch(x => {
+            alert("wrong credentials");
+            reject(x);
+        })
+});
+
+export async function getAsyncUserByEmail(email) {
+    try {
+        const response = await fetch(`${apiEndPoint}/users/${email}`);
+        if(!response.ok) {
+            console.log("not ok");
+        }
+        return await response.json()
+    } catch (error) {
+        throw new Error(error.message || "Could not get users");
+    }
+}
 // getUserById(1)
 //      .then(x => setAccount(x))
 

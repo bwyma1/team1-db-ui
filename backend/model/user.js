@@ -8,7 +8,9 @@ var User = function(user)
    this.Bio = user.Bio;
    this.ProfilePic = user.ProfilePic;
    this.Password = user.Password;
+   this.Strikes = user.Strikes;
 }
+
 exports.get_users = function(req, res)
 {
   sql.connection.query(
@@ -35,8 +37,8 @@ exports.login_user = function(req, res)
       var loginUser = new User(req.body);
   }
   sql.connection.query(
-    "SELECT * FROM `Users` WHERE `Email` = \""+
-    loginUser.Email+"\";",
+    "SELECT * FROM `Users` WHERE `Email` = ?;",
+    loginUser.Email,
     function(sqlErr, sqlRes)
     {
       if (sql.isSuccessfulQuery(sqlErr, res))
@@ -73,33 +75,37 @@ exports.login_user = function(req, res)
     }
   );
 };
+    
+// app.route("/users/").post(userController.create_user);
 exports.create_user = function(req, res)
 {
-  if (sql.propertyCheck(req, res, ["DisplayName", "Email", "Password"]))
+  if (sql.propertyCheck(req, res, ["Email", "DisplayName", "Password"]))
   {
+    var newUser = new User(req.body);
     sql.connection.query(
-      "INSERT INTO `Users` (`Email`, `DisplayName`, `Bio`, `ProfilePic`, `Password`) VALUES (?, ?, ?, ?, ?);",
+      "INSERT INTO `Users` (`Email`, `DisplayName`, `Bio`, `ProfilePic`, `Password`, `Strikes`) VALUES (?, ?, ?, ?, ?, ?);",
       [
         req.body.Email, 
         req.body.DisplayName, 
         req.body.Bio, 
         req.body.ProfilePic, 
-        req.body.Password
+        req.body.Password,
+        req.body.Strikes
       ],
       function(sqlErr, sqlRes)
       {
-        if (sql.isSuccessfulQuery(subErr, res))
-              {
-                res.status(200).send(
-                {
-                  success: true,
-                  response: "Succesfully created user",
-                });
-              }
-            }
-          );
+        if (sql.isSuccessfulQuery(sqlErr, res))
+        {
+          res.status(200).send(
+          {
+            success: true,
+            response: "Succesfully created user",
+          });
         }
-      };
+      }
+    );
+  }
+};
 exports.get_user = function(req, res)
 {
   if (!("Email" in req.params))
@@ -113,8 +119,8 @@ exports.get_user = function(req, res)
   else
   {
     sql.connection.query(
-      "SELECT * FROM `Users` WHERE Email = \""+
-      req.params.Email+"\";",
+      "SELECT * FROM `Users` WHERE Email = ?;",
+      req.params.Email,
       function(sqlErr, sqlRes)
       {
         if (sql.isSuccessfulQuery(sqlErr, res))

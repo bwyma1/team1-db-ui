@@ -12,7 +12,7 @@ var Bid = function(user)
 // app.route("/bids/").get(bidController.get_bids);
 exports.get_bids = function(result)
 {
-    sql.query("SELECT * FROM Bids", function(err, res)
+    sql.connection.query("SELECT * FROM Bids", function(err, res)
     {
         if(err)
         {
@@ -30,7 +30,7 @@ exports.get_bids = function(result)
 // app.route("/bids/:BidID").get(bidController.get_bid_id);
 exports.get_bid_id = function(BidID, result)
 {
-    sql.query("SELECT * FROM Bids WHERE BidID = ?", BidID, function(err, res)
+    sql.connection.query("SELECT * FROM Bids WHERE BidID = ?", BidID, function(err, res)
     {
         if(err)
         {
@@ -47,7 +47,7 @@ exports.get_bid_id = function(BidID, result)
 // app.route("/bids/:BidID").put(bidController.update_bid);
 exports.update_bid = function(BidID, Bid, result)
 {
-    sql.query("UPDATE Bids SET BidderEmail = ?, AuctionID = ?, BidPrice = ? WHERE BidID = ?", [Bid.BidderEmail, Bid.AuctionID, Bid.BidPrice, BidID], function(err, res)
+    sql.connection.query("UPDATE Bids SET BidderEmail = ?, AuctionID = ?, BidPrice = ? WHERE BidID = ?", [Bid.BidderEmail, Bid.AuctionID, Bid.BidPrice, BidID], function(err, res)
     {
         if(err)
         {
@@ -62,27 +62,36 @@ exports.update_bid = function(BidID, Bid, result)
 };
 
 // app.route("/bids/").post(bidController.create_bid);
-exports.create_bid = function(newBid, result)
+exports.create_bid = function(req, res)
 {
-    sql.query("INSERT INTO Bids SET ?", newBid, function(err, res)
-    {
-        if(err)
+    if (sql.propertyCheck(req, res, ["BidderEmail", "AuctionID", "BidPrice"]))
+  {
+    sql.connection.query(
+      "INSERT INTO `Bids` (`BidderEmail`, `AuctionID`, `BidPrice`) VALUES (?, ?, ?);",
+      [
+        req.body.BidderEmail, 
+        req.body.AuctionID, 
+        req.body.BidPrice
+      ],
+      function(sqlErr, sqlRes)
+      {
+        if (sql.isSuccessfulQuery(sqlErr, res))
         {
-            console.log("error: ", err);
-            result(err, null);
+          res.status(200).send(
+          {
+            success: true,
+            response: "Succesfully created bid",
+          });
         }
-        else
-        {
-            console.log(res.insertId);
-            result(null, res.insertId);
-        }
-    });
+      }
+    );
+  }
 };
 
 // app.route("/bids/:BidID").delete(bidController.delete_bid);
 exports.delete_bid = function(BidID, result)
 {
-    sql.query("DELETE FROM Bids WHERE BidID = ?", BidID, function(err, res)
+    sql.connection.query("DELETE FROM Bids WHERE BidID = ?", BidID, function(err, res)
     {
         if(err)
         {
@@ -99,7 +108,7 @@ exports.delete_bid = function(BidID, result)
 // app.route("/bids/:AuctionID").get(bidController.get_bids);
 exports.get_bids = function(AuctionID, result)
 {
-    sql.query("SELECT * FROM Bids WHERE AuctionID = ?", AuctionID, function(err, res)
+    sql.connection.query("SELECT * FROM Bids WHERE AuctionID = ?", AuctionID, function(err, res)
     {
         if(err)
         {
@@ -116,7 +125,7 @@ exports.get_bids = function(AuctionID, result)
 // app.route("/bids/:AuctionID").get(bidController.get_bids);
 exports.get_bids_by_email = function(BidderEmail, result)
 {
-    sql.query("SELECT * FROM Bids WHERE BidderEmail = ?", BidderEmail, function(err, res)
+    sql.connection.query("SELECT * FROM Bids WHERE BidderEmail = ?", BidderEmail, function(err, res)
     {
         if(err)
         {

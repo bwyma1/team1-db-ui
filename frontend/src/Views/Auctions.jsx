@@ -18,14 +18,14 @@ import { auction } from "../Models";
 export default function Auctions() {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
-  const [searchTags, setSearchTags] = useState(["spicy", "modern"]);
+  const [searchTags, setSearchTags] = useState([""]);
   const [auctions, setAuctions] = useState(null);
   const [auctionss, setAuctionss] = useState(null);
 
   //grab auctions from backend
   useEffect(() => {
     getAsyncAuctions().then((x) => setAuctionss(x));
-    //console.log(auctionss.info);
+    console.log(auctionss);
     setAuctions(exampleData);
   }, []);
   if (auctions === null) {
@@ -43,7 +43,6 @@ export default function Auctions() {
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
-      alert("submitted");
     }
   };
 
@@ -63,6 +62,9 @@ export default function Auctions() {
           style={{
             background: "linear-gradient(#ed6ea0, #ec8c69)",
             color: "white",
+            minWidth: "4.3rem",
+            maxWidth: "8rem",
+            width: "10%",
           }}
         >
           Post Auction
@@ -94,43 +96,55 @@ export default function Auctions() {
       </header>
       <div className="container">
         <Grid className="m-5">
-          {auctions.map((auction, index) => (
-            <Grid.Col key={index} lg={3} md={4} sm={5}>
-              <Card
-                shadow="sm"
-                p="lg"
-                radius="md"
-                withBorder
-                onClick={() => {
-                  toAuction(auction);
-                }}
-                style={{
-                  cursor: "pointer",
-                }}
-              >
-                <Card.Section>
-                  <Image
-                    src={auction.Image}
-                    fit="contain"
-                    alt="image-not-found"
-                  />
-                </Card.Section>
+          {auctions
+            .filter((auction) => {
+              if (searchInput === "") {
+                return auction;
+              } else if (
+                auction.OwnerName.toLowerCase().includes(
+                  searchInput.toLowerCase()
+                )
+              ) {
+                return auction;
+              }
+            })
+            .map((auction, index) => (
+              <Grid.Col key={index} lg={3} md={4} sm={5}>
+                <Card
+                  shadow="sm"
+                  p="lg"
+                  radius="md"
+                  withBorder
+                  onClick={() => {
+                    toAuction(auction);
+                  }}
+                  style={{
+                    cursor: "pointer",
+                  }}
+                >
+                  <Card.Section>
+                    <Image
+                      src={auction.Image}
+                      fit="contain"
+                      alt="image-not-found"
+                    />
+                  </Card.Section>
 
-                <Group position="apart" mt="md" mb="xs">
-                  <Text weight={500}>{auction.OwnerName}</Text>
-                  {auction.Tags.map((tag) => (
-                    <Badge color="pink" variant="light">
-                      {tag}
-                    </Badge>
-                  ))}
-                </Group>
+                  <Group position="apart" mt="md" mb="xs">
+                    <Text weight={500}>{auction.OwnerName}</Text>
+                    {auction.EndDate.map((tag) => (
+                      <Badge color="pink" variant="light">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </Group>
 
-                <Text size="sm" color="dimmed">
-                  {auction.StartPrice}
-                </Text>
-              </Card>
-            </Grid.Col>
-          ))}
+                  <Text size="sm" color="dimmed">
+                    {auction.StartPrice}
+                  </Text>
+                </Card>
+              </Grid.Col>
+            ))}
         </Grid>
       </div>
     </div>
@@ -145,7 +159,8 @@ let exampleData = [
     "7",
     "https://via.placeholder.com/150x200",
     "19.99",
-    "date-listed"[("Friendly", "Light", "Rennaissance")],
+    "date-listed",
+    [("Friendly", "Light", "Rennaissance")],
     [
       ["user1", "very sad!"],
       ["user2", "Awesome"],

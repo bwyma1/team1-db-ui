@@ -1,4 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  addUser,
+  getAsyncUserByEmail,
+  getUsers,
+  loginUser,
+} from "../../API/Api";
+import { AppContext } from "../../context";
+import { user } from "../../Models";
 import "./RegisterSection.css";
 
 export default function RegisterSection() {
@@ -7,12 +16,12 @@ export default function RegisterSection() {
   const [email, setEmail] = useState("");
   const [uname, setUname] = useState("");
   const [pass, setPass] = useState("");
+  const context = useContext(AppContext);
+  const navigate = useNavigate();
 
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password",
-    email: "invalid email",
-  };
+  function timeout() {
+    return new Promise((res) => setTimeout(res, 1000));
+  }
 
   const emailChange = (event) => setEmail(event.target.value);
   const unameChange = (event) => setUname(event.target.value);
@@ -21,26 +30,20 @@ export default function RegisterSection() {
   const submitRegistration = (event) => {
     //Prevent page reload
     event.preventDefault();
-
-    let re =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    //check register info
-    if (re.test(email)) {
-      if (uname) {
-        if (pass) {
-          register();
-        }
-        setErrorMessages({ name: "pass", message: errors.pass });
-      }
-      setErrorMessages({ name: "uname", message: errors.uname });
-    } else {
-      setErrorMessages({ name: "email", message: errors.email });
-    }
+    register();
   };
 
   function register() {
-    const newUser = { email, uname, pass };
+    const ret = getAsyncUserByEmail(email);
+    timeout();
+    if (ret) {
+      addUser(new user(email, uname, "Bio", "profilepic", pass, 0));
+      setIsSubmitted(true);
+    }
+  }
+
+  if (context.user) {
+    navigate("/profiles");
   }
 
   const renderErrorMessage = (name) =>
@@ -95,7 +98,7 @@ export default function RegisterSection() {
     <div>
       <div className="register-form">
         <div className="title">New to Arction</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+        {isSubmitted ? <div>User is successfully Registered</div> : renderForm}
       </div>
     </div>
   );
