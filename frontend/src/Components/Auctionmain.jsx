@@ -5,7 +5,7 @@ import { auction, Comments } from "../Models"
 import { Badge, Card, Tooltip, Tabs, Button} from "@mantine/core";
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { getAuctionbyId, getCommentbyId, updateAuctionbyId } from "../API/Api";
+import { getAuctionbyId, getCommentbyId, postComment, updateAuctionbyId } from "../API/Api";
 
 
 
@@ -66,12 +66,19 @@ const[tags, setTags] = useState([]);
 const[base64, setBase64] = useState('');
 
 useEffect(() =>{//selected auction to auction
-  getAuctionbyId(params.id).then(x => setAuction(x.data.info[0]));
-  getCommentbyId(params.id).then(x => setCommments(x.info))
- 
+  getAuctionbyId(params.id).then(x => setAuction(x.data.info[0]));//setAuction(
+  getCommentbyId(params.id).then(x => setCommments(x.data.info));
+  if(Auction === undefined){
+
+    setAuction(selected_auction);
+      }
+ console.log(Auction);
   makeTags();
 
-  setCommments(Commentss);
+if(comments === undefined){
+  setCommments([]);
+}
+  
   
 
    }, [])
@@ -80,14 +87,16 @@ useEffect(() =>{//selected auction to auction
 
 const addComment = (user, commentary) =>{
 
-  let commentID= comments.length+1;
+  
   let newComments = [];
-  newComments.push(...comments)
-  //[new Comments(commentID, user, params.id, commentary)];//= comments 
+  if(comments !== undefined){
+     newComments.push(...comments);
+  }
+ let thecomment = new Comments(0, user, params.id, commentary)
 
-  newComments.push(new Comments(commentID, user, params.id, commentary));
+  newComments.push(thecomment);
   setCommments(newComments);
-
+  postComment(thecomment);
 }
 
 const ChangeBid = newBid =>{
@@ -109,8 +118,8 @@ const ChangeBid = newBid =>{
     <div className="">
       
       
- <div><h2 id="piecename">{Auction.Title}</h2></div>
- <span id="sellerbox"><Badge color="cyan" variant="light">Seller: {Auction.OwnerName}</Badge></span>
+ <div><h2 id="piecename">{Auction === undefined ? "" : Auction.Title}</h2></div>
+ <span id="sellerbox"><Badge color="cyan" variant="light">Seller: {Auction === undefined ? "" : Auction.OwnerName}</Badge></span>
  <span id="tag1">{(tags.map((tag) => (
                     <Badge color="pink" variant="light">
                       {tag}
@@ -121,8 +130,8 @@ const ChangeBid = newBid =>{
 
 <span id="forms">
 <form id="biddingform">
-<h3>Starting Price: {Auction.StartPrice}</h3>
-<h3>Highest Bid: {Auction.LeadBid}</h3>
+<h3>Starting Price: {Auction === undefined ? "" : Auction.StartPrice}</h3>
+<h3>Highest Bid: {Auction === undefined ? "" : Auction.LeadBid}</h3>
 <label id="label1" for="bid">Bid</label>
 <input type="text" id="bid"/>
 <Tooltip label="Submit bid">
@@ -134,13 +143,13 @@ Bidding.value = "";
 }}>Bid</button>
 </Tooltip>
 </form>
- <span id="description"><h5>Description:</h5>< >{Auction.Description}</></span>
- <h2>Start Date: {Auction.DateListed}</h2>
- <h2>End Date: {Auction.EndDate}</h2>
+ <span id="description"><h5>Description:</h5>< >{Auction === undefined ? "" :Auction.Description}</></span>
+ <h2>Start Date: {Auction === undefined ? "" :Auction.DateListed}</h2>
+ <h2>End Date: {Auction === undefined ? "" :Auction.EndDate}</h2>
 </span>
 <div>
-<Tooltip label={"Painting id " +Auction.PaintingID}>
-    <img id="picture1" src={(Auction.Image === undefined ? selected_auction.Image : Auction.Image)} alt="image"/> 
+<Tooltip label={"Painting id "}>
+    <img id="picture1" src={(Auction === undefined ? "https://via.placeholder.com/150x150": Auction.Image)} alt="image"/> 
     </Tooltip>
 </div>
   
@@ -169,22 +178,22 @@ Bidding.value = "";
 
       <h4>Comments</h4>
 <div id="tag2">
-{comments.map((comment) => (
+{( comments===undefined ? "" : (comments.map((comment) => (
                     <Card>
 <Button variant="subtle" color="red" radius="lg" size="xs" compact>
       Report User
     </Button>
-                      <div className="user" style={{ fontWeight: 'bold' }}>User:  {comment.UserEmail}</div>
-    <div className="comment" style={{ marginBottom: '20px' }}>{comment.CommentMessage}</div>
+                      <div className="user" style={{ fontWeight: 'bold' }}>User:  {comment.OwnerEmail}</div>
+    <div className="comment" style={{ marginBottom: '20px' }}>{comment.Comment}</div>
                    </Card>
-                  ))}
+                  ))))}
 </div>
 
       </Tabs.Panel>
 
       <Tabs.Panel value="messages" pt="xs">
         
-<image src={"data:image/png;base64" + btoa(base64)}/>
+
 
 
 
@@ -222,7 +231,7 @@ Bidding.value = "";
       </Tabs.Panel>
     </Tabs>
 
-     <footer>PieceID:{Auction.PaintingID}</footer>
+     <footer>{Auction === undefined ? "" : Auction.Title}</footer>
 
     </div>
   );
