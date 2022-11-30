@@ -23,11 +23,8 @@ module.exports = function(app, logger)
   app.route("/auctions/").post(AuctionController.create_auction);
   app.route("/auctions/:AuctionID").delete(AuctionController.delete_auction);
   app.route("/auctionsowner/:OwnerName").get(AuctionController.get_auctions_email);
-<<<<<<< Updated upstream
-=======
   app.route("/auctions/:Title").get(AuctionController.get_auctions_title);
 
->>>>>>> Stashed changes
   // COMMENT
   app.route("/comments/").get(commentController.get_comments);
   app.route("/comments/:CommentID").get(commentController.get_comment_id);
