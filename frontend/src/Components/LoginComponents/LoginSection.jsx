@@ -1,34 +1,21 @@
 import { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAsyncUsers, loginUser, loginUser2 } from "../../API/Api";
+import { loginUser } from "../../API/Api";
 import { AppContext } from "../../context";
 import { user } from "../../Models";
 import "./LoginSection.css";
 
 export default function LoginSection() {
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessages] = useState({});
+  const [isSubmitted] = useState(false);
   const [uname, setUname] = useState("");
   const [pass, setPass] = useState("");
-  const [temp, setTemp] = useState(null);
   const navigate = useNavigate();
   const context = useContext(AppContext);
 
   const unameChange = (event) => setUname(event.target.value);
   const passChange = (event) => setPass(event.target.value);
-
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1",
-    },
-    {
-      username: "user2",
-      password: "pass2",
-    },
-  ];
 
   const handleSubmit = (event) => {
     event.preventDefault();

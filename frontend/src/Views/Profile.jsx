@@ -6,32 +6,24 @@ import { auction } from "../Models";
 import { user } from "../Models";
 import data from "../Components/data";
 import PleaseLogin from "../Components/PleaseLogin";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 import { getAsyncAuctions } from "../API/Api";
 import { useEffect } from "react";
 
-
 export default function Profile() {
+  const navigate = useNavigate();
+  const [auctions, setAuctions] = useState(null);
+  const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
-const navigate = useNavigate(); 
-const [auctions, setAuctions] = useState(null); 
-const [auctionss, setAuctionss] = useState(null); 
-const [users, setUsers] = useState(null); 
+  useEffect(() => {
+    getAsyncAuctions().then((x) => setAuctions(x.info));
+  }, []);
 
-
-useEffect(()=>
-{
-  getAsyncAuctions().then((x) => setAuctionss(x.info));
-  console.log(auctionss); 
-  setAuctions(exampleData); 
-},[]);
-
-if(auctions == null)
-{
-  return <div>loading...</div>
-}  
+  if (auctions == null) {
+    return <div>loading...</div>;
+  }
 
   return (
     <>
@@ -39,27 +31,17 @@ if(auctions == null)
         <div id="pageContainer">
           <div>
             <ProfileHeader
-              id={exampleUser.id}
-              DisplayName={exampleUser.DisplayName}
-              Bio={exampleUser.Bio}
-              ProfilePicture={exampleUser.ProfilePicture}
-              Tags={exampleUser.Tags}
+              Email={user.Email}
+              DisplayName={user.DisplayName}
+              Bio={user.Bio}
+              ProfilePicture={user.ProfilePicture}
             />
           </div>
           <br />
 
           <div id="toggler">
-            <ProfileViewSwitcher user={exampleUser} />
+            <ProfileViewSwitcher user={user} auctions={auctions} />
           </div>
-
-          {/* <span clasName="row flex main container">
-
-          <ProfileViewArea  data={exampleUser}
-                            selling={exampleUser.selling}
-                            purchased={exampleUser.purchased}
-                            likes={exampleUser.likes}
-                            activeBids={exampleUser.activeBids} />
-      </span> */}
         </div>
       ) : (
         <PleaseLogin />
@@ -132,14 +114,12 @@ let exampleData = [
 ];
 
 let exampleUser = new user(
-
-"  email@gmail.com", 
+  "  email@gmail.com",
   "First Last",
   "art",
   "https://via.placeholder.com/150x150",
- "123456",
- 0
-
+  "123456",
+  0
 
   // "kendall.boeschh",
   // "email@gmail.com",

@@ -1,25 +1,20 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  addUser,
-  getAsyncUserByEmail,
-  getUsers,
-  loginUser,
-} from "../../API/Api";
-import { AppContext } from "../../context";
+import { useState } from "react";
+import { addUser } from "../../API/Api";
 import { user } from "../../Models";
 import "./RegisterSection.css";
 
 export default function RegisterSection() {
-  const [errorMessages, setErrorMessages] = useState({});
+  const [errorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [email, setEmail] = useState("");
   const [uname, setUname] = useState("");
   const [pass, setPass] = useState("");
+  const [profilePic, setProfilePic] = useState("");
 
   const emailChange = (event) => setEmail(event.target.value);
   const unameChange = (event) => setUname(event.target.value);
   const passChange = (event) => setPass(event.target.value);
+  const profilePicChange = (event) => setProfilePic(event.target.value);
 
   const submitRegistration = (event) => {
     //Prevent page reload
@@ -28,7 +23,7 @@ export default function RegisterSection() {
   };
 
   function register() {
-    addUser(new user(email, uname, "Bio", "profilepic", pass, 0));
+    addUser(new user(email, uname, "Bio", profilePic, pass, 0));
     setIsSubmitted(true);
   }
 
@@ -70,6 +65,16 @@ export default function RegisterSection() {
             value={pass}
             onChange={passChange}
             required
+          />
+          {renderErrorMessage("pass")}
+        </div>
+        <div className="input-container">
+          <label>Profile Picture </label>
+          <input
+            type="text"
+            name="prof-pic"
+            value={profilePic}
+            onChange={profilePicChange}
           />
           {renderErrorMessage("pass")}
         </div>

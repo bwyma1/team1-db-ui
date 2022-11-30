@@ -1,5 +1,3 @@
-import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
-
 export class user {
     constructor(Email, DisplayName, Bio, ProfilePicture, Password, Strikes) {
         this.Email = Email;

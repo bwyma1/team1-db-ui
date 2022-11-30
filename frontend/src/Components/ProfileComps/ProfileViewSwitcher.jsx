@@ -6,10 +6,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileViewArea from "./ProfileViewArea";
 import { auction } from "../../Models";
 import { user } from "../../Models";
-export default function ProfileViewSwitcher({ user }) {
-  const [items, setItems] = useState(undefined);
 
-  
+export default function ProfileViewSwitcher({ user, auctions }) {
+  const [items, setItems] = useState(undefined);
+  let temp = useState([]);
+
+  const filterToSelling = () => {
+    temp = [];
+    auctions.filter((auction) => {
+      if (auction.OwnerName == user.DisplayName) {
+        temp.push(auction);
+        return auction;
+      }
+    });
+  };
+
+  useEffect(() => {
+    filterToSelling();
+    setItems(temp);
+  }, []);
 
   return (
     <>
@@ -24,42 +39,15 @@ export default function ProfileViewSwitcher({ user }) {
             style={{
               background: "linear-gradient(#ed6ea0, #ec8c69)",
             }}
-            onClick={() => setItems(user.Selling)}
+            onClick={() => filterToSelling().then(() => setItems(temp))}
           >
             {" "}
             Selling
           </button>
-          <button
-            style={{
-              background: "linear-gradient(#ed6ea0, #ec8c69)",
-            }}
-            onClick={() => setItems(user.Purchased)}
-          >
-            {" "}
-            Purchased
-          </button>
-          {/* <button
-            style={{
-              background: "linear-gradient(#ed6ea0, #ec8c69)",
-            }}
-            onClick={() => setItems(user.Likes)}
-          >
-            {" "}
-            Likes
-          </button> */}
-          <button
-            style={{
-              background: "linear-gradient(#ed6ea0, #ec8c69)",
-            }}
-            onClick={() => setItems(user.ActiveBids)}
-          >
-            {" "}
-            Active Bids
-          </button>
         </div>
       </Navbar>
 
-      {/* <ProfileViewArea items={items} /> */}
+      <ProfileViewArea className="d-flex" items={items} />
     </>
   );
 
