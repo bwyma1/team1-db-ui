@@ -4,7 +4,7 @@ import ProfileViewArea from "../Components/ProfileComps/ProfileViewArea";
 import ProfileHeader from "../Components/ProfileComps/ProfileHeader";
 import { useState } from "react";
 import { auction } from "../Models";
-import { user  } from "../Models";
+import { User  } from "../Models";
 import data from "../Components/data";
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 
@@ -23,9 +23,10 @@ export default function Profile() {
     <div id="pageContainer">
       <div>
         <ProfileHeader  id={exampleUser.id}
-                        name={exampleUser.name}
-                        bio={exampleUser.description}
-                        imageUrl={exampleUser.imageUrl}/>
+                        DisplayName={exampleUser.DisplayName}
+                        Bio={exampleUser.Bio}
+                        ProfilePicture={exampleUser.ProfilePicture}
+                        Tags={exampleUser.Tags}/>
       </div>
       <br />
 
@@ -51,8 +52,9 @@ export default function Profile() {
 
 let exampleUser = 
 
-  new user(
+  new User(
       'kendall.boeschh', 
+      'kboesch@smu.edu', 
       'Kendall Boesch', 
       '~bio~',
       "https://via.placeholder.com/150x150",
@@ -60,48 +62,47 @@ let exampleUser =
         'tag1',
         'tag2'
       ], 
+      '12345678',
       [
-        new auction(3, 'kendall.boeschh', "title sel1 ", "desc", 8.00, "https://via.placeholder.com/150x150", [], ['tag1', 'tag2']),
-        new auction(4, "kendall.boeschh", "title sel2", "desc", 8.00, "https://via.placeholder.com/150x150", [], ['tag']),
-        new auction(5, "kendall.boeschh", "title sel3", "desc", 8.00, "https://via.placeholder.com/150x150", [], ['tag','tag']),
-        new auction(16, "kendall.boeschh", "title sel4", "desc", 8.00, "https://via.placeholder.com/150x150", [], ['tag']),
-        new auction(17, "kendall.boeschh", "title sel5", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(18, "kendall.boeschh", "title sel6", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(14, "kendall.boeschh", "title sel7", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(19, "kendall.boeschh", "title sel7", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(20, "kendall.boeschh", "title sel7", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(21, "kendall.boeschh", "title sel7", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(22, "kendall.boeschh", "title sel7", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(15, "kendall.boeschh", "title sel8", "desc", 8.00, "https://via.placeholder.com/150x150", [], [])
+        new auction(1, 1, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(2, 2, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(3, 3, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(4, 4, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(5, 5, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(6, 6, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(7, 7, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(8, 8, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(9, 9, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(10, 10, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(11, 11, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(12, 12, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here...")
       ],
       [
-        new auction(6, 'seller A', "title pur1 ", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(7, "seller", "title pur2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(23, "seller", "title pur2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(25, "seller", "title pur2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(26, "seller", "title pur2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(27, "seller", "title pur2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(28, "seller", "title pur2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(29, "seller", "title pur2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(24, "seller", "title pur3", "desc", 8.00, "https://via.placeholder.com/150x150", [], [])
+        new auction(120, 120, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(121, 121, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(122, 122, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(123, 123, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(124, 124, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(125, 125, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(126, 126, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(127, 127, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(128, 128, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here...")
       ],
       [
-        new auction(6, 'seller A', "title pur1 ", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(0, "seller2", "title like00", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(1, "seller2", "title like01", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(2, "seller3", "title like02", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(13, "johnnyd123", "title s5", "desc", 8.00, "https://via.placeholder.com/150x150", [], [])
+        new auction(129, 129, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(130, 130, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(131, 131, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(132, 132, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(133, 133, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(134, 134, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(135, 135, 'SAMPLE',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here...")
+
       ],
       [
-        new auction(9, 'seller', "title act1 ", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(10, "seller", "title act2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(30, "seller", "title act2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(31, "seller", "title act2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(32, "seller", "title act2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(33, "seller", "title act2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(34, "seller", "title act2", "desc", 8.00, "https://via.placeholder.com/150x150", [], []),
-        new auction(11, "seller", "title act3", "desc", 8.00, "https://via.placeholder.com/150x150", [], [])
-      
+        new auction(9, 9, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(10, 10, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(11, 11, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
+        new auction(12, 12, 'kendall.boeschh',80.00,"https://via.placeholder.com/150x150",8.00, "01/01/01", ['tag1', 'tag2', 'tag3'], '10/24/23', "Title", "Artwork description here..."),
       ]
   )
 

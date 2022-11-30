@@ -12,7 +12,7 @@ export default function ProfileViewSwitcher({user})
   const [items,setItems]=useState(undefined); 
 
   useEffect(() => {
-    setItems(user.selling)
+    setItems(user.Selling)
   },[])
 
 
@@ -22,11 +22,10 @@ export default function ProfileViewSwitcher({user})
       
       <Navbar id="toggler" variant="dark">
         <div id="toggleContainer">
-        <button onClick={() => setItems(user.selling)}> Selling</button>
-        <button onClick={() => setItems(user.purchased)}> Purchased</button>
-        <button onClick={() => setItems(user.likes)}> Likes</button>
-        <button onClick={() => setItems(user.activeBids)}> Active Bids
-        </button>
+        <button onClick={() => setItems(user.Selling)}> Selling</button>
+        <button onClick={() => setItems(user.Purchased)}> Purchased</button>
+        <button onClick={() => setItems(user.Likes)}> Likes</button>
+        <button onClick={() => setItems(user.ctiveBids)}> Active Bids</button>
         
         </div>  
         

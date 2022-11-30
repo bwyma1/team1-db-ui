@@ -10,36 +10,30 @@ export default function ItemCard(props)
 {
   const tags = props.tags; 
     return (
-      <div class="itemCard" className='m-3 '>
-        <div class="imgContainer">
+      <div className="card h-100 p-2">
           <img
-            className="content cardElement itemImage" 
-            src ={props.imageUrl}
-
+            className="w-  m-1 col w-auto" 
+            src ={props.Image}
             alt="image of piece"
             />
-            <div class="itemInfoContainer cardElement">
+            <div className="col card-body">
 
         
-                <span>
-                     <h1 class=" mt-3 font-weight-bold pieceTitle leftFloat cardText"> {props.title}</h1> 
+                <span className="d-flex justify-content-between">
+                     <h1 className=" mt-3 font-weight-bold pieceTitle leftFloat cardText"> {props.Title}</h1> 
 
-                     <LikeButton/>
-                     <br></br>
+                     <LikeButton className='align-content-end'/>
                 </span>
-              <h1 className ="sellerTitle leftFloat cardText">@{props.seller}</h1>
+              <h1 className ="sellerTitle font-3 leftFloat cardText">@{props.OwnerName}</h1>
 
-              <h1 class="priceInfo rightFloat cardText">${props.price}</h1>
+              <h1 class="priceInfo rightFloat cardText">${props.StartPrice}</h1>
               <br></br>
               <div class="detailsButton">
-               <button class="newPageNavButton cardElement">
+               <button className=" w-100 p-2 mt-3 cardElement">
                 <NavLink href={props.link}> View Auction </NavLink>
                 </button>
               </div>
-              
-              
-            </div>
-            
+                          
           </div> 
       </div>
   );

@@ -1,5 +1,7 @@
-export class user {
-    constructor(id,Email, DisplayName, Bio, ProfilePicture, Tags, Password) {
+import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
+
+export class User {
+    constructor(id,Email, DisplayName, Bio, ProfilePicture, Tags, Password, Selling, Likes, Purchased, ActiveBids) {
         this.id = id;
         this.Email = Email;
         this.DisplayName = DisplayName;
@@ -7,11 +9,9 @@ export class user {
         this.ProfilePicture = ProfilePicture;
         this.Tags = Tags;
         this.Password = Password;
+        this.Selling = Selling;
+        this.Likes = Likes
+        this.Purchased = Purchased; 
+        this.ActiveBids = ActiveBids; 
     }
-}
-
-/*
-
-
-
-*/
+};

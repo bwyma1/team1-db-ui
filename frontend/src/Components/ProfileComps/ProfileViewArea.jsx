@@ -56,13 +56,14 @@ export default function ProfileViewArea({items})
                     <li className ='m-2' key ={index}> 
                     <div className='card h-100 m-3 mb-3'> 
                         <ItemCard
-                                id = {auction.id}
-                                 imageUrl = {auction.imageUrl}
-                                 title ={auction.title}
-                                 seller = {auction.seller}
-                                 price = {auction.price}
-                                 link ='/'
-                                 tags={auction.tags}/>    
+                                 Image = {auction.Image}
+                                 Title ={auction.Title}
+                                 OwnerName = {auction.OwnerName}
+                                 StartPrice = {auction.StartPrice}
+                                 Tags={auction.Tags}
+                                 LeadBid={auction.LeadBid}
+                                 EndDate={auction.EndDate}
+                                 Description={auction.Description}/>    
                                  
                     </div>
                  

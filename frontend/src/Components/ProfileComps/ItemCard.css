@@ -1,33 +1,14 @@
-.itemCard{
-    margin:2%;
-    background-color:pink;
-    /* display:flex;
-    justify-content: flex-start; */
-    padding:1%;
-    background-color:lavender;
-    border-radius:3%;
-    height:auto;
-    width:auto;
-}
-.content{
 
-    height:fit-content;
-    width:fit-content;
-    padding-bottom:2%;
-    /* height:75%;
-    width:100%; */
-    
-}
 .pieceTitle{
     font-size: 1.2rem;
     font:bold;
-    color:blueviolet;
+    color:#ed6ea0;
 
 }
 .sellerTitle{
-    font-size:.75rem;
+    font-size:.8rem;
     font:bolder;
-    color:blueviolet;
+    color:#ed6ea0;
 }
 .priceInfo{
     font-size:.75rem;
