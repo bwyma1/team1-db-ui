@@ -4,6 +4,7 @@ NavLink{
 }
 #toggler
 {
+    
     display:flex; 
     flex-direction: row;
     align-content: flex-start;

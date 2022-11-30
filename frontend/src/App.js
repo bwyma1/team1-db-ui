@@ -28,12 +28,6 @@ function App () {
   }, []);
 
 
-  // useEffect(() => {
-  //   getUsers().then(x => setUsers(x))
-  // }, [])
-//David B added route for individual auction tests
-
-
   return (
     
     <AppProvider>

@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div>
       <MyImageSlider />
-      <a href="/AuctionPage">Auctions</a>
+      
       <MyHomepageFooter />
       <div>{context.user}</div>
     </div>

@@ -7,7 +7,6 @@ var User = function(user)
    this.DisplayName = user.DisplayName;
    this.Bio = user.Bio;
    this.ProfilePic = user.ProfilePic;
-   this.Tags = user.Tags;
    this.Password = user.Password;
 }
 exports.get_users = function(req, res)
@@ -82,8 +81,14 @@ exports.create_user = function(req, res)
   {
     var newUser = new User(req.body);
     sql.connection.query(
-      "INSERT INTO `Users` SET ?;",
-      newUser,
+      "INSERT INTO `Users` (`Email`, `DisplayName`, `Bio`, `ProfilePic`, `Password`) VALUES (?, ?, ?, ?, ?);",
+      [
+        req.body.Email, 
+        req.body.DisplayName, 
+        req.body.Bio, 
+        req.body.ProfilePic, 
+        req.body.Password
+      ],
       function(sqlErr, sqlRes)
       {
         if (sql.isSuccessfulQuery(sqlErr, res))
