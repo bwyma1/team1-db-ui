@@ -10,6 +10,7 @@ var User = function(user)
    this.Password = user.Password;
    this.Strikes = user.Strikes;
 }
+
 exports.get_users = function(req, res)
 {
   sql.connection.query(
