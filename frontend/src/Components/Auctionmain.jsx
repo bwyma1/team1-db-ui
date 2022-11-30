@@ -184,7 +184,7 @@ Bidding.value = "";
       Report User
     </Button>
                       <div className="user" style={{ fontWeight: 'bold' }}>User:  {comment.OwnerEmail}</div>
-    <div className="comment" style={{ marginBottom: '20px' }}>{comment.CommentMessage}</div>
+    <div className="comment" style={{ marginBottom: '20px' }}>{comment.Comment}</div>
                    </Card>
                   ))))}
 </div>
