@@ -93,7 +93,7 @@ exports.create_user = function(req, res)
       ],
       function(sqlErr, sqlRes)
       {
-        if (sql.isSuccessfulQuery(subErr, res))
+        if (sql.isSuccessfulQuery(sqlErr, res))
         {
           res.status(200).send(
           {
