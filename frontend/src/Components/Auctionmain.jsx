@@ -69,7 +69,7 @@ const [user] = useState(JSON.parse(window.sessionStorage.getItem("user")));
 useEffect(() =>{//selected auction to auction
   getAuctionbyId(params.id).then(x => setAuction(x.data.info[0]));//setAuction(
   getCommentbyId(params.id).then(x => setCommments(x.data.info));
-  getBidsbyAuction(params.id).then(x => setBids(x));//.data.info));
+  getBidsbyAuction(params.id).then(x => setBids(x.data.info));//.data.info));
   console.log(bids);
   if(Auction === undefined){
 
@@ -86,13 +86,7 @@ if(comments === undefined){
 
    }, [])
 
-//    {( bids===undefined ? "" : (bids.map((bid) => (
-//     <Card>
 
-//       <div className="user" style={{ fontWeight: 'bold' }}>User:  {Bids.BidderEmail}</div>
-// <div className="comment" style={{ marginBottom: '20px' }}>{Bids.BidPrice}</div>
-//    </Card>
-//   ))))}
 
 const addComment = (user, commentary) =>{
 
@@ -206,7 +200,13 @@ Bidding.value = "";
 
       <Tabs.Panel value="messages" pt="xs">
         
+          {( bids===undefined ? "" : (bids.map((bid) => (
+    <Card>
 
+      <div className="user" style={{ fontWeight: 'bold' }}>User:  {bid.BidderEmail}</div>
+<div className="comment" style={{ marginBottom: '20px' }}>{bid.BidPrice}</div>
+   </Card>
+  ))))}
 
 
 
