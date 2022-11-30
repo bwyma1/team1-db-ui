@@ -100,10 +100,30 @@ exports.update_auction = function(req, res)
       query += "DateListed = ?, ";
       queryData.push(req.body.DateListed);
     }
-    if ("Tags" in req.body)
+    if ("Pencil" in req.body)
     {
-      query += "Tags = ?, ";
-      queryData.push(req.body.Tags);
+      query += "Pencil = ?, ";
+      queryData.push(req.body.Pencil);
+    }
+    if ("Paint" in req.body)
+    {
+      query += "Paint = ?, ";
+      queryData.push(req.body.Paint);
+    }
+    if ("Modern" in req.body)
+    {
+      query += "Modern = ?, ";
+      queryData.push(req.body.Modern);
+    }
+    if ("Abstract" in req.body)
+    {
+      query += "Abstract = ?, ";
+      queryData.push(req.body.Abstract);
+    }
+    if ("Realism" in req.body)
+    {
+      query += "Realism = ?, ";
+      queryData.push(req.body.Realism);
     }
     if ("EndDate" in req.body)
     {
