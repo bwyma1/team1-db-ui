@@ -64,7 +64,7 @@ const[Auction, setAuction] = useState('');
 const[comments, setCommments] = useState([]);
 const[tags, setTags] = useState([]);
 const[Bids, setBids] = useState([]);
-
+const [user] = useState(JSON.parse(window.sessionStorage.getItem("user")));
 
 useEffect(() =>{//selected auction to auction
   getAuctionbyId(params.id).then(x => setAuction(x.data.info[0]));//setAuction(
@@ -104,11 +104,12 @@ const addComment = (user, commentary) =>{
 
 
 const ChangeBid = newBid =>{
-  let newBidding = new Bids( "s", params.id, newBid);
-
+  let newBidding = new Bids( user.email, params.id, newBid);
+  let newAuction = new auction(Auction.Title, Auction.Description, Auction.OwnerName, newBid, Auction.Image, Auction.StartPrice, Auction.DateListed, Auction.EndDate, Auction.Paint, Auction.Pencil, Auction.Modern, Auction.Abstract, Auction.Realism)
+console.log(newBidding);
 
 postBid(newBidding);
-
+updateAuctionbyId(params.id, newAuction);
 
   
 
@@ -139,7 +140,10 @@ postBid(newBidding);
 <Tooltip label="Submit bid">
 <button type="button" id="bidbtn" onClick={() =>{
 let Bidding = document.getElementById('bid');
-ChangeBid(Bidding.value)
+
+  ChangeBid(Bidding.value);
+
+
 Bidding.value = "";
 
 }}>Bid</button>
