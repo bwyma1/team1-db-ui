@@ -24,7 +24,7 @@ export default function Auctions() {
 
   //grab auctions from backend
   useEffect(() => {
-    getAsyncAuctions().then((x) => setAuctionss(x));
+    getAsyncAuctions().then((x) => setAuctionss(x.info));
     console.log(auctionss);
     setAuctions(exampleData);
   }, []);
@@ -32,6 +32,10 @@ export default function Auctions() {
     return <div>loading...</div>;
   }
 
+  if (auctionss != null) {
+    console.log(auctionss);
+    setAuctionss(null);
+  }
   function toAuction(auc) {
     navigate(`/auctions/${auc.id}`);
   }
