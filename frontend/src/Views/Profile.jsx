@@ -6,7 +6,12 @@ import { auction } from "../Models";
 import { user } from "../Models";
 import data from "../Components/data";
 import PleaseLogin from "../Components/PleaseLogin";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
+import { getAsyncAuctions } from "../API/Api";
+import { useEffect } from "react";
+
 
 export default function Profile() {
 
