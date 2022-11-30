@@ -64,7 +64,7 @@ export default function LoginSection() {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label>Username </label>
+          <label>Email </label>
           <input
             type="text"
             name="uname"
