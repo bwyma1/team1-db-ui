@@ -4,7 +4,7 @@ var sql = require("../connection.js");
 var Comment = function(user)
 {
     this.CommentID = Comment.CommentID;
-    this.OwnerEmail = Comment.UserEmail;
+    this.OwnerEmail = Comment.OwnerEmail;
     this.AuctionID = Comment.AuctionID;
     this.CommentMessage = Comment.CommentMessage;
 }
@@ -152,12 +152,12 @@ exports.create_comment = function(req, res)
       response: "Missing required field: `AuctionID`",
     });
   }
-  else if (!("UserEmail" in req.body))
+  else if (!("OwnerEmail" in req.body))
   {
     res.status(400).send(
     {
       success: false,
-      response: "Missing required field: `UserEmail`",
+      response: "Missing required field: `OwnerEmail`",
     });
   }
   else if (!("CommentMessage" in req.body))
