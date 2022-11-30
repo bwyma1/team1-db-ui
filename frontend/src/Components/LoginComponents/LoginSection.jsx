@@ -37,6 +37,19 @@ export default function LoginSection() {
   };
 
   if (context.user) {
+    window.localStorage.setItem(
+      "user",
+      JSON.stringify(
+        new user(
+          context.user.Email,
+          context.user.DisplayName,
+          context.user.Bio,
+          context.user.ProfilePicture,
+          context.user.Password,
+          context.user.Strikes
+        )
+      )
+    );
     navigate("/profiles");
   }
 
