@@ -6,7 +6,12 @@ import { auction } from "../../Models";
 import { useEffect } from "react";
 import { Grid } from "@mantine/core";
 
+//try getting 
+// params be email -> check params if null -> 
 
+// try goiong to /p
+
+// click on profiles -> input 
 export default function ProfileViewArea({items})
 {
     const [auctions, setAuctions] = useState();
