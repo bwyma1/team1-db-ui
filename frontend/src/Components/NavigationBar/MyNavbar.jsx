@@ -17,7 +17,7 @@ export default function MyNavbar() {
       <Navbar.Brand href="/">
         <h2>ArcTion</h2>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Toggle className="me-3" aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <NavLink href="/">Home</NavLink>
