@@ -2,18 +2,36 @@ import "./Profile.css";
 import ProfileViewSwitcher from "../Components/ProfileComps/ProfileViewSwitcher";
 import ProfileViewArea from "../Components/ProfileComps/ProfileViewArea";
 import ProfileHeader from "../Components/ProfileComps/ProfileHeader";
-import { useState } from "react";
 import { auction } from "../Models";
 import { user } from "../Models";
 import data from "../Components/data";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getAsyncAuctions, getAuctions } from "../API/Api";
+
+
+
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 
 export default function Profile() {
-  // e
-  // const [likes, setLikes] = useState([]);
-  //const [activeBids, setActiveBids] = useState([]);
 
-  //var myProfile = true;
+const navigate = useNavigate(); 
+const [auctions, setAuctions] = useState(null); 
+const [auctionss, setAuctionss] = useState(null); 
+const [users, setUsers] = useState(null); 
+
+
+useEffect(()=>
+{
+  getAsyncAuctions().then((x) => setAuctionss(x.info));
+  console.log(auctionss); 
+  setAuctions(exampleData); 
+},[]);
+
+if(auctions == null)
+{
+  return <div>loading...</div>
+}  
 
   return (
     <div id="pageContainer">
@@ -30,18 +48,75 @@ export default function Profile() {
       <div id="toggler">
         <ProfileViewSwitcher user={exampleUser} />
       </div>
-
-      {/* <span clasName="row flex main container">
-
-          <ProfileViewArea  data={exampleUser}
-                            selling={exampleUser.selling}
-                            purchased={exampleUser.purchased}
-                            likes={exampleUser.likes}
-                            activeBids={exampleUser.activeBids} />
-      </span> */}
+      <div>
+        <ProfileViewArea/>
+      </div>
     </div>
   );
 }
+
+let exampleData = [
+  new auction(
+    2,
+    2,
+    "Truman",
+    "7",
+    "https://via.placeholder.com/150x200",
+    "19.99",
+    "date-listed",
+    [("Friendly", "Light", "Rennaissance")],
+    [
+      ["user1", "very sad!"],
+      ["user2", "Awesome"],
+      ["user3", "I love the design"],
+    ]
+  ),
+  new auction(
+    3,
+    3,
+    "Brock",
+    "8",
+    "https://via.placeholder.com/200x150",
+    "129.99",
+    "date-listed",
+    ["Friendly", "Dark", "Rennaissance"],
+    [
+      ["user1", "cool!"],
+      ["user2", "Awesome"],
+      ["user3", "I love the design"],
+    ]
+  ),
+  new auction(
+    4,
+    4,
+    "Newman",
+    "9",
+    "https://via.placeholder.com/1500x2000",
+    "19.99",
+    "date-listed",
+    ["Friendly", "Dark", "Rennaissance"],
+    [
+      ["user1", "very sad!"],
+      ["user2", "Awesome"],
+      ["user3", "I love the design"],
+    ]
+  ),
+  new auction(
+    5,
+    5,
+    "ThisName",
+    "9",
+    "https://via.placeholder.com/1500x2000",
+    "19.99",
+    "date-listed",
+    ["Friendly", "Dark", "Rennaissance"],
+    [
+      ["user1", "very sad!"],
+      ["user2", "Awesome"],
+      ["user3", "I love the design"],
+    ]
+  ),
+];
 
 let exampleUser = new user(
 
@@ -51,6 +126,7 @@ let exampleUser = new user(
   "https://via.placeholder.com/150x150",
  "123456",
  0
+
 
   // "kendall.boeschh",
   // "email@gmail.com",

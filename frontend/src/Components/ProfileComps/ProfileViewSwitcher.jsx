@@ -59,7 +59,7 @@ export default function ProfileViewSwitcher({ user }) {
         </div>
       </Navbar>
 
-      <ProfileViewArea items={items} />
+      {/* <ProfileViewArea items={items} /> */}
     </>
   );
 
