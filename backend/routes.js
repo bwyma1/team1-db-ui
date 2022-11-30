@@ -23,6 +23,7 @@ app.route("/auctions/:AuctionID").get(AuctionController.get_auction_id);
 app.route("/auctions/:AuctionID").put(AuctionController.update_auction);
 app.route("/auctions/").post(AuctionController.create_auction);
 app.route("/auctions/:AuctionID").delete(AuctionController.delete_auction);
+app.route("/auctions/:OwnerEmail").get(AuctionController.get_auction_email);
 
 // COMMENT
 app.route("/comments/").get(commentController.get_comments);
@@ -56,3 +57,12 @@ app.route("/notifications/").post(notificationController.create_notification);
 app.route("/notifications/:NotificationID").delete(notificationController.delete_notification);
 app.route("/notifications/:Email").get(notificationController.get_notifications);
 };
+
+//SORTING
+app.route("/auctionsPencil").get(AuctionController.get_auctions_pencil);
+app.route("/auctionsPaint").get(AuctionController.get_auctions_paint);
+app.route("/auctionsModern").get(AuctionController.get_auctions_modern);
+app.route("/auctionsAbstract").get(AuctionController.get_auctions_abstract);
+app.route("/auctionsRealism").get(AuctionController.get_auctions_realism);
+
+

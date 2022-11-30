@@ -7,8 +7,8 @@ var User = function(user)
    this.DisplayName = user.DisplayName;
    this.Bio = user.Bio;
    this.ProfilePic = user.ProfilePic;
-   this.Tags = user.Tags;
    this.Password = user.Password;
+   this.Strikes = user.Strikes;
 }
 exports.get_users = function(req, res)
 {
@@ -36,8 +36,8 @@ exports.login_user = function(req, res)
       var loginUser = new User(req.body);
   }
   sql.connection.query(
-    "SELECT * FROM `Users` WHERE `Email` = \""+
-    loginUser.Email+"\";",
+    "SELECT * FROM `Users` WHERE `Email` = ?;",
+    loginUser.Email,
     function(sqlErr, sqlRes)
     {
       if (sql.isSuccessfulQuery(sqlErr, res))
@@ -91,17 +91,17 @@ exports.create_user = function(req, res)
       function(sqlErr, sqlRes)
       {
         if (sql.isSuccessfulQuery(subErr, res))
-              {
-                res.status(200).send(
-                {
-                  success: true,
-                  response: "Succesfully created user",
-                });
-              }
-            }
-          );
+        {
+          res.status(200).send(
+          {
+            success: true,
+            response: "Succesfully created user",
+          });
         }
-      };
+      }
+    );
+  }
+};
 exports.get_user = function(req, res)
 {
   if (!("Email" in req.params))
@@ -115,8 +115,8 @@ exports.get_user = function(req, res)
   else
   {
     sql.connection.query(
-      "SELECT * FROM `Users` WHERE Email = \""+
-      req.params.Email+"\";",
+      "SELECT * FROM `Users` WHERE Email = ?;",
+      req.params.Email,
       function(sqlErr, sqlRes)
       {
         if (sql.isSuccessfulQuery(sqlErr, res))
