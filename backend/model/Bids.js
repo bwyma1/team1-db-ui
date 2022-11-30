@@ -122,10 +122,10 @@ exports.get_bids = function(AuctionID, result)
     });
 };
 
-// app.route("/bids/:AuctionID").get(bidController.get_bids);
-exports.get_bids_by_email = function(BidderEmail, result)
+// app.route("/bidsauction/:AuctionID").get(bidController.get_bids_by_auction);
+exports.get_bids_by_email = function(AuctionID, result)
 {
-    sql.connection.query("SELECT * FROM Bids WHERE BidderEmail = ?", BidderEmail, function(err, res)
+    sql.connection.query("SELECT * FROM Bids WHERE AuctionID = ?", AuctionID, function(err, res)
     {
         if(err)
         {
@@ -138,3 +138,4 @@ exports.get_bids_by_email = function(BidderEmail, result)
         }
     });
 };
+

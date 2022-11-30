@@ -16,6 +16,7 @@ module.exports = function(app, logger)
   app.route("/users/").post(userController.create_user);
   app.route("/users/:Email").put(userController.update_user);
   app.route("/users/:Email").delete(userController.delete_user);
+  
   // AUCTION
   app.route("/auctions/").get(AuctionController.get_auctions);
   app.route("/auctions/:AuctionID").get(AuctionController.get_auction_id);
