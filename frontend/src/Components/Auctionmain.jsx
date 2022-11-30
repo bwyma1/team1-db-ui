@@ -70,6 +70,7 @@ useEffect(() =>{//selected auction to auction
   getAuctionbyId(params.id).then(x => setAuction(x.data.info[0]));//setAuction(
   getCommentbyId(params.id).then(x => setCommments(x.data.info));
   getBidsbyAuction(params.id).then(x => setBids(x));//.data.info));
+  console.log(bids);
   if(Auction === undefined){
 
     setAuction(selected_auction);
@@ -110,12 +111,14 @@ const addComment = (user, commentary) =>{
 
 
 const ChangeBid = newBid =>{
-  let newBidding = new Bids( user.email, params.id, newBid);
+  let newBidding = new Bids( user.Email, params.id, newBid);
   let newAuction = new auction(Auction.Title, Auction.Description, Auction.OwnerName, newBid, Auction.Image, Auction.StartPrice, Auction.DateListed, Auction.EndDate, Auction.Paint, Auction.Pencil, Auction.Modern, Auction.Abstract, Auction.Realism)
 console.log(newBidding);
+if(newBid > Auction.LeadBid){
+  postBid(newBidding);
+updateAuctionbyId(params.id, newAuction);
+}
 
-postBid(newBidding);
-//updateAuctionbyId(params.id, newAuction);
 
   
 

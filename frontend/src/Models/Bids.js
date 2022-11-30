@@ -1,6 +1,6 @@
 
 export class Bids {
-    constructor(BidderEmail, AuctionID, BidPrice, BidID) {
+    constructor( BidderEmail, AuctionID, BidPrice, BidID) {
         
 this.BidID = BidID;
 this.BidderEmail = BidderEmail;
