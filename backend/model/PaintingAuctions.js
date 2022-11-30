@@ -442,3 +442,46 @@ exports.get_auctions_email = function(req, res)
     }
   );}
 };
+
+//app.route("/auctions/:Title").get(AuctionController.get_auctions_title);
+
+exports.get_auctions_title = function(req, res)
+{
+  if (!("Title" in req.params))
+  {
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Title`",
+    });
+  }
+  else
+  {
+    sql.connection.query(
+      "SELECT * FROM `PaintingAuctions` WHERE `Title` = \""+
+      req.params.Title+"\";",
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        if (sqlRes.length <= 0)
+        {
+          res.status(200).send(
+          {
+            success: false,
+            response: "Couldn't find user " + req.params.Title,
+          });
+        }
+        else {
+          res.status(200).send(
+          {
+            success: true,
+            count: Object.keys(sqlRes).length,
+            info: sqlRes,
+          });
+        }
+      }
+      
+    }
+  );}
+}
