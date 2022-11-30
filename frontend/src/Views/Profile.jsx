@@ -6,6 +6,7 @@ import { useState } from "react";
 import { auction } from "../Models";
 import { user } from "../Models";
 import data from "../Components/data";
+import PleaseLogin from "../Components/PleaseLogin";
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 
 export default function Profile() {
@@ -16,23 +17,25 @@ export default function Profile() {
   //var myProfile = true;
 
   return (
-    <div id="pageContainer">
-      <div>
-        <ProfileHeader
-          id={exampleUser.id}
-          DisplayName={exampleUser.DisplayName}
-          Bio={exampleUser.Bio}
-          ProfilePicture={exampleUser.ProfilePicture}
-          Tags={exampleUser.Tags}
-        />
-      </div>
-      <br />
+    <>
+      {window.sessionStorage.getItem("user") ? (
+        <div id="pageContainer">
+          <div>
+            <ProfileHeader
+              id={exampleUser.id}
+              DisplayName={exampleUser.DisplayName}
+              Bio={exampleUser.Bio}
+              ProfilePicture={exampleUser.ProfilePicture}
+              Tags={exampleUser.Tags}
+            />
+          </div>
+          <br />
 
-      <div id="toggler">
-        <ProfileViewSwitcher user={exampleUser} />
-      </div>
+          <div id="toggler">
+            <ProfileViewSwitcher user={exampleUser} />
+          </div>
 
-      {/* <span clasName="row flex main container">
+          {/* <span clasName="row flex main container">
 
           <ProfileViewArea  data={exampleUser}
                             selling={exampleUser.selling}
@@ -40,7 +43,11 @@ export default function Profile() {
                             likes={exampleUser.likes}
                             activeBids={exampleUser.activeBids} />
       </span> */}
-    </div>
+        </div>
+      ) : (
+        <PleaseLogin />
+      )}
+    </>
   );
 }
 

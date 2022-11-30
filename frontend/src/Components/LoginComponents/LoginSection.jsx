@@ -37,7 +37,7 @@ export default function LoginSection() {
   };
 
   if (context.user) {
-    window.localStorage.setItem(
+    window.sessionStorage.setItem(
       "user",
       JSON.stringify(
         new user(
