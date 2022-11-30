@@ -11,13 +11,13 @@ export default function ProfileHeader(props)
       <span class=" profileHeaderContainer ui fixed">
         <img
           class="image profilePic"
-          src={props.imageUrl}
+          src={props.ProfilePicture}
           alt="temporary profile pic"
         />
 
         <section class="profileInfoContainer">
           <h1 className="font-size-auto ">
-            {props.name}
+            {props.DisplayName}
           </h1>
     
           <section class="UserAndBio">
@@ -25,7 +25,7 @@ export default function ProfileHeader(props)
               @{props.id}
             </h2>
             <p class="bio ui">
-              {props.bio}
+              {props.Bio}
             </p>
           </section>
         </section>

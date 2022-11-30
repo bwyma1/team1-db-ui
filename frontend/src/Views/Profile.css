@@ -61,9 +61,11 @@
 
   button {
 
-    background-color: blueviolet; 
+    background-color: linear-gradient(#ed6ea0, #ec8c69); 
     color: white; 
     font: bold; 
+    font-weight: bolder;
+    border-style: none;
   
   }
   .ui
