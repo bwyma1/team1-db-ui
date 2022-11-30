@@ -1,7 +1,7 @@
 import React from "react";
 import "./Auctionmain.css";
 import "./MyHomepageFooter.css";
-import { auction, Comments } from "../Models"
+import { auction, Comments, Bids } from "../Models"
 import { Badge, Card, Tooltip, Tabs, Button} from "@mantine/core";
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
@@ -63,7 +63,7 @@ const params = useParams();
 const[Auction, setAuction] = useState('');
 const[comments, setCommments] = useState([]);
 const[tags, setTags] = useState([]);
-const[Bids, setBids] = useState([]);
+const[bids, setBids] = useState([]);
 const [user] = useState(JSON.parse(window.sessionStorage.getItem("user")));
 
 useEffect(() =>{//selected auction to auction
@@ -85,7 +85,13 @@ if(comments === undefined){
 
    }, [])
 
+//    {( bids===undefined ? "" : (bids.map((bid) => (
+//     <Card>
 
+//       <div className="user" style={{ fontWeight: 'bold' }}>User:  {Bids.BidderEmail}</div>
+// <div className="comment" style={{ marginBottom: '20px' }}>{Bids.BidPrice}</div>
+//    </Card>
+//   ))))}
 
 const addComment = (user, commentary) =>{
 
@@ -109,7 +115,7 @@ const ChangeBid = newBid =>{
 console.log(newBidding);
 
 postBid(newBidding);
-updateAuctionbyId(params.id, newAuction);
+//updateAuctionbyId(params.id, newAuction);
 
   
 
@@ -198,13 +204,7 @@ Bidding.value = "";
       <Tabs.Panel value="messages" pt="xs">
         
 
-{( Bids===undefined ? "" : (Bids.map((bid) => (
-                    <Card>
 
-                      <div className="user" style={{ fontWeight: 'bold' }}>User:  {Bids.BidderEmail}</div>
-    <div className="comment" style={{ marginBottom: '20px' }}>{Bids.BidPrice}</div>
-                   </Card>
-                  ))))}
 
 
       </Tabs.Panel>
