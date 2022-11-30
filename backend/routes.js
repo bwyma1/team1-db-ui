@@ -56,3 +56,12 @@ app.route("/notifications/").post(notificationController.create_notification);
 app.route("/notifications/:NotificationID").delete(notificationController.delete_notification);
 app.route("/notifications/:Email").get(notificationController.get_notifications);
 };
+
+//SORTING
+app.route("/auctionsPencil").get(AuctionController.get_auctions_pencil);
+app.route("/auctionsPaint").get(AuctionController.get_auctions_paint);
+app.route("/auctionsModern").get(AuctionController.get_auctions_modern);
+app.route("/auctionsAbstract").get(AuctionController.get_auctions_abstract);
+app.route("/auctionsRealism").get(AuctionController.get_auctions_realism);
+
+

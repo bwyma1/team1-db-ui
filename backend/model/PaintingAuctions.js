@@ -305,3 +305,99 @@ exports.delete_auction = function(req, res)
     );
   }
 };
+
+exports.get_auctions_paint = function(req, res)
+{
+  sql.connection.query(
+    "SELECT * FROM `PaintingAuctions` WHERE `Paint` = 1;",
+    null,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
+};
+exports.get_auctions_pencil = function(req, res)
+{
+  sql.connection.query(
+    "SELECT * FROM `PaintingAuctions` WHERE `Pencil` = 1;",
+    null,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
+};
+exports.get_auctions_modern = function(req, res)
+{
+  sql.connection.query(
+    "SELECT * FROM `PaintingAuctions` WHERE `Modern` = 1;",
+    null,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
+};
+exports.get_auctions_abstract = function(req, res)
+{
+  sql.connection.query(
+    "SELECT * FROM `PaintingAuctions` WHERE `Abstract` = 1;",
+    null,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
+};
+exports.get_auctions_realism = function(req, res)
+{
+  sql.connection.query(
+    "SELECT * FROM `PaintingAuctions` WHERE `Realism` = 1;",
+    null,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
+};
