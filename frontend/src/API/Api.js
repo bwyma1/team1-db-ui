@@ -136,7 +136,7 @@ export const getCommentbyId = (id) => new Promise((resolve, reject) => {
 });
 
 export const postComment = (comment) => new Promise((resolve, reject) => {
-    axios.post(`${apiEndPoint}/comments/`, comment, apiConfig)
+    axios.post(`${apiEndPoint}/comments/`, comment)
         .then(x => resolve(x))
         .catch(x => {
             alert(x);

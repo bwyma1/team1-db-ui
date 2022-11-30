@@ -63,7 +63,7 @@ const params = useParams();
 const[Auction, setAuction] = useState('');
 const[comments, setCommments] = useState([]);
 const[tags, setTags] = useState([]);
-const[base64, setBase64] = useState('');
+
 
 useEffect(() =>{//selected auction to auction
   getAuctionbyId(params.id).then(x => setAuction(x.data.info[0]));//setAuction(
@@ -92,7 +92,7 @@ const addComment = (user, commentary) =>{
   if(comments !== undefined){
      newComments.push(...comments);
   }
- let thecomment = new Comments(0, user, params.id, commentary)
+ let thecomment = new Comments( params.id, user, commentary)
 
   newComments.push(thecomment);
   setCommments(newComments);
@@ -148,7 +148,7 @@ Bidding.value = "";
  <h2>End Date: {Auction === undefined ? "" :Auction.EndDate}</h2>
 </span>
 <div>
-<Tooltip label={"Painting id "}>
+<Tooltip label={Auction.Description}>
     <img id="picture1" src={(Auction === undefined ? "https://via.placeholder.com/150x150": Auction.Image)} alt="image"/> 
     </Tooltip>
 </div>
@@ -184,7 +184,7 @@ Bidding.value = "";
       Report User
     </Button>
                       <div className="user" style={{ fontWeight: 'bold' }}>User:  {comment.OwnerEmail}</div>
-    <div className="comment" style={{ marginBottom: '20px' }}>{comment.Comment}</div>
+    <div className="comment" style={{ marginBottom: '20px' }}>{comment.CommentMessage}</div>
                    </Card>
                   ))))}
 </div>

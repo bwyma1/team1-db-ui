@@ -1,10 +1,10 @@
 
 export class Comments{
-    constructor(CommentID, OwnerEmail, AuctionID, Comment){
+    constructor( AuctionID, OwnerEmail, CommentMessage, CommentID){
     this.CommentID = CommentID;
     this.OwnerEmail = OwnerEmail;
     this.AuctionID = AuctionID;
-    this.Comment = Comment;
+    this.CommentMessage = CommentMessage;
     }
 
 }
