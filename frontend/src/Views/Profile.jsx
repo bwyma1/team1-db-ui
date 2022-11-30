@@ -51,6 +51,10 @@ if(auctions == null)
           <div id="toggler">
             <ProfileViewSwitcher user={exampleUser} />
           </div>
+          <div>
+            <ProfileViewArea />
+            
+          </div>
 
         </div>
       {/* )  */}

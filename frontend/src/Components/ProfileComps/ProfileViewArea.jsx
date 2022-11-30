@@ -23,12 +23,6 @@ export default function ProfileViewArea({ items })
 
     return (
         <>
-            <ProfileViewSwitcher />
-            <div class="view2Area">
-
-
-
-            </div>
             <>
 
                 {/* <ReviewForm onReviewAdded = { review => addReview({reviews: [...product.reviews, review]})}/> */}
