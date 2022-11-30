@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { addUser, getUsers } from "../../API/Api";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { addUser, getUsers, loginUser } from "../../API/Api";
+import { AppContext } from "../../context";
 import { user } from "../../Models";
 import "./RegisterSection.css";
 
@@ -9,6 +11,8 @@ export default function RegisterSection() {
   const [email, setEmail] = useState("");
   const [uname, setUname] = useState("");
   const [pass, setPass] = useState("");
+  const context = useContext(AppContext);
+  const navigate = useNavigate();
 
   const errors = {
     uname: "invalid username",
@@ -28,6 +32,11 @@ export default function RegisterSection() {
 
   function register() {
     addUser(new user(email, uname, "Bio", "profilepic", 0, pass));
+    loginUser(email, pass).then((x) => context.setUser(x));
+  }
+
+  if (context.user) {
+    navigate("/profiles");
   }
 
   const renderErrorMessage = (name) =>

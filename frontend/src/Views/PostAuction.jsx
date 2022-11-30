@@ -39,6 +39,9 @@ export default function PostAuction() {
 
   function postAuction(values) {
     setSubmittedValues(values);
+    console.log(selectedImage);
+    let f = Object.getPrototypeOf(selectedImage);
+    console.log(typeof Object.getPrototypeOf(f));
     addAuction(
       new auction(
         values.title,
@@ -48,7 +51,7 @@ export default function PostAuction() {
         selectedImage,
         values.startPrice,
         new Date().toDateString(),
-        endDate,
+        new Date().toDateString(),
         0,
         1,
         0,

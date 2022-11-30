@@ -1,6 +1,3 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import React from "react";
 import { useState, useEffect } from "react";
 import "./ProfileViewSwitcher.css";
 import { Navbar, NavLink } from "react-bootstrap";
@@ -8,7 +5,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileViewArea from "./ProfileViewArea";
 
-import { User } from "../../Models";
+import { user } from "../../Models";
 export default function ProfileViewSwitcher({ user }) {
   const [items, setItems] = useState(undefined);
 
