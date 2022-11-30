@@ -74,10 +74,13 @@ exports.login_user = function(req, res)
     }
   );
 };
+    
+// app.route("/users/").post(userController.create_user);
 exports.create_user = function(req, res)
 {
-  if (sql.propertyCheck(req, res, ["DisplayName", "Email", "Password"]))
+  if (sql.propertyCheck(req, res, ["Email", "DisplayName", "Password"]))
   {
+    var newUser = new User(req.body);
     sql.connection.query(
       "INSERT INTO `Users` (`Email`, `DisplayName`, `Bio`, `ProfilePic`, `Tags`, `Password`) VALUES (?, ?, ?, ?, ?, ?);",
       [

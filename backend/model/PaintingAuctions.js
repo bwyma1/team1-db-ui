@@ -404,20 +404,41 @@ exports.get_auctions_realism = function(req, res)
 
 exports.get_auctions_email = function(req, res)
 {
+  if (!("OwnerName" in req.params))
+  {
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `OwnerName`",
+    });
+  }
+  else
+  {
     sql.connection.query(
       "SELECT * FROM `PaintingAuctions` WHERE `OwnerName` = \""+
-      req.body.OwnerName+"\";",
+      req.params.OwnerName+"\";",
     function(sqlErr, sqlRes)
     {
       if (sql.isSuccessfulQuery(sqlErr, res))
       {
-        res.status(200).send(
+        if (sqlRes.length <= 0)
         {
-          success: true,
-          count: Object.keys(sqlRes).length,
-          info: sqlRes,
-        });
+          res.status(200).send(
+          {
+            success: false,
+            response: "Couldn't find user " + req.params.Email,
+          });
+        }
+        else {
+          res.status(200).send(
+          {
+            success: true,
+            count: Object.keys(sqlRes).length,
+            info: sqlRes,
+          });
+        }
       }
+      
     }
-  );
+  );}
 };

@@ -1,52 +1,68 @@
-import React from "react"
 import { useState, useEffect } from "react";
 import "./ProfileViewSwitcher.css";
 import { Navbar, NavLink } from "react-bootstrap";
-import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileViewArea from "./ProfileViewArea";
 
-import {User} from "../../Models";
-export default function ProfileViewSwitcher({user})
-{
-  const [items,setItems]=useState(undefined); 
+import { user } from "../../Models";
+export default function ProfileViewSwitcher({ user }) {
+  const [items, setItems] = useState(undefined);
 
   useEffect(() => {
-    setItems(user.Selling)
-  },[])
+    setItems(user.Selling);
+  }, []);
 
-
-
-    return (
-      <>    
-      
+  return (
+    <>
       <Navbar id="toggler" variant="dark">
-        <div id="toggleContainer" style={{
-        background: "linear-gradient(#ed6ea0, #ec8c69)",
-      }}>
-        <button  style={{
-        background: "linear-gradient(#ed6ea0, #ec8c69)",
-      }}onClick={() => setItems(user.Selling)}> Selling</button>
-        <button  style={{
-        background: "linear-gradient(#ed6ea0, #ec8c69)",
-      }}onClick={() => setItems(user.Purchased)}> Purchased</button>
-        <button style={{
-        background: "linear-gradient(#ed6ea0, #ec8c69)",
-      }} onClick={() => setItems(user.Likes)}> Likes</button>
-        <button  style={{
-        background: "linear-gradient(#ed6ea0, #ec8c69)",
-      }} onClick={() => setItems(user.ctiveBids)}> Active Bids</button>
-        
-        </div>  
-        
+        <div
+          id="toggleContainer"
+          style={{
+            background: "linear-gradient(#ed6ea0, #ec8c69)",
+          }}
+        >
+          <button
+            style={{
+              background: "linear-gradient(#ed6ea0, #ec8c69)",
+            }}
+            onClick={() => setItems(user.Selling)}
+          >
+            {" "}
+            Selling
+          </button>
+          <button
+            style={{
+              background: "linear-gradient(#ed6ea0, #ec8c69)",
+            }}
+            onClick={() => setItems(user.Purchased)}
+          >
+            {" "}
+            Purchased
+          </button>
+          <button
+            style={{
+              background: "linear-gradient(#ed6ea0, #ec8c69)",
+            }}
+            onClick={() => setItems(user.Likes)}
+          >
+            {" "}
+            Likes
+          </button>
+          <button
+            style={{
+              background: "linear-gradient(#ed6ea0, #ec8c69)",
+            }}
+            onClick={() => setItems(user.ctiveBids)}
+          >
+            {" "}
+            Active Bids
+          </button>
+        </div>
+      </Navbar>
 
-    </Navbar>
-
-    <ProfileViewArea
-                      items={items}
-                    />
+      <ProfileViewArea items={items} />
     </>
-
   );
 
   // return (
@@ -73,5 +89,4 @@ export default function ProfileViewSwitcher({user})
   //     </BrowserRouter>
   //   </div>
   // );
-
 }
