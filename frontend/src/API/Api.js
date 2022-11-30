@@ -127,7 +127,7 @@ export const getAuctionbyId = (id) => new Promise((resolve, reject) => {
 });
 
 export const getCommentbyId = (id) => new Promise((resolve, reject) => {
-    axios.get(`${apiEndPoint}/comments/${id}`)
+    axios.get(`${apiEndPoint}/commentsauction/${id}`)
         .then(x => resolve(x))
         .catch(x => {
             alert(x);
@@ -135,8 +135,8 @@ export const getCommentbyId = (id) => new Promise((resolve, reject) => {
         })
 });
 
-export const postCommentbyId = (comment) => new Promise((resolve, reject) => {
-    axios.post(`${apiEndPoint}/comments/`, comment, apiConfig)
+export const postComment = (comment) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/comments/`, comment)
         .then(x => resolve(x))
         .catch(x => {
             alert(x);

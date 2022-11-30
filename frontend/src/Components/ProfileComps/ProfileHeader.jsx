@@ -1,9 +1,8 @@
 import "./ProfileHeader.css";
 import React from "react";
-import { MDBIcon } from 'mdb-react-ui-kit';
+import { MDBIcon } from "mdb-react-ui-kit";
 
-export default function ProfileHeader(props)
-{
+export default function ProfileHeader(props) {
   return (
     //make photo inline block!
 
@@ -16,23 +15,15 @@ export default function ProfileHeader(props)
         />
 
         <section class="profileInfoContainer">
-          <h1 className="font-size-auto ">
-            {props.DisplayName}
-          </h1>
-    
+          <h1 className="font-size-auto ">{props.DisplayName}</h1>
+
           <section class="UserAndBio">
-            <h2 class="username ui">
-              @{props.id}
-            </h2>
-            <p class="bio ui">
-              {props.Bio}
-            </p>
+            <h2 class="username ui">@{props.id}</h2>
+            <p class="bio ui">{props.Bio}</p>
           </section>
         </section>
       </span>
       <br />
-  
-
     </div>
   );
 }

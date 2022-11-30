@@ -16,13 +16,15 @@ import { useNavigate } from "react-router-dom";
 export default function PostAuction() {
   const navigate = useNavigate();
   const [submittedValues, setSubmittedValues] = useState("");
+  const [isSumbitted, setIsSubmitted] = useState(false);
   const [endDate, setEndDate] = useState(new Date());
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [selectedImage, setSelectedImage] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [user] = useState(JSON.parse(localStorage.getItem("user")));
 
   useEffect(() => {
     if (selectedImage) {
-      setImageUrl(URL.createObjectURL(selectedImage));
+      setImageUrl(selectedImage);
     } else {
       setImageUrl(null);
     }
@@ -33,32 +35,46 @@ export default function PostAuction() {
       title: "",
       description: "",
       startPrice: "",
+      image: "",
       tags: [""],
     },
   });
 
   function postAuction(values) {
     setSubmittedValues(values);
-    console.log(selectedImage);
-    let f = Object.getPrototypeOf(selectedImage);
-    console.log(typeof Object.getPrototypeOf(f));
-    addAuction(
-      new auction(
-        values.title,
-        values.description,
-        "userName",
-        10,
-        selectedImage,
-        values.startPrice,
-        new Date().toDateString(),
-        new Date().toDateString(),
-        0,
-        1,
-        0,
-        1,
-        0
-      )
-    );
+    let paint = 0;
+    let pencil = 0;
+    let modern = 0;
+    let abstract = 0;
+    let realism = 0;
+    let currDate = new Date();
+    let endingDate = new Date(endDate);
+    if (values.tags.includes("paint")) paint = 1;
+    if (values.tags.includes("pencil")) pencil = 1;
+    if (values.tags.includes("modern")) modern = 1;
+    if (values.tags.includes("abstract")) abstract = 1;
+    if (values.tags.includes("realism")) realism = 1;
+    if (currDate < endingDate) {
+      addAuction(
+        new auction(
+          values.title,
+          values.description,
+          user.DisplayName,
+          0,
+          selectedImage,
+          values.startPrice,
+          currDate.toDateString(),
+          endingDate.toDateString(),
+          paint,
+          pencil,
+          modern,
+          abstract,
+          realism
+        )
+      );
+    } else {
+      alert("invalid ending date");
+    }
   }
 
   return (
@@ -137,20 +153,20 @@ export default function PostAuction() {
           size="md"
           clearable
         />
-        <FileInput
-          required
-          className="col-8"
-          accept="image/"
-          label="Image of Your Art"
-          placeholder="Input File Here"
-          value={selectedImage}
-          onChange={setSelectedImage}
-        />
+        <Input.Wrapper id="image" label="Image Link">
+          <Input
+            name="image"
+            placeholder="Image Link Here"
+            required
+            value={selectedImage}
+            onChange={(e) => setSelectedImage(e.target.value)}
+          />
+        </Input.Wrapper>
         {imageUrl && (
           <img
             className="col-10"
-            alt="file"
-            src={imageUrl}
+            alt="inpImage"
+            src={selectedImage}
             style={{ minWidth: "" }}
           ></img>
         )}

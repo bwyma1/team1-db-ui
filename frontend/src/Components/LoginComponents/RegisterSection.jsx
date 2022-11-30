@@ -16,12 +16,6 @@ export default function RegisterSection() {
   const [email, setEmail] = useState("");
   const [uname, setUname] = useState("");
   const [pass, setPass] = useState("");
-  const context = useContext(AppContext);
-  const navigate = useNavigate();
-
-  function timeout() {
-    return new Promise((res) => setTimeout(res, 1000));
-  }
 
   const emailChange = (event) => setEmail(event.target.value);
   const unameChange = (event) => setUname(event.target.value);
@@ -34,16 +28,8 @@ export default function RegisterSection() {
   };
 
   function register() {
-    const ret = getAsyncUserByEmail(email);
-    timeout();
-    if (ret) {
-      addUser(new user(email, uname, "Bio", "profilepic", pass, 0));
-      setIsSubmitted(true);
-    }
-  }
-
-  if (context.user) {
-    navigate("/profiles");
+    addUser(new user(email, uname, "Bio", "profilepic", pass, 0));
+    setIsSubmitted(true);
   }
 
   const renderErrorMessage = (name) =>
