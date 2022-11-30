@@ -28,26 +28,84 @@ exports.get_bids = function(result)
 };
 
 // app.route("/bids/:BidID").get(bidController.get_bid_id);
-exports.get_bid_id = function(BidID, result)
+exports.get_bid_id = function(req, res)
 {
-    sql.connection.query("SELECT * FROM Bids WHERE BidID = ?", BidID, function(err, res)
+    if (!("BidID" in req.params))
     {
-        if(err)
+        res.status(400).send(
         {
-            console.log("error: ", err);
-            result(null, err);
-        }
-        else
+            success: false,
+            response: "Missing required field: `BidID`",
+        });
+    }
+    else {
+        sql.connection.query("SELECT * FROM Bids WHERE BidID = ?", req.params.BidID, function(err, res)
         {
-            result(null, res);
-        }
-    });
+            if(err)
+            {
+                console.log("error: ", err);
+                res.status(200).send(
+                {
+                    success: false,
+                    response: "Couldn't find bidID " + req.params.BidID,
+                });
+            }
+            else
+            {
+                res.status(200).send(
+                {
+                    success: true,
+                    response: "Successfully found bidID " + req.params.BidID,
+                    info: sqlRes,
+                });
+            }
+        });
+    }
+};
+
+// app.route("/bidsauction/:AuctionID").get(bidController.get_bid_id);
+exports.get_bids_auction = function(req, res)
+{
+    if (!("AuctionID" in req.params))
+    {
+        res.status(400).send(
+        {
+            success: false,
+            response: "Missing required field: `AuctionID`",
+        });
+    }
+    else {
+        sql.connection.query("SELECT * FROM Bids WHERE AuctionID = ?;", req.params.AuctionID, function(sqlErr, sqlRes)
+        {
+            if(sql.isSuccessfulQuery(sqlErr, res))
+            {
+                console.log("error: ", sqlErr);
+                if (sqlRes.length <= 0)
+                {
+                    res.status(200).send(
+                    {
+                    success: false,
+                    response: "Couldn't find AuctionID " + req.params.AuctionID,
+                    });
+                }
+                else
+                {
+                    res.status(200).send(
+                    {
+                    success: true,
+                    response: "Successfully found AuctionID " + req.params.AuctionID,
+                    info: sqlRes,
+                    });
+                }
+            }
+        });
+    }
 };
 
 // app.route("/bids/:BidID").put(bidController.update_bid);
 exports.update_bid = function(BidID, Bid, result)
 {
-    sql.connection.query("UPDATE Bids SET BidderEmail = ?, AuctionID = ?, BidPrice = ? WHERE BidID = ?", [Bid.BidderEmail, Bid.AuctionID, Bid.BidPrice, BidID], function(err, res)
+    sql.connection.query("UPDATE Bids SET BidderEmail = ?, AuctionID = ?, BidPrice = ? WHERE BidID = ?;", [Bid.BidderEmail, Bid.AuctionID, Bid.BidPrice, BidID], function(err, res)
     {
         if(err)
         {
