@@ -14,11 +14,9 @@ export default function RegisterSection() {
   const context = useContext(AppContext);
   const navigate = useNavigate();
 
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password",
-    email: "invalid email",
-  };
+  function timeout() {
+    return new Promise((res) => setTimeout(res, 1000));
+  }
 
   const emailChange = (event) => setEmail(event.target.value);
   const unameChange = (event) => setUname(event.target.value);
@@ -32,7 +30,8 @@ export default function RegisterSection() {
 
   function register() {
     addUser(new user(email, uname, "Bio", "profilepic", 0, pass));
-    loginUser(email, pass).then((x) => context.setUser(x));
+    timeout();
+    //loginUser(email, pass).then((x) => context.setUser(x));
   }
 
   if (context.user) {
