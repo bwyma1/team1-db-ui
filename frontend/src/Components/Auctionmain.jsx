@@ -67,10 +67,12 @@ const[bids, setBids] = useState([]);
 const [user] = useState(JSON.parse(window.sessionStorage.getItem("user")));
 
 useEffect(() =>{//selected auction to auction
-  getAuctionbyId(params.id).then(x => setAuction(x.data.info[0]));//setAuction(
+  getAuctionbyId(params.id).then(x => {setAuction(x.data.info[0])
+    makeTags();
+  });//setAuction(
   getCommentbyId(params.id).then(x => setCommments(x.data.info));
   getBidsbyAuction(params.id).then(x => setBids(x.data.info));//.data.info));
-  console.log(bids);
+  
   if(Auction === undefined){
 
     setAuction(selected_auction);
