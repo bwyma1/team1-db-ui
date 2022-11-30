@@ -18,21 +18,15 @@ export default function Auctions() {
   const [searchInput, setSearchInput] = useState("");
   const [searchTags, setSearchTags] = useState([""]);
   const [auctions, setAuctions] = useState(null);
-  const [auctionss, setAuctionss] = useState(null);
 
   //grab auctions from backend
   useEffect(() => {
     getAsyncAuctions().then((x) => setAuctions(x.info));
-    //console.log(auctionss);
-    //setAuctions(auctionss);
   }, []);
   if (auctions === null) {
     return <div>loading...</div>;
   }
 
-  if (auctionss != null) {
-    console.log(auctionss);
-  }
   function toAuction(auc) {
     navigate(`/auctions/${auc.AuctionID}`);
   }
@@ -78,7 +72,7 @@ export default function Auctions() {
           onChange={handleChange}
           value={searchInput}
         />
-        <MultiSelect
+        {/* <MultiSelect
           className="col-6 m-auto"
           maxSelectedValues={3}
           transitionDuration={150}
@@ -93,7 +87,7 @@ export default function Auctions() {
           radius="xl"
           size="md"
           clearable
-        />
+        /> */}
       </header>
       <div className="container">
         <Grid className="m-5">

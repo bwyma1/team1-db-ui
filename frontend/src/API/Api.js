@@ -1,5 +1,4 @@
 import axios from "axios";
-import { user } from "../Models";
 
 let development = true;
 

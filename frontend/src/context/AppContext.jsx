@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 export const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
-  const test = "🔔 Notification!";
   const [user, setUser] = useState(null);
 
   const notify = (message) =>
