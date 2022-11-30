@@ -45,15 +45,15 @@ export default function PostAuction() {
         values.description,
         "userName",
         10,
-        URL.createObjectURL(selectedImage),
+        selectedImage,
         values.startPrice,
         new Date().toDateString(),
+        endDate,
         0,
         1,
         0,
         1,
-        0,
-        endDate
+        0
       )
     );
   }
@@ -143,7 +143,14 @@ export default function PostAuction() {
           value={selectedImage}
           onChange={setSelectedImage}
         />
-        {imageUrl && <img className="col-6" alt="file" src={imageUrl}></img>}
+        {imageUrl && (
+          <img
+            className="col-10"
+            alt="file"
+            src={imageUrl}
+            style={{ minWidth: "" }}
+          ></img>
+        )}
         <button
           className=" btn border border-dark"
           type="submit"

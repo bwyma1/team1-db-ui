@@ -23,22 +23,7 @@ export default function RegisterSection() {
   const submitRegistration = (event) => {
     //Prevent page reload
     event.preventDefault();
-
-    let re =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    //check register info
-    if (re.test(email)) {
-      if (uname) {
-        if (pass) {
-          register();
-        }
-        setErrorMessages({ name: "pass", message: errors.pass });
-      }
-      setErrorMessages({ name: "uname", message: errors.uname });
-    } else {
-      setErrorMessages({ name: "email", message: errors.email });
-    }
+    register();
   };
 
   function register() {

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAsyncUsers, loginUser } from "../../API/Api";
+import { getAsyncUsers, loginUser, loginUser2 } from "../../API/Api";
 import { AppContext } from "../../context";
 import { user } from "../../Models";
 import "./LoginSection.css";
@@ -38,12 +38,12 @@ export default function LoginSection() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log(getAsyncUsers());
-    loginUser(uname, pass).then((x) => setTemp(x));
-    console.log(temp);
+    // loginUser(uname, pass).then((x) => setTemp(x));
+    // console.log(temp);
+    context.setUser(loginUser(uname, pass));
+    console.log(context.user);
 
     if (temp) {
-      loginUser(uname, pass).then((x) => context.setUser(x));
-      console.log(context.user);
       //navigate("/profiles");
     } else {
       setErrorMessages({ name: "pass", message: errors.uname });

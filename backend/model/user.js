@@ -74,34 +74,31 @@ exports.login_user = function(req, res)
     }
   );
 };
+    
+// app.route("/users/").post(userController.create_user);
 exports.create_user = function(req, res)
 {
-  if (sql.propertyCheck(req, res, ["DisplayName", "Email", "Password"]))
+  if (sql.propertyCheck(req, res, ["Email", "DisplayName", "Password"]))
   {
+    var newUser = new User(req.body);
     sql.connection.query(
-      "INSERT INTO `Users` (`Email`, `DisplayName`, `Bio`, `ProfilePic`, `Tags`, `Password`) VALUES (?, ?, ?, ?, ?, ?);",
-      [
-        req.body.Email, 
-        req.body.DisplayName, 
-        req.body.Bio, 
-        req.body.ProfilePic, 
-        req.body.Tags, 
-        req.body.Password
-      ],
+      "INSERT INTO `Users` SET ?;",
+      newUser,
       function(sqlErr, sqlRes)
       {
-        if (sql.isSuccessfulQuery(subErr, res))
-              {
-                res.status(200).send(
-                {
-                  success: true,
-                  response: "Succesfully created user",
-                });
-              }
-            }
-          );
+        if (sql.isSuccessfulQuery(sqlErr, res))
+        {
+          res.status(200).send(
+          {
+            success: true,
+            response: "Successfully created user",
+          });
         }
-      };
+      }
+    );
+  }
+}
+
 exports.get_user = function(req, res)
 {
   if (!("Email" in req.params))

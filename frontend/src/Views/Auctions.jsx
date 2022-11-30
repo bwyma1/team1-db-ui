@@ -132,7 +132,7 @@ export default function Auctions() {
 
                   <Group position="apart" mt="md" mb="xs">
                     <Text weight={500}>{auction.OwnerName}</Text>
-                    {auction.Tags.map((tag) => (
+                    {auction.EndDate.map((tag) => (
                       <Badge color="pink" variant="light">
                         {tag}
                       </Badge>
@@ -159,7 +159,8 @@ let exampleData = [
     "7",
     "https://via.placeholder.com/150x200",
     "19.99",
-    "date-listed"[("Friendly", "Light", "Rennaissance")],
+    "date-listed",
+    [("Friendly", "Light", "Rennaissance")],
     [
       ["user1", "very sad!"],
       ["user2", "Awesome"],

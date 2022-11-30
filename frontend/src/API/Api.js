@@ -1,4 +1,5 @@
 import axios from "axios";
+import { user } from "../Models";
 
 let development = true;
 
@@ -81,7 +82,7 @@ export const addUser = (user) => new Promise((resolve, reject) => {
         })
 });
 
-export const loginUser = (userName, password) => new Promise((resolve, reject) => {
+export const loginUser2 = (userName, password) => new Promise((resolve, reject) => {
     axios.post(`${apiEndPoint}/login/`, { Email: userName, Password: password } )
         .then(x => resolve(x.data.info[0]))
         .catch(x => {
@@ -90,6 +91,19 @@ export const loginUser = (userName, password) => new Promise((resolve, reject) =
             return false;
         })
 })
+
+export const loginUser = async (userName, password) => {
+    try {
+        const resp = await axios.post(`${apiEndPoint}/login/`, { Email: userName, Password: password } );
+        // console.log(resp.data.info[0]);
+        //let ret = new user(resp.data.info[0].Email, resp.data.info[0].DisplayName, resp.data.info[0].Bio, resp.data.info[0].ProfilePicture, resp.data.info[0].Tags, resp.data.info[0].Password);
+        return await resp.data.info[0];
+    } catch (err) {
+        // Handle Error Here
+        console.error("async didnt work");
+        return null;
+    }
+};
 
 // getUserById(1)
 //      .then(x => setAccount(x))
