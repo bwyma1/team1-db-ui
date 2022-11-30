@@ -10,3 +10,4 @@ export class user {
         this.Strikes = Strikes;
     }
 };
+//window.localstorage.getitem("user")

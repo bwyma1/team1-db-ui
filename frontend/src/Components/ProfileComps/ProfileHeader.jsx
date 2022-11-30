@@ -4,6 +4,7 @@ import { MDBIcon } from 'mdb-react-ui-kit';
 
 export default function ProfileHeader(props)
 {
+
   return (
     //make photo inline block!
 
@@ -22,7 +23,7 @@ export default function ProfileHeader(props)
     
           <section class="UserAndBio">
             <h2 class="username ui">
-              @{props.id}
+              {props.Email}
             </h2>
             <p class="bio ui">
               {props.Bio}
