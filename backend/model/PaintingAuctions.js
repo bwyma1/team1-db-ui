@@ -401,3 +401,23 @@ exports.get_auctions_realism = function(req, res)
     }
   );
 };
+
+exports.get_auctions_email = function(req, res)
+{
+    sql.connection.query(
+      "SELECT * FROM `PaintingAuctions` WHERE `OwnerName` = \""+
+      req.body.OwnerName+"\";",
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
+};
