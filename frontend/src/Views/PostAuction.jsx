@@ -17,7 +17,7 @@ export default function PostAuction() {
   const [endDate, setEndDate] = useState(new Date());
   const [selectedImage, setSelectedImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [user] = useState(JSON.parse(localStorage.getItem("user")));
+  const [user] = useState(JSON.parse(window.sessionStorage.getItem("user")));
 
   useEffect(() => {
     if (selectedImage) {

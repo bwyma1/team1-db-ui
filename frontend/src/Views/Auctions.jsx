@@ -72,7 +72,7 @@ export default function Auctions() {
           onChange={handleChange}
           value={searchInput}
         />
-        <MultiSelect
+        {/* <MultiSelect
           className="col-6 m-auto"
           maxSelectedValues={3}
           transitionDuration={150}
@@ -87,7 +87,7 @@ export default function Auctions() {
           radius="xl"
           size="md"
           clearable
-        />
+        /> */}
       </header>
       <div className="container">
         <Grid className="m-5">

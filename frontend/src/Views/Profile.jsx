@@ -15,7 +15,7 @@ import { useEffect } from "react";
 export default function Profile() {
   const navigate = useNavigate();
   const [auctions, setAuctions] = useState(null);
-  const [user] = useState(JSON.parse(localStorage.getItem("user")));
+  const [user] = useState(JSON.parse(window.sessionStorage.getItem("user")));
 
   useEffect(() => {
     getAsyncAuctions().then((x) => setAuctions(x.info));
