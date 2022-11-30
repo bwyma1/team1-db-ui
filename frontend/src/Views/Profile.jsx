@@ -36,16 +36,6 @@ export default function Profile() {
                               />
       </div>
 
-      {/* <span clasName="row flex main container">
-
-          <ProfileViewArea  data={exampleUser}
-                            selling={exampleUser.selling}
-                            purchased={exampleUser.purchased}
-                            likes={exampleUser.likes}
-                            activeBids={exampleUser.activeBids} />
-      </span> */}
-
-
     </div>
   );
 }

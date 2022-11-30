@@ -1,6 +1,6 @@
 import React from "react";
 import "./Auctionmain.css";
-import "./MyHomepageFooter.css";
+import "./HomeComps/MyHomepageFooter";
 import { auction, Comments } from "../Models"
 import { Badge, Card, Tooltip, Tabs, Button} from "@mantine/core";
 import { useParams } from "react-router-dom"

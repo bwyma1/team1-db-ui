@@ -14,25 +14,7 @@ export default function ProfileViewArea({items})
         setAuctions(items); 
         //getUserSelling(props.id).then(x => setAuctions(x)); 
     }, [{items}]); 
-    // useEffect(() => {
-    //     if(view ==0)
-    //     {
-    //         setAuctions(user.selling);
-    //     }
-    //     else if({view} == 1)
-    //     {
-    //         setAuctions(user.purchased);
-    //     }
-    //     else if(view == 2)
-    //     {
-    //         setAuctions(user.likes);
-    //     }
-    //     else if(view == 3)
-    //     {
-    //         setAuctions(user.activeBids);
-    //     }
-        
-    // }, [{view}]); 
+
 
     function toAuction(auc) {
         console.log(auc);
