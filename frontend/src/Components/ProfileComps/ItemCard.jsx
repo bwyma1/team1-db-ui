@@ -20,7 +20,8 @@ export default function ItemCard(props)
 
         
                 <span className="d-flex justify-content-between">
-                     <h1 className=" mt-3 font-weight-bold pieceTitle leftFloat cardText"> {props.Title}</h1> 
+                     <h1 className=" mt-3 font-weight-bold pieceTitle leftFloat cardText"> 
+                     {props.Title}</h1> 
 
                      <LikeButton className='align-content-end'/>
                 </span>
@@ -28,8 +29,8 @@ export default function ItemCard(props)
 
               <h1 class="priceInfo rightFloat cardText">${props.StartPrice}</h1>
               <br></br>
-              <div class="detailsButton">
-               <button className=" w-100 p-2 mt-3 cardElement">
+              <div className="detailsButton">
+               <button style={{background: "linear-gradient(#ed6ea0, #ec8c69"}} className=" w-100 p-2 mt-3 bg-peach cardElement">
                 <NavLink href={props.link}> View Auction </NavLink>
                 </button>
               </div>

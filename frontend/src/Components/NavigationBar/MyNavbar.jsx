@@ -11,7 +11,7 @@ export default function MyNavbar() {
       expand="false"
       className="navbar-dark"
       style={{
-        background: "linear-gradient(#ed6ea0, #ec8c69)",
+        background: "linear-gradient(#ed6ea0, #ec8c69)", border:'none'
       }}
     >
       <Navbar.Brand href="/">

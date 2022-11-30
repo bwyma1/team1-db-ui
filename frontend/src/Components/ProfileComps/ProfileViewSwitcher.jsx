@@ -21,11 +21,21 @@ export default function ProfileViewSwitcher({user})
       <>    
       
       <Navbar id="toggler" variant="dark">
-        <div id="toggleContainer">
-        <button onClick={() => setItems(user.Selling)}> Selling</button>
-        <button onClick={() => setItems(user.Purchased)}> Purchased</button>
-        <button onClick={() => setItems(user.Likes)}> Likes</button>
-        <button onClick={() => setItems(user.ctiveBids)}> Active Bids</button>
+        <div id="toggleContainer" style={{
+        background: "linear-gradient(#ed6ea0, #ec8c69)",
+      }}>
+        <button  style={{
+        background: "linear-gradient(#ed6ea0, #ec8c69)",
+      }}onClick={() => setItems(user.Selling)}> Selling</button>
+        <button  style={{
+        background: "linear-gradient(#ed6ea0, #ec8c69)",
+      }}onClick={() => setItems(user.Purchased)}> Purchased</button>
+        <button style={{
+        background: "linear-gradient(#ed6ea0, #ec8c69)",
+      }} onClick={() => setItems(user.Likes)}> Likes</button>
+        <button  style={{
+        background: "linear-gradient(#ed6ea0, #ec8c69)",
+      }} onClick={() => setItems(user.ctiveBids)}> Active Bids</button>
         
         </div>  
         
