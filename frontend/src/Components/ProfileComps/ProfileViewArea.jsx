@@ -42,7 +42,6 @@ export default function ProfileViewArea({items})
                                  Title ={auction.Title}
                                  OwnerName = {auction.OwnerName}
                                  StartPrice = {auction.StartPrice}
-                                 Tags={auction.Tags}
                                  LeadBid={auction.LeadBid}
                                  EndDate={auction.EndDate}
                                  Description={auction.Description}/>    

@@ -7,26 +7,33 @@ import { auction } from "../Models";
 import { useEffect } from "react";
 import { user } from "../Models";
 import data from "../Components/data";
-import { getUserById } from "../API/Api"; 
+import { getAsyncAuctions, getUserById } from "../API/Api"; 
 import { AppContext } from "../context";
 import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 
 export default function Profile() 
 {
-  const [user,setUser]=useState(); 
-  
+  const navigate = useNavigate(); 
+  const [user,setUser]=useState();
+  const [auctions, setAuctions] = useState(null); 
+  const [test, setTest]= useState(null)
+
+  const params = useParams(); 
   useEffect(() => {
-    setUser(exampleUser1);
-  });
+    //getAsyncAuctions().then((x)=>set)
+      //getUserById(params.Email).then(x=>setUser(x)); 
+      setAuctions(exampleData); 
+
+  },[]);
 
   return (
     <div id="pageContainer">
       <div>
         <ProfileHeader
-          email={exampleUser1.Email}
+          Email={exampleUser1.Email}
           DisplayName={exampleUser1.DisplayName}
           Bio={exampleUser1.Bio}
           ProfilePicture={exampleUser1.ProfilePicture}
@@ -36,17 +43,10 @@ export default function Profile()
       <br />
 
       <div id="toggler">
-        <ProfileViewSwitcher user={exampleUser1} />
+        <ProfileViewSwitcher items={auctions} />
       </div>
 
-      {/* <span clasName="row flex main container">
-
-          <ProfileViewArea  data={exampleUser}
-                            selling={exampleUser.selling}
-                            purchased={exampleUser.purchased}
-                            likes={exampleUser.likes}
-                            activeBids={exampleUser.activeBids} />
-      </span> */}
+  
     </div>
   );
 }
@@ -54,3 +54,66 @@ export default function Profile()
 let exampleUser1 = new user('email@gmail.com', 'John Doe', 'Art!', "https://via.placeholder.com/150x150", 0); 
 let exampleUser2 = new user('email6@gmail.com', 'Jane Doe', '!!!', "https://via.placeholder.com/150x150", 0); 
 let exampleUser3 = new user('ema4il@gmail.com', 'Joe Doe', 'Art!', "https://via.placeholder.com/150x150", 0); 
+
+let exampleData = [
+  new auction(
+    2,
+    2,
+    "Truman",
+    "7",
+    "https://via.placeholder.com/150x200",
+    "19.99",
+    "date-listed",
+    [("Friendly", "Light", "Rennaissance")],
+    [
+      ["user1", "very sad!"],
+      ["user2", "Awesome"],
+      ["user3", "I love the design"],
+    ]
+  ),
+  new auction(
+    3,
+    3,
+    "Brock",
+    "8",
+    "https://via.placeholder.com/200x150",
+    "129.99",
+    "date-listed",
+    ["Friendly", "Dark", "Rennaissance"],
+    [
+      ["user1", "cool!"],
+      ["user2", "Awesome"],
+      ["user3", "I love the design"],
+    ]
+  ),
+  new auction(
+    4,
+    4,
+    "Newman",
+    "9",
+    "https://via.placeholder.com/1500x2000",
+    "19.99",
+    "date-listed",
+    ["Friendly", "Dark", "Rennaissance"],
+    [
+      ["user1", "very sad!"],
+      ["user2", "Awesome"],
+      ["user3", "I love the design"],
+    ]
+  ),
+  new auction(
+    5,
+    5,
+    "ThisName",
+    "9",
+    "https://via.placeholder.com/1500x2000",
+    "19.99",
+    "date-listed",
+    ["Friendly", "Dark", "Rennaissance"],
+    [
+      ["user1", "very sad!"],
+      ["user2", "Awesome"],
+      ["user3", "I love the design"],
+    ]
+  ),
+];

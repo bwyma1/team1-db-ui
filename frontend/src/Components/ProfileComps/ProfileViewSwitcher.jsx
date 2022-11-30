@@ -4,14 +4,12 @@ import { Navbar, NavLink } from "react-bootstrap";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileViewArea from "./ProfileViewArea";
+import { getUserById } from "../../API/Api";
 
 import { user } from "../../Models";
 export default function ProfileViewSwitcher({ user }) {
   const [items, setItems] = useState(undefined);
 
-  useEffect(() => {
-    setItems(user.Selling);
-  }, []);
 
   return (
     <>
