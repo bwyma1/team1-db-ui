@@ -24,6 +24,7 @@ export default function LoginSection() {
   };
 
   if (context.user) {
+    console.log(context.user);
     window.sessionStorage.setItem(
       "user",
       JSON.stringify(
@@ -31,7 +32,7 @@ export default function LoginSection() {
           context.user.Email,
           context.user.DisplayName,
           context.user.Bio,
-          context.user.ProfilePicture,
+          context.user.ProfilePic,
           context.user.Password,
           context.user.Strikes
         )

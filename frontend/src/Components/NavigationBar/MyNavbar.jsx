@@ -11,7 +11,8 @@ export default function MyNavbar() {
       expand="false"
       className="navbar-dark"
       style={{
-        background: "linear-gradient(#ed6ea0, #ec8c69)", border:'none'
+        background: "linear-gradient(#ed6ea0, #ec8c69)",
+        border: "none",
       }}
     >
       <Navbar.Brand href="/">
@@ -29,9 +30,6 @@ export default function MyNavbar() {
         </Nav>
         <Nav>
           <NavLink href="/auctions">Auctions</NavLink>
-          <NavLink eventKey={2} href="/notifications">
-            Notifications
-          </NavLink>
           <NavLink href="/profiles">Profiles</NavLink>
         </Nav>
       </Navbar.Collapse>
