@@ -24,9 +24,8 @@ position: relative;
 
 #label2{
 
-display: block;
-background-color: #aca4a2;
-padding: 1rem;
+    display: block;
+    padding: 1rem;
 color: whitesmoke
 
 }
@@ -166,5 +165,14 @@ color: whitesmoke;
 #sellerbox{
 
 
+
+}
+.commentcss{
+
+border-radius: 50rem;
+
+}
+#commentarybox{
+    border-radius: 50rem;
 
 }

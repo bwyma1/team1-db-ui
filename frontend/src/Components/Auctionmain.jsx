@@ -57,7 +57,7 @@ const[comments, setCommments] = useState([]);
 
 useEffect(() =>{//selected auction to auction
   //getAuctionbyId(params.id).then(x => setAuction(x));
- // getCommentbyId(params.id).then(x => setCommments(x));
+  //getCommentbyId(params.id).then(x => setCommments(x));
 
   if(Auction.AuctionId == undefined){
 
@@ -128,13 +128,13 @@ Bidding.value = "";
 }}>Bid</button>
 </Tooltip>
 </form>
- <span id="description"><h5>Description:</h5>< >{selected_auction.Description}</></span>
+ <span id="description"><h5>Description:</h5>< >{Auction.Description}</></span>
  <h2>Start Date: {Auction.DateListed}</h2>
  <h2>End Date: {Auction.EndDate}</h2>
 </span>
 <div>
 <Tooltip label={"Painting id " +Auction.PaintingID}>
-    <img id="picture1" src={selected_auction.Image} alt="image"/> 
+    <img id="picture1" src={(Auction.Tags == undefined ? selected_auction.Image : Auction.Image)} alt="image"/> 
     </Tooltip>
 </div>
   
@@ -190,13 +190,13 @@ Bidding.value = "";
        
 
 
-      <Card>
+      <Card className="commentcss">
 <form id="commentarybox">
   
-<label id="label2" for="commentusername">Comment</label>
-<label id="label3" for="commentbox">Email</label>
-<input name="username" type="text" id="commentusername"/>
-<textarea name="message" id="commentbox"></textarea>
+<h2 id="label2" >Comment on Auction</h2>
+
+<input name="username" type="text" id="commentusername" placeholder="Email"/>
+<textarea name="message" id="commentbox" placeholder="Your Comment here"></textarea>
 <br/>
 <div id="btnline">
   <button type="button" id="commentbtn" onClick={() => {
