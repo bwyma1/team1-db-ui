@@ -10,6 +10,7 @@ var User = function(user)
    this.Password = user.Password;
    this.Strikes = user.Strikes;
 }
+
 exports.get_users = function(req, res)
 {
   sql.connection.query(
@@ -82,18 +83,18 @@ exports.create_user = function(req, res)
   {
     var newUser = new User(req.body);
     sql.connection.query(
-      "INSERT INTO `Users` (`Email`, `DisplayName`, `Bio`, `ProfilePic`, `Tags`, `Password`) VALUES (?, ?, ?, ?, ?, ?);",
+      "INSERT INTO `Users` (`Email`, `DisplayName`, `Bio`, `ProfilePic`, `Password`, `Strikes`) VALUES (?, ?, ?, ?, ?, ?);",
       [
         req.body.Email, 
         req.body.DisplayName, 
         req.body.Bio, 
         req.body.ProfilePic, 
-        req.body.Tags, 
-        req.body.Password
+        req.body.Password,
+        req.body.Strikes
       ],
       function(sqlErr, sqlRes)
       {
-        if (sql.isSuccessfulQuery(subErr, res))
+        if (sql.isSuccessfulQuery(sqlErr, res))
         {
           res.status(200).send(
           {

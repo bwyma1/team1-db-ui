@@ -30,11 +30,6 @@ export default function LoginSection() {
     },
   ];
 
-  const errors = {
-    uname: "invalid credentials",
-    pass: "invalid password",
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     loginUser(uname, pass).then((x) => context.setUser(x));

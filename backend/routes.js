@@ -23,7 +23,7 @@ module.exports = function(app, logger)
   app.route("/auctions/:AuctionID").put(AuctionController.update_auction);
   app.route("/auctions/").post(AuctionController.create_auction);
   app.route("/auctions/:AuctionID").delete(AuctionController.delete_auction);
-  app.route("/auctionsss/:OwnerName").get(AuctionController.get_auctions_email);
+  app.route("/auctionsowner/:OwnerName").get(AuctionController.get_auctions_email);
 
   // COMMENT
   app.route("/comments/").get(commentController.get_comments);
@@ -31,7 +31,7 @@ module.exports = function(app, logger)
   app.route("/comments/:CommentID").put(commentController.update_comment);
   app.route("/comments/").post(commentController.create_comment);
   app.route("/comments/:CommentID").delete(commentController.delete_comment);
-  app.route("/comments/:AuctionID").get(commentController.get_comments);
+  app.route("/commentsauction/:AuctionID").get(commentController.get_comments);
 
   // BID
   app.route("/bids/").get(bidController.get_bids);
@@ -39,8 +39,8 @@ module.exports = function(app, logger)
   app.route("/bids/:BidID").put(bidController.update_bid);
   app.route("/bids/").post(bidController.create_bid);
   app.route("/bids/:BidID").delete(bidController.delete_bid);
-  app.route("/bids/:AuctionID").get(bidController.get_bids);
-  app.route("/bids/:OwnerEmail").get(bidController.get_bids_by_email);
+  app.route("/bidsauction/:AuctionID").get(bidController.get_bids);
+  app.route("/bidsowner/:OwnerEmail").get(bidController.get_bids_by_email);
 
   // PAINTING
   app.route("/paintings/").get(paintingController.get_paintings);
