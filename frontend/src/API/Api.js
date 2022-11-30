@@ -143,4 +143,23 @@ export const postComment = (comment) => new Promise((resolve, reject) => {
         })
 });
 
+
+export const getBidsbyAuction = (id) => new Promise((resolve, reject) => {
+    axios.get(`${apiEndPoint}/bidsauction/${id}`)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
+
+export const postBid = (bid) => new Promise((resolve, reject) => {
+    axios.post(`${apiEndPoint}/bids/`, bid)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        })
+});
+
 //David-------------
