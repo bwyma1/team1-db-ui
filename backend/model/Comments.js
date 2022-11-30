@@ -4,7 +4,7 @@ var sql = require("../connection.js");
 var Comment = function(user)
 {
     this.CommentID = Comment.CommentID;
-    this.OwnerEmail = Comment.UserEmail;
+    this.OwnerEmail = Comment.OwnerEmail;
     this.AuctionID = Comment.AuctionID;
     this.CommentMessage = Comment.CommentMessage;
 }
@@ -152,12 +152,12 @@ exports.create_comment = function(req, res)
       response: "Missing required field: `AuctionID`",
     });
   }
-  else if (!("UserEmail" in req.body))
+  else if (!("OwnerEmail" in req.body))
   {
     res.status(400).send(
     {
       success: false,
-      response: "Missing required field: `UserEmail`",
+      response: "Missing required field: `OwnerEmail`",
     });
   }
   else if (!("CommentMessage" in req.body))
@@ -171,26 +171,26 @@ exports.create_comment = function(req, res)
   else
   {
     sql.connection.query(
-      "INSERT INTO `Comments` SET ?;",
-      req.body,
+      "INSERT INTO `Comments` [OwnerEmail, AuctionID, CommentMessage] VALUES (?, ?, ?);",
+      [
+        req.body.OwnerEmail,
+        req.body.AuctionID,
+        req.body.CommentMessage,
+      ],
       function(sqlErr, sqlRes)
       {
         if (sql.isSuccessfulQuery(sqlErr, res))
-        {
-          if (sqlRes.affectedRows <= 0)
-          {
+        { 
             res.status(200).send(
             {
               success: false,
-              response: "No replies found for review " + req.params.CommentID,
+              response: "Cannot create comment",
             })
-          }
-          else
           {
             res.status(200).send(
             {
               success: true,
-              response: "Successfully updated replies for review " + req.params.CommentID,
+              response: "Successfully created comment",
               count: Object.keys(sqlRes).length,
               info: sqlRes,
             });
