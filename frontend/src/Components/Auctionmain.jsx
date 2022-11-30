@@ -5,7 +5,7 @@ import { auction, Comments } from "../Models"
 import { Badge, Card, Tooltip, Tabs, Button} from "@mantine/core";
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { getAuctionbyId, getCommentbyId, postComment, updateAuctionbyId } from "../API/Api";
+import { getAuctionbyId, getBidsbyAuction, getCommentbyId, postBid, postComment, updateAuctionbyId } from "../API/Api";
 
 
 
@@ -63,16 +63,18 @@ const params = useParams();
 const[Auction, setAuction] = useState('');
 const[comments, setCommments] = useState([]);
 const[tags, setTags] = useState([]);
+const[Bids, setBids] = useState([]);
 
 
 useEffect(() =>{//selected auction to auction
   getAuctionbyId(params.id).then(x => setAuction(x.data.info[0]));//setAuction(
   getCommentbyId(params.id).then(x => setCommments(x.data.info));
+  getBidsbyAuction(params.id).then(x => setBids(x));//.data.info));
   if(Auction === undefined){
 
     setAuction(selected_auction);
       }
- console.log(Auction);
+
   makeTags();
 
 if(comments === undefined){
@@ -99,15 +101,14 @@ const addComment = (user, commentary) =>{
   postComment(thecomment);
 }
 
+
+
 const ChangeBid = newBid =>{
-  let newBidding = Auction;
-//if(Auction.LeadBid < newBid){
+  let newBidding = new Bids( "s", params.id, newBid);
 
-  newBidding.LeadBid = newBid;
-  setAuction(newBidding);
-//updateAuctionbyId(params.id, Auction);
 
-//}
+postBid(newBidding);
+
 
   
 
@@ -120,6 +121,7 @@ const ChangeBid = newBid =>{
       
  <div><h2 id="piecename">{Auction === undefined ? "" : Auction.Title}</h2></div>
  <span id="sellerbox"><Badge color="cyan" variant="light">Seller: {Auction === undefined ? "" : Auction.OwnerName}</Badge></span>
+ 
  <span id="tag1">{(tags.map((tag) => (
                     <Badge color="pink" variant="light">
                       {tag}
@@ -180,11 +182,9 @@ Bidding.value = "";
 <div id="tag2">
 {( comments===undefined ? "" : (comments.map((comment) => (
                     <Card>
-<Button variant="subtle" color="red" radius="lg" size="xs" compact>
-      Report User
-    </Button>
+
                       <div className="user" style={{ fontWeight: 'bold' }}>User:  {comment.OwnerEmail}</div>
-    <div className="comment" style={{ marginBottom: '20px' }}>{comment.Comment}</div>
+    <div className="comment" style={{ marginBottom: '20px' }}>{comment.CommentMessage}</div>
                    </Card>
                   ))))}
 </div>
@@ -194,7 +194,13 @@ Bidding.value = "";
       <Tabs.Panel value="messages" pt="xs">
         
 
+{( Bids===undefined ? "" : (Bids.map((bid) => (
+                    <Card>
 
+                      <div className="user" style={{ fontWeight: 'bold' }}>User:  {Bids.BidderEmail}</div>
+    <div className="comment" style={{ marginBottom: '20px' }}>{Bids.BidPrice}</div>
+                   </Card>
+                  ))))}
 
 
       </Tabs.Panel>
