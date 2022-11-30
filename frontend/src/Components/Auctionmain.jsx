@@ -8,15 +8,6 @@ import { useEffect, useState } from "react";
 import { getAuctionbyId, getCommentbyId, updateAuctionbyId } from "../API/Api";
 
 
-//import getUserById from "../api";
-
-
-// { <Textarea
-// placeholder="Your comment"
-// label="Your comment"
-// radius="lg"
-// size="xl"
-// /> }
 
 let selected_auction = new auction(
   1,
@@ -41,25 +32,31 @@ let Commentss=[
   new Comments(2,"user2@gmail.com",1,"I love the design")
 ]
   
-
-
-
-//const Data = database.find((user) => user.username === uname);
-
 //David Berberian
 export default function Auctionmain() {
 
+const makeTags = (() => {
+  let tags = [];
+if(Auction.Paint == 1){
+tags.push("Paint");
 
-//   const blobreader = () =>{
-//   const fileReaderInstance = new FileReader();
-//   let blob = Auction.Image;
-//   fileReaderInstance.readAsDataURL(blob); 
-//   fileReaderInstance.onload = () => {
-//       setBase64(fileReaderInstance.result);                
-//       console.log(base64);
-//   }
-// }
-  //<img src={base64} alt="notworking"/>
+}
+if(Auction.Modern == 1){
+
+  tags.push("Modern");
+}
+ if(Auction.Abstract == 1){
+
+  tags.push("Abstract");
+}
+ if(Auction.Realism == 1){
+
+  tags.push("Realism");
+}
+setTags(tags);
+
+});
+  
 
 const params = useParams();
 
@@ -69,21 +66,15 @@ const[tags, setTags] = useState([]);
 const[base64, setBase64] = useState('');
 
 useEffect(() =>{//selected auction to auction
-  getAuctionbyId(9).then(x => setAuction(x.data.info[0]));
-  console.log(Auction);
-  //getCommentbyId(params.id).then(x => setCommments(x));
-//blobreader();
+  getAuctionbyId(params.id).then(x => setAuction(x.data.info[0]));
+  getCommentbyId(params.id).then(x => setCommments(x.info))
+ 
+  makeTags();
 
-//   if(Auction.AuctionId == undefined){
-
-// setAuction(selected_auction);
-//   }
-//   if(comments.UserEmail== undefined){
-
-// setCommments(Commentss);
-//   }
+  setCommments(Commentss);
   
-}, [])
+
+   }, [])
 
 
 
@@ -120,7 +111,7 @@ const ChangeBid = newBid =>{
       
  <div><h2 id="piecename">{Auction.Title}</h2></div>
  <span id="sellerbox"><Badge color="cyan" variant="light">Seller: {Auction.OwnerName}</Badge></span>
- <span id="tag1">{(Auction.Tags == undefined ? "" : Auction.Tags.map((tag) => (
+ <span id="tag1">{(tags.map((tag) => (
                     <Badge color="pink" variant="light">
                       {tag}
                     </Badge>
@@ -149,7 +140,7 @@ Bidding.value = "";
 </span>
 <div>
 <Tooltip label={"Painting id " +Auction.PaintingID}>
-    <img id="picture1" src={(Auction.Tags == undefined ? selected_auction.Image : Auction.Image)} alt="image"/> 
+    <img id="picture1" src={(Auction.Image === undefined ? selected_auction.Image : Auction.Image)} alt="image"/> 
     </Tooltip>
 </div>
   
@@ -193,18 +184,18 @@ Bidding.value = "";
 
       <Tabs.Panel value="messages" pt="xs">
         
-
+<image src={"data:image/png;base64" + btoa(base64)}/>
 
 
 
       </Tabs.Panel>
 
-
+ 
 
       <Tabs.Panel value="settings" pt="xs">
-       
+      
 
-r
+
       <Card className="commentcss">
 <form id="commentarybox">
   
