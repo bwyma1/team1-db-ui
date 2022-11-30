@@ -176,12 +176,39 @@ exports.create_auction = function(req, res)
       response: "Missing required field: `DateListed`",
     });
   }
-  else if (!("Tags" in req.body))
-  {
+  else if (!("Pencil" in req.body)){
     res.status(400).send(
     {
       success: false,
-      response: "Missing required field: `Tags`",
+      response: "Missing required field: `Pencil`",
+    });
+  }
+  else if (!("Paint" in req.body)){
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Paint`",
+    });
+  }
+  else if (!("Modern" in req.body)){
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Modern`",
+    });
+  }
+  else if (!("Abstract" in req.body)){
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Abstract`",
+    });
+  }
+  else if (!("Realism" in req.body)){
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Realism`",
     });
   }
   else if (!("EndDate" in req.body))
