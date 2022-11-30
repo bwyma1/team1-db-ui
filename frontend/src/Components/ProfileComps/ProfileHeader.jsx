@@ -6,23 +6,21 @@ export default function ProfileHeader(props) {
   return (
     //make photo inline block!
 
-    <div class="profileHeader">
-      <span class=" profileHeaderContainer ui fixed">
+    <div className="profileHeader container">
+      <div classNAme=" container  ui fixed">
         <img
-          class="image profilePic"
+          className="image profilePic"
           src={props.ProfilePicture}
           alt="temporary profile pic"
         />
 
-        <section class="profileInfoContainer">
           <h1 className="font-size-auto ">{props.DisplayName}</h1>
 
-          <section class="UserAndBio">
-            <h2 class="username ui">@{props.id}</h2>
-            <p class="bio ui">{props.Bio}</p>
+          <section className="UserAndBio">
+            <h2 className="username ui">{props.Email}</h2>
+            <p className="bio ui">{props.Bio}</p>
           </section>
-        </section>
-      </span>
+      </div>
       <br />
     </div>
   );

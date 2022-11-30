@@ -13,7 +13,7 @@ export default function ProfileViewArea({items})
     useEffect(() => {
         setAuctions(items); 
         //getUserSelling(props.id).then(x => setAuctions(x)); 
-    }, [{items}]); 
+    }, []); 
     // useEffect(() => {
     //     if(view ==0)
     //     {
@@ -60,7 +60,6 @@ export default function ProfileViewArea({items})
                                  Title ={auction.Title}
                                  OwnerName = {auction.OwnerName}
                                  StartPrice = {auction.StartPrice}
-                                 Tags={auction.Tags}
                                  LeadBid={auction.LeadBid}
                                  EndDate={auction.EndDate}
                                  Description={auction.Description}/>    

@@ -4,14 +4,12 @@ import { Navbar, NavLink } from "react-bootstrap";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProfileViewArea from "./ProfileViewArea";
-
+import { auction } from "../../Models";
 import { user } from "../../Models";
 export default function ProfileViewSwitcher({ user }) {
   const [items, setItems] = useState(undefined);
 
-  useEffect(() => {
-    setItems(user.Selling);
-  }, []);
+  
 
   return (
     <>
@@ -40,7 +38,7 @@ export default function ProfileViewSwitcher({ user }) {
             {" "}
             Purchased
           </button>
-          <button
+          {/* <button
             style={{
               background: "linear-gradient(#ed6ea0, #ec8c69)",
             }}
@@ -48,12 +46,12 @@ export default function ProfileViewSwitcher({ user }) {
           >
             {" "}
             Likes
-          </button>
+          </button> */}
           <button
             style={{
               background: "linear-gradient(#ed6ea0, #ec8c69)",
             }}
-            onClick={() => setItems(user.ctiveBids)}
+            onClick={() => setItems(user.ActiveBids)}
           >
             {" "}
             Active Bids

@@ -23,7 +23,7 @@ export default function ItemCard(props)
                      <h1 className=" mt-3 font-weight-bold pieceTitle leftFloat cardText"> 
                      {props.Title}</h1> 
 
-                     <LikeButton className='align-content-end'/>
+                     {/* <LikeButton className='align-content-end'/> */}
                 </span>
               <h1 className ="sellerTitle font-3 leftFloat cardText">@{props.OwnerName}</h1>
 
@@ -31,7 +31,7 @@ export default function ItemCard(props)
               <br></br>
               <div className="detailsButton">
                <button style={{background: "linear-gradient(#ed6ea0, #ec8c69"}} className=" w-100 p-2 mt-3 bg-peach cardElement">
-                <NavLink href={props.link}> View Auction </NavLink>
+                <NavLink href={'#'}> View Auction </NavLink>
                 </button>
               </div>
                           
