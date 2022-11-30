@@ -171,26 +171,26 @@ exports.create_comment = function(req, res)
   else
   {
     sql.connection.query(
-      "INSERT INTO `Comments` SET ?;",
-      req.body,
+      "INSERT INTO `Comments` [OwnerEmail, AuctionID, CommentMessage] VALUES (?, ?, ?);",
+      [
+        req.body.OwnerEmail,
+        req.body.AuctionID,
+        req.body.CommentMessage,
+      ],
       function(sqlErr, sqlRes)
       {
         if (sql.isSuccessfulQuery(sqlErr, res))
-        {
-          if (sqlRes.affectedRows <= 0)
-          {
+        { 
             res.status(200).send(
             {
               success: false,
-              response: "No replies found for review " + req.params.CommentID,
+              response: "Cannot create comment",
             })
-          }
-          else
           {
             res.status(200).send(
             {
               success: true,
-              response: "Successfully updated replies for review " + req.params.CommentID,
+              response: "Successfully created comment",
               count: Object.keys(sqlRes).length,
               info: sqlRes,
             });
