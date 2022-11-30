@@ -39,6 +39,7 @@ app.route("/bids/:BidID").put(bidController.update_bid);
 app.route("/bids/").post(bidController.create_bid);
 app.route("/bids/:BidID").delete(bidController.delete_bid);
 app.route("/bids/:AuctionID").get(bidController.get_bids);
+app.route("/bids/:OwnerEmail").get(bidController.get_bids_by_email);
 
 // PAINTING
 app.route("/paintings/").get(paintingController.get_paintings);
