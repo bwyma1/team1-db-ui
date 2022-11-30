@@ -8,12 +8,12 @@ export default function Home() {
 
   //   <CardSlider/>
   return (
-    <div>
-      <MyImageSlider />
-   
+    <h1>
+      Welcome to Arction!
+      {/* <MyImageSlider />
       
       <MyHomepageFooter />
-      <div>{context.user}</div>
-    </div>
+      <div>{context.user}</div> */}
+    </h1>
   );
 }

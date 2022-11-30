@@ -39,7 +39,7 @@ module.exports = function(app, logger)
   app.route("/bids/:BidID").put(bidController.update_bid);
   app.route("/bids/").post(bidController.create_bid);
   app.route("/bids/:BidID").delete(bidController.delete_bid);
-  app.route("/bidsauction/:AuctionID").get(bidController.get_bids);
+  app.route("/bidsauction/:AuctionID").get(bidController.get_bids_auction);
   app.route("/bidsowner/:OwnerEmail").get(bidController.get_bids_by_email);
   // PAINTING
   app.route("/paintings/").get(paintingController.get_paintings);

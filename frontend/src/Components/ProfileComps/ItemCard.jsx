@@ -28,14 +28,6 @@ export default function ItemCard(props) {
 
         <h1 class="priceInfo rightFloat cardText">${props.StartPrice}</h1>
         <br></br>
-        <div className="detailsButton">
-          <button
-            style={{ background: "linear-gradient(#ed6ea0, #ec8c69" }}
-            className=" w-100 p-2 mt-3 bg-peach cardElement"
-          >
-            <NavLink href={"#"}> View Auction </NavLink>
-          </button>
-        </div>
       </div>
     </div>
   );
