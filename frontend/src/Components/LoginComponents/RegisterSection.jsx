@@ -1,6 +1,11 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addUser, getUsers, loginUser } from "../../API/Api";
+import {
+  addUser,
+  getAsyncUserByEmail,
+  getUsers,
+  loginUser,
+} from "../../API/Api";
 import { AppContext } from "../../context";
 import { user } from "../../Models";
 import "./RegisterSection.css";
@@ -29,9 +34,12 @@ export default function RegisterSection() {
   };
 
   function register() {
-    addUser(new user(email, uname, "Bio", "profilepic", 0, pass));
+    const ret = getAsyncUserByEmail(email);
     timeout();
-    //loginUser(email, pass).then((x) => context.setUser(x));
+    if (ret) {
+      addUser(new user(email, uname, "Bio", "profilepic", pass, 0));
+      setIsSubmitted(true);
+    }
   }
 
   if (context.user) {
@@ -90,7 +98,7 @@ export default function RegisterSection() {
     <div>
       <div className="register-form">
         <div className="title">New to Arction</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+        {isSubmitted ? <div>User is successfully Registered</div> : renderForm}
       </div>
     </div>
   );

@@ -92,6 +92,17 @@ export const loginUser =  async (userName, password) => new Promise((resolve, re
         })
 });
 
+export async function getAsyncUserByEmail(email) {
+    try {
+        const response = await fetch(`${apiEndPoint}/users/${email}`);
+        if(!response.ok) {
+            console.log("not ok");
+        }
+        return await response.json()
+    } catch (error) {
+        throw new Error(error.message || "Could not get users");
+    }
+}
 // getUserById(1)
 //      .then(x => setAccount(x))
 
