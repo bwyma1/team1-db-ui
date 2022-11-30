@@ -19,6 +19,7 @@ export default function ItemCard(props)
             <div className="col card-body">
 
         
+<<<<<<< HEAD
                 <span className="d-flex justify-content-between">
                      <h1 className=" mt-3 font-weight-bold pieceTitle leftFloat cardText"> 
                      {props.Title}</h1> 
@@ -35,6 +36,23 @@ export default function ItemCard(props)
                 </button>
               </div>
                           
+=======
+                <span>
+                     <h1 class="pieceTitle leftFloat cardText">Title</h1> 
+                     <LikeButton/>
+                </span>
+              <h1 class ="sellerTitle leftFloat cardText">@Seller</h1>
+              <h1 class="priceInfo rightFloat cardText">$xxx</h1>
+              <div class="detailsButton">
+               <button class="newPageNavButton cardElement">
+                <NavLink href="/auctions"> View Auction </NavLink>
+                </button>
+              </div>
+              <div> 
+
+              </div>
+            </div>
+>>>>>>> f55cd52 (like button)
           </div> 
       </div>
   );
