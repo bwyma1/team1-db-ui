@@ -5,11 +5,12 @@ import { useContext } from "react";
 export default function Home() {
   const context = useContext(AppContext);
   return (
-    <div>
-      <MyImageSlider />
+    <h1>
+      Welcome to Arction!
+      {/* <MyImageSlider />
       
       <MyHomepageFooter />
-      <div>{context.user}</div>
-    </div>
+      <div>{context.user}</div> */}
+    </h1>
   );
 }

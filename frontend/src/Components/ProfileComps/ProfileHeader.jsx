@@ -10,6 +10,7 @@ export default function ProfileHeader(props) {
             className="image profilePic"
             src={props.ProfilePicture}
             alt="temporary profile pic"
+            style={{ maxWidth: "20rem" }}
           />
         </div>
 
@@ -26,7 +27,6 @@ export default function ProfileHeader(props) {
 
           <section className="UserAndBio">
             <h2 className="username ui">{props.Email}</h2>
-            <p className="bio ui">{props.Bio}</p>
           </section>
         </div>
         <br />
