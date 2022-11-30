@@ -20,16 +20,19 @@ import { getAuctionbyId, getCommentbyId, updateAuctionbyId } from "../API/Api";
 
 let selected_auction = new auction(
   1,
-  1,
   "Brock",
   "129.99",
   "https://via.placeholder.com/150x150",
   "20.0",
   "9/11/2022",
-  ["Friendly", "Dark", "Rennaissance"],
   "9/15/2022",
   "The art of War",
-  "This piece depicts the wonderful art of war "
+  "This piece depicts the wonderful art of war ",
+  1,
+  1,
+  1,
+  1,
+  1
 
 );
 let Commentss=[
@@ -47,26 +50,38 @@ let Commentss=[
 export default function Auctionmain() {
 
 
-
-  
+//   const blobreader = () =>{
+//   const fileReaderInstance = new FileReader();
+//   let blob = Auction.Image;
+//   fileReaderInstance.readAsDataURL(blob); 
+//   fileReaderInstance.onload = () => {
+//       setBase64(fileReaderInstance.result);                
+//       console.log(base64);
+//   }
+// }
+  //<img src={base64} alt="notworking"/>
 
 const params = useParams();
 
 const[Auction, setAuction] = useState('');
 const[comments, setCommments] = useState([]);
+const[tags, setTags] = useState([]);
+const[base64, setBase64] = useState('');
 
 useEffect(() =>{//selected auction to auction
-  //getAuctionbyId(params.id).then(x => setAuction(x));
+  getAuctionbyId(9).then(x => setAuction(x.data.info[0]));
+  console.log(Auction);
   //getCommentbyId(params.id).then(x => setCommments(x));
+//blobreader();
 
-  if(Auction.AuctionId == undefined){
+//   if(Auction.AuctionId == undefined){
 
-setAuction(selected_auction);
-  }
-  if(comments.UserEmail== undefined){
+// setAuction(selected_auction);
+//   }
+//   if(comments.UserEmail== undefined){
 
-setCommments(Commentss);
-  }
+// setCommments(Commentss);
+//   }
   
 }, [])
 
@@ -177,7 +192,7 @@ Bidding.value = "";
       </Tabs.Panel>
 
       <Tabs.Panel value="messages" pt="xs">
-        Messages tab content
+        
 
 
 
@@ -189,7 +204,7 @@ Bidding.value = "";
       <Tabs.Panel value="settings" pt="xs">
        
 
-
+r
       <Card className="commentcss">
 <form id="commentarybox">
   

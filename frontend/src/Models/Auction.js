@@ -13,9 +13,8 @@
 //id, paint id, need descr, leadbid, need title
 
 export class auction {
-    constructor(AuctionID, PaintingID, OwnerName, LeadBid, Image, StartPrice, DateListed, Tags, EndDate, Title, Description) {
+    constructor(AuctionID, OwnerName, LeadBid, Image, StartPrice, DateListed, EndDate, Title, Description, Pencil, Paint, Modern, Abstract, Realism) {
         this.AuctionID = AuctionID;
-        this.PaintingID = PaintingID;
         this.Title = Title;
         this.Description = Description;
         this.OwnerName = OwnerName;
@@ -23,7 +22,11 @@ export class auction {
         this.Image = Image;
         this.StartPrice = StartPrice;
         this.DateListed = DateListed;
-        this.Tags = Tags;
+        this.Pencil = Pencil;
+        this.Paint = Paint;
+        this.Modern = Modern;
+        this.Abstract = Abstract;
+        this.Realism = Realism;
         this.EndDate = EndDate;
     }
 }
