@@ -100,10 +100,30 @@ exports.update_auction = function(req, res)
       query += "DateListed = ?, ";
       queryData.push(req.body.DateListed);
     }
-    if ("Tags" in req.body)
+    if ("Pencil" in req.body)
     {
-      query += "Tags = ?, ";
-      queryData.push(req.body.Tags);
+      query += "Pencil = ?, ";
+      queryData.push(req.body.Pencil);
+    }
+    if ("Paint" in req.body)
+    {
+      query += "Paint = ?, ";
+      queryData.push(req.body.Paint);
+    }
+    if ("Modern" in req.body)
+    {
+      query += "Modern = ?, ";
+      queryData.push(req.body.Modern);
+    }
+    if ("Abstract" in req.body)
+    {
+      query += "Abstract = ?, ";
+      queryData.push(req.body.Abstract);
+    }
+    if ("Realism" in req.body)
+    {
+      query += "Realism = ?, ";
+      queryData.push(req.body.Realism);
     }
     if ("EndDate" in req.body)
     {
@@ -176,12 +196,39 @@ exports.create_auction = function(req, res)
       response: "Missing required field: `DateListed`",
     });
   }
-  else if (!("Tags" in req.body))
-  {
+  else if (!("Pencil" in req.body)){
     res.status(400).send(
     {
       success: false,
-      response: "Missing required field: `Tags`",
+      response: "Missing required field: `Pencil`",
+    });
+  }
+  else if (!("Paint" in req.body)){
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Paint`",
+    });
+  }
+  else if (!("Modern" in req.body)){
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Modern`",
+    });
+  }
+  else if (!("Abstract" in req.body)){
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Abstract`",
+    });
+  }
+  else if (!("Realism" in req.body)){
+    res.status(400).send(
+    {
+      success: false,
+      response: "Missing required field: `Realism`",
     });
   }
   else if (!("EndDate" in req.body))
@@ -257,4 +304,100 @@ exports.delete_auction = function(req, res)
       }
     );
   }
+};
+
+exports.get_auctions_paint = function(req, res)
+{
+  sql.connection.query(
+    "SELECT * FROM `PaintingAuctions` WHERE `Paint` = 1;",
+    null,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
+};
+exports.get_auctions_pencil = function(req, res)
+{
+  sql.connection.query(
+    "SELECT * FROM `PaintingAuctions` WHERE `Pencil` = 1;",
+    null,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
+};
+exports.get_auctions_modern = function(req, res)
+{
+  sql.connection.query(
+    "SELECT * FROM `PaintingAuctions` WHERE `Modern` = 1;",
+    null,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
+};
+exports.get_auctions_abstract = function(req, res)
+{
+  sql.connection.query(
+    "SELECT * FROM `PaintingAuctions` WHERE `Abstract` = 1;",
+    null,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
+};
+exports.get_auctions_realism = function(req, res)
+{
+  sql.connection.query(
+    "SELECT * FROM `PaintingAuctions` WHERE `Realism` = 1;",
+    null,
+    function(sqlErr, sqlRes)
+    {
+      if (sql.isSuccessfulQuery(sqlErr, res))
+      {
+        res.status(200).send(
+        {
+          success: true,
+          count: Object.keys(sqlRes).length,
+          info: sqlRes,
+        });
+      }
+    }
+  );
 };

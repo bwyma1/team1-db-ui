@@ -7,7 +7,6 @@ var User = function(user)
    this.DisplayName = user.DisplayName;
    this.Bio = user.Bio;
    this.ProfilePic = user.ProfilePic;
-   this.Tags = user.Tags;
    this.Password = user.Password;
 }
 exports.get_users = function(req, res)
@@ -79,13 +78,12 @@ exports.create_user = function(req, res)
   if (sql.propertyCheck(req, res, ["DisplayName", "Email", "Password"]))
   {
     sql.connection.query(
-      "INSERT INTO `Users` (`Email`, `DisplayName`, `Bio`, `ProfilePic`, `Tags`, `Password`) VALUES (?, ?, ?, ?, ?, ?);",
+      "INSERT INTO `Users` (`Email`, `DisplayName`, `Bio`, `ProfilePic`, `Password`) VALUES (?, ?, ?, ?, ?);",
       [
         req.body.Email, 
         req.body.DisplayName, 
         req.body.Bio, 
         req.body.ProfilePic, 
-        req.body.Tags, 
         req.body.Password
       ],
       function(sqlErr, sqlRes)
