@@ -7,7 +7,11 @@ import { Carousel } from '@mantine/carousel';
 
 //David Berberian
 export default function MyImageSlider() {
+
+  
   return (
+
+
     <div id="Slider_Container">
 
 <Carousel slideSize="100%" height={1000} slideGap="md" loop dragFree withControls={false}>
