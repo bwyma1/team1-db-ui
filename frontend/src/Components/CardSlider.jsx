@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { user } from "../Models";
 
 
-
+//unused due to unfinished linking of frontend and backend. this would show the freatured users on the homepage
 export default function CardSlider(){
 
 const featuredProfiles =[

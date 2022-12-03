@@ -3,7 +3,7 @@ import React from "react";
 import ItemCard from "./ItemCard";
 import "./ProfileViewArea.css";
 import { Grid } from "@mantine/core";
-
+//displays the item cards on the profile page
 export default function ProfileViewArea({ items }) {
   const [auctions, setAuctions] = useState();
   useEffect(() => {

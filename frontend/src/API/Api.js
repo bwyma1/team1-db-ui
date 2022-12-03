@@ -11,6 +11,7 @@ const apiConfig = {
     }
 };
 
+//gets a user by id
 export const getUserById = (id) => new Promise((resolve, reject) => {
     axios.get(`${apiEndPoint}/user/${id}`, apiConfig)
         .then(x => resolve(x))
@@ -20,6 +21,7 @@ export const getUserById = (id) => new Promise((resolve, reject) => {
         })
 });
 
+//gets all users
 export const getUsers = () => new Promise((resolve, reject) => {
     axios.get(`${apiEndPoint}/users/`)
         .then(x => resolve(x))
@@ -29,6 +31,7 @@ export const getUsers = () => new Promise((resolve, reject) => {
         })
 });
 
+// gets all auctions for displaying
 export const getAuctions = () => new Promise((resolve, reject) => {
     axios.get(`${apiEndPoint}/auctions/`)
     .then (x => resolve(x.data))
@@ -62,6 +65,7 @@ export async function getAsyncAuctions() {
     }
 }
 
+//adds new auction 
 export const addAuction = (auction) => new Promise((resolve, reject) => {
     axios.post(`${apiEndPoint}/auctions/`, auction)
         .then(x => resolve(x))
@@ -81,6 +85,7 @@ export const addUser = (user) => new Promise((resolve, reject) => {
         })
 });
 
+// posts new credentials for a new user
 export const loginUser =  async (userName, password) => new Promise((resolve, reject) => {
     axios.post(`${apiEndPoint}/login/`, { Email: userName, Password: password })
         .then(x => 
@@ -102,11 +107,11 @@ export async function getAsyncUserByEmail(email) {
         throw new Error(error.message || "Could not get users");
     }
 }
-// getUserById(1)
-//      .then(x => setAccount(x))
+
 
 
 //David------------
+//updates an auction with the new data
 export const updateAuctionbyId = (id, auction) => new Promise((resolve, reject) => {
     axios.put(`${apiEndPoint}/auctions/${id}`, auction, apiConfig)
         .then(x => resolve(x))
@@ -116,6 +121,7 @@ export const updateAuctionbyId = (id, auction) => new Promise((resolve, reject) 
         })
 });
 
+// returns the auction with the id provided
 export const getAuctionbyId = (id) => new Promise((resolve, reject) => {
     axios.get(`${apiEndPoint}/auctions/${id}`)
         .then(x => resolve(x))
@@ -125,6 +131,7 @@ export const getAuctionbyId = (id) => new Promise((resolve, reject) => {
         })
 });
 
+//gets all the comments for a specific auction id
 export const getCommentbyId = (id) => new Promise((resolve, reject) => {
     axios.get(`${apiEndPoint}/commentsauction/${id}`)
         .then(x => resolve(x))
@@ -134,6 +141,7 @@ export const getCommentbyId = (id) => new Promise((resolve, reject) => {
         })
 });
 
+//posts new comment for a certain auction
 export const postComment = (comment) => new Promise((resolve, reject) => {
     axios.post(`${apiEndPoint}/comments/`, comment)
         .then(x => resolve(x))
@@ -144,6 +152,7 @@ export const postComment = (comment) => new Promise((resolve, reject) => {
 });
 
 
+//gets list of bids from auction
 export const getBidsbyAuction = (id) => new Promise((resolve, reject) => {
     axios.get(`${apiEndPoint}/bidsauction/${id}`)
         .then(x => resolve(x))
@@ -153,6 +162,7 @@ export const getBidsbyAuction = (id) => new Promise((resolve, reject) => {
         })
 });
 
+//posts new bid to the auction
 export const postBid = (bid) => new Promise((resolve, reject) => {
     axios.post(`${apiEndPoint}/bids/`, bid)
         .then(x => resolve(x))

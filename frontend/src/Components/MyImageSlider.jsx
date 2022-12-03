@@ -6,6 +6,8 @@ import { Carousel } from '@mantine/carousel';
 
 
 //David Berberian
+//created as a way to display images on the home page. Image slider 1 and 2 were ways to show 
+//the product team different carosels between the mantine and bootstrap versions.
 export default function MyImageSlider() {
   return (
     <div id="Slider_Container">

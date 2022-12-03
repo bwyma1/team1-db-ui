@@ -12,7 +12,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAsyncAuctions } from "../API/Api";
-
+//this displays all the auctions for the user to cycle through 
+//and also contains a button to post auctions and a title filtering
 export default function Auctions() {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");

@@ -1,6 +1,8 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
+//This page is the notification page for real time notifications which was removed due to time constraints
 export default function Notifications() {
   const notify = () =>
     toast("🔔 Notification!", {

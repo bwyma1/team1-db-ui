@@ -5,6 +5,7 @@ import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LikeButton from "./LikeButton";
 import { useNavigate } from "react-router-dom";
+//Displays Auction below profile
 export default function ItemCard(props) {
   const navigate = useNavigate;
   function toAuction(auc) {

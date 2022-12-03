@@ -5,7 +5,7 @@ import { AppContext } from "../context";
 import { useContext } from "react";
 export default function Home() {
   const context = useContext(AppContext);
-
+// displays homescreen
   //   <CardSlider/>
   return (
     <h1>

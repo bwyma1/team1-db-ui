@@ -1,8 +1,9 @@
 import "./ProfileHeader.css";
 import React from "react";
+//This is the top of the profile page which displays the name and information about a user
 export default function ProfileHeader(props) {
   return (
-    //make photo inline block!
+    
     <>
       <div className="profileHeader container">
         <div className=" container  ui fixed">

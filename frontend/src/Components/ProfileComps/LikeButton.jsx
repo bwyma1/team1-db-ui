@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Heart from "react-heart";
 
+// This is the like button for a feature which was in the process of being linked to backend and had to be removed
 export default function LikeButton() {
 	const [active, setActive] = useState(false)
 	return (

@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 //import { Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
 import { getAsyncAuctions } from "../API/Api";
 import { useEffect } from "react";
-
+// this page displays the profile page view
 export default function Profile() {
   const navigate = useNavigate();
   const [auctions, setAuctions] = useState(null);

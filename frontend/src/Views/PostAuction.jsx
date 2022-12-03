@@ -12,6 +12,8 @@ import {
 import { DatePicker } from "@mantine/dates";
 import { auction } from "../Models";
 import { addAuction } from "../API/Api";
+
+// page displays the postin auction page and handles the image displaying before adding it to the database
 export default function PostAuction() {
   const [isSumbitted, setIsSubmitted] = useState(false);
   const [endDate, setEndDate] = useState(new Date());

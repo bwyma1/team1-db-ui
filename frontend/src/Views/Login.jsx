@@ -8,7 +8,7 @@ export default function Login() {
   function handleSubmit() {
     window.sessionStorage.removeItem("user");
   }
-
+//displays both the login and register page or if the user is logged in, will show a button to logout
   return (
     <>
       {" "}

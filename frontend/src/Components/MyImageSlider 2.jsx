@@ -6,6 +6,8 @@ import { Carousel } from '@mantine/carousel';
 
 
 //David Berberian
+//this was not incorporated to the homepage due to the inability to link frontend to backend in time.
+// This would create an image slider populated with trending art images on the homepage
 export default function MyImageSlider() {
 
   

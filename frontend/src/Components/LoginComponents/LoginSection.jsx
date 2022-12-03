@@ -5,7 +5,7 @@ import { loginUser } from "../../API/Api";
 import { AppContext } from "../../context";
 import { user } from "../../Models";
 import "./LoginSection.css";
-
+//handles logic for users trying to log in
 export default function LoginSection() {
   const [errorMessages] = useState({});
   const [isSubmitted] = useState(false);

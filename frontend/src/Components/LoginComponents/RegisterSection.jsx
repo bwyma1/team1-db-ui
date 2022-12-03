@@ -3,6 +3,7 @@ import { addUser } from "../../API/Api";
 import { user } from "../../Models";
 import "./RegisterSection.css";
 
+//handles logic for new users and adding login information
 export default function RegisterSection() {
   const [errorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);

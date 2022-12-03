@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { getAuctionbyId, getBidsbyAuction, getCommentbyId, postBid, postComment, updateAuctionbyId } from "../API/Api";
 
 
-
+// this is a test auction which can be used to prevent problems when no data is shown
 let selected_auction = new auction(
   1,
   "Brock",
@@ -26,6 +26,7 @@ let selected_auction = new auction(
   1
 
 );
+//tst comments 
 let Commentss=[
   new Comments(4, "user2@gmail.com",3,"I love the design"),
   new Comments(1, "user2@gmail.com",1,"I love the design"),
@@ -35,6 +36,7 @@ let Commentss=[
 //David Berberian
 export default function Auctionmain() {
 
+  //This function takes all the backend tags and places tags based on the true of false values for displaying
 const makeTags = (() => {
   let tags = [];
 if(Auction.Paint == 1){
@@ -57,16 +59,19 @@ setTags(tags);
 
 });
   
-
+//gets user from context
 const params = useParams();
 
+//sets states for use in program user is from the session storage
 const[Auction, setAuction] = useState('');
 const[comments, setCommments] = useState([]);
 const[tags, setTags] = useState([]);
 const[bids, setBids] = useState([]);
 const [user] = useState(JSON.parse(window.sessionStorage.getItem("user")));
 
-useEffect(() =>{//selected auction to auction
+
+//calls api calls then sets data if for some reason the api doe not return. also calls make tags
+useEffect(() =>{
   getAuctionbyId(params.id).then(x => {setAuction(x.data.info[0])
     makeTags();
   });//setAuction(
@@ -89,7 +94,7 @@ if(comments === undefined){
    }, [])
 
 
-
+//adds comment to the list of comments and also posts it to the backend with the corresponding auction id
 const addComment = (user, commentary) =>{
 
   
@@ -105,7 +110,7 @@ const addComment = (user, commentary) =>{
 }
 
 
-
+//changes the bid and copies the auction to change the lead bid
 const ChangeBid = newBid =>{
   let newBidding = new Bids( user.Email, params.id, newBid);
   let newAuction = new auction(Auction.Title, Auction.Description, Auction.OwnerName, newBid, Auction.Image, Auction.StartPrice, Auction.DateListed, Auction.EndDate, Auction.Paint, Auction.Pencil, Auction.Modern, Auction.Abstract, Auction.Realism)
@@ -120,7 +125,7 @@ updateAuctionbyId(params.id, newAuction);
 
 }
 
-  
+//below generates the page using mostely mantine and css styling  
   return (
     <div className="">
       
